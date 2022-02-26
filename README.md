@@ -1,7 +1,5 @@
-## MrSinho software index
+# MrSinho software index
 
-### ShVulkan
+## ShVulkan
 
-[See Github](){: .btn} 
-
-[Read docs](){: .btn}
+[See Github](){: .btn} [Read docs](){: .btn}
