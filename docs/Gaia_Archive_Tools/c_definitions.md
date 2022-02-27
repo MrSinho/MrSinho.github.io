@@ -9,6 +9,7 @@ Types and structures:
 Functions:
 * [GaiaUniverseModelGetID](#gaiauniversemodelgetid)
 * [GaiaReadBinaryFile](#gaiareadbinaryfile)
+* [GaiaReadBinaryFileFromID](#gaiareadbinaryfilefromid)
 * [GaiaReadWeb](#gaiareadweb)
 
 ---
@@ -200,13 +201,15 @@ Reads and extracts the queried values from a source file given the source direct
 
 ### ***Usage example***
 ```c
-const char* src_path = "../gaia_bin/GaiaUniverseModel_0000.bin"; 
-uint32_t bytes_read = 0;
+float* values;
+const char* src_dir = "../gaia_resources";
+uint32_t read_data = 0;
 float* values;
 
-gaiaReadBinaryFile(src_path, GAIA_RA | GAIA_DEC, 0, 0, &bytes_read, &values); //if size is set to 0, the entire file will be read. 
-
+//Reads ../gaia_resources/GaiaUniverseModel_0003.bin
+gaiaReadBinaryFileFromID(src_idr, 3, GAIA_RA | GAIA_DEC, 0, 16, &read_data, values); 
 gaiaFree(values);
+return 0;
 ```
 ---
 

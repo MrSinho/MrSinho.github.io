@@ -5,7 +5,7 @@ Setup
 * [Download Universe Model Data](#download-universe-model-data)
 
 Tutorial
-* [Examples](#examples)
+* [Example](#example)
 * [Gaia Universe Model Repository as Reference](#gaia-universe-model-repository-as-reference)
 * [Useful Python Scripts](#useful-python-scripts)
 
@@ -40,6 +40,7 @@ Inside the cloned repository directory download the GEDR3 binaries by executing 
 ## Example
 The library is easy to understand and the following example should be clear enough:
 ```c
+//Located at "repo-dir/gaia_read_example/src/main.c"
 #include <gaia_archive_tools/gaiaArchiveTools.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,13 +51,14 @@ int main(void) {
 	uint32_t read_data = 0;
 
     //Downloads the file and reads the data
-	//if size is set to 0, the entire file will be read.
+    //if size is set to 0, the entire file will be read.
     //char src_id[5];
-	//gaiaUniverseModelGetId(25, src_id); //"0025"
+    //gaiaUniverseModelGetId(25, src_id); //"0025"
     //gaiaReadWeb(src_id, GAIA_RA | GAIA_DEC, 0, 16, &read_data, &values); 
-	
+
     //If you have already downloaded the binaries:
-	gaiaReadBinaryFileFromID("../gaia_resources", 3, GAIA_RA | GAIA_DEC, 0, 16, &read_data, &values); //Reads ../gaia_resources/GaiaUniverseModel_0003.bin
+    //Reads ../gaia_resources/GaiaUniverseModel_0003.bin
+    gaiaReadBinaryFileFromID("../gaia_resources", 3, GAIA_RA | GAIA_DEC, 0, 16, &read_data, &values); 
 
 	printf("\n\tREAD %i BYTES:\n\n", read_data);
 
