@@ -166,7 +166,7 @@ Reads and extracts the queried values from a source file.
  * [**`flags`**](#gaiacelestialbodyflags): used to sort the data to copy to the destination `*pp_dst`;
  * **`offset`**: offset of the source file;
  * **`size`**: number of bytes to read (entire file if set to `0`);
- * **`p_dst_size`**: pointer to the size of `*pp_dst`;
+ * **`p_dst_size`**: pointer to the size of `*pp_dst` buffer;
  * **`pp_dst`**: pointer to a valid destination pointer (no memory allocation is required).
 
 ### ***Usage example***
@@ -194,7 +194,7 @@ Downloads using a `system` command, reads and extracts the queried values from a
  * [**`flags`**](#gaiacelestialbodyflags): used to sort the data to copy to the destination `*pp_dst`;
  * **`offset`**: offset of the source file;
  * **`size`**: number of bytes to read (entire file if set to `0`);
- * **`p_dst_size`**: pointer to the size of `*pp_dst`;
+ * **`p_dst_size`**: pointer to the size of `*pp_dst` buffer;
  * **`pp_dst`**: pointer to a valid destination pointer (no memory allocation is required).
 
 ### ***Usage example***
