@@ -11,6 +11,7 @@ Functions:
 * [GaiaReadBinaryFile](#gaiareadbinaryfile)
 * [GaiaReadWeb](#gaiareadweb)
 
+---
 
 # Types and structures
 
@@ -159,10 +160,38 @@ gaiaUniverseModelGetId(25, src_id); //src_id is equal to "0025"
 void gaiaReadBinaryFile(const char* src_path, const GaiaCelestialBodyFlags flags, const uint32_t offset, const uint32_t size, uint32_t* p_dst_size, void** pp_dst);
 ```
 ### ***Description***
-Reads and extracts the queried values from a source file.
+Reads and extracts the queried values from a file given the source path.
 
 ### ***Parameters***
  * **`src_path`**: absolute or relative path to the source file;
+ * [**`flags`**](#gaiacelestialbodyflags): used to sort the data to copy to the destination `*pp_dst`;
+ * **`offset`**: offset of the source file;
+ * **`size`**: number of bytes to read (entire file if set to `0`);
+ * **`p_dst_size`**: pointer to the size of `*pp_dst` buffer;
+ * **`pp_dst`**: pointer to a valid destination pointer (no memory allocation is required).
+
+### ***Usage example***
+```c
+const char* src_path = "../gaia_bin/GaiaUniverseModel_0000.bin"; 
+uint32_t bytes_read = 0;
+float* values;
+
+gaiaReadBinaryFile(src_path, GAIA_RA | GAIA_DEC, 0, 0, &bytes_read, &values); //if size is set to 0, the entire file will be read. 
+
+gaiaFree(values);
+```
+---
+
+## gaiaReadBinaryFileFromID
+```c
+void gaiaReadBinaryFileFromID(const char* src_dir, const uint32_t src_id, const GaiaCelestialBodyFlags flags, const uint32_t offset, const uint32_t size, uint32_t* p_dst_size, void** pp_dst);
+```
+### ***Description***
+Reads and extracts the queried values from a source file given the source directory and the source id.
+
+### ***Parameters***
+ * **`src_dir`**: absolute or relative path to the source files directory;
+ * **`src_id`**: id of the source file;
  * [**`flags`**](#gaiacelestialbodyflags): used to sort the data to copy to the destination `*pp_dst`;
  * **`offset`**: offset of the source file;
  * **`size`**: number of bytes to read (entire file if set to `0`);
