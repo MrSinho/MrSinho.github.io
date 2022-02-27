@@ -129,7 +129,8 @@ typedef struct GaiaCelestialBody {
 } GaiaCelestialBody;
 ```
 ### ***Description***
-A reference structure that used in practice.
+A reference structure that has no practical purposes.
+
 ---
 
 
