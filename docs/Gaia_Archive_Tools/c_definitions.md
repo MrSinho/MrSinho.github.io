@@ -1,6 +1,4 @@
-# Gaia Archive Tools Documentation
-
-# [C Definitions](c_definitions.md)
+# Gaia Archive Tools Documentation | C Definitions
 
 # Structures and types
 
