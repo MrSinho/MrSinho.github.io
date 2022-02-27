@@ -1,6 +1,18 @@
 # Gaia Archive Tools C Definitions
 
-# Structures and types
+Types and structures:
+* [Types and structures](#types-and-structures)
+* [gaia_real](#gaia_real)
+* [GaiaCelestialBodyFlags](#gaiacelestialbodyflags)
+* [GaiaCelestialBody](#gaiacelestialbody)
+
+Functions:
+* [GaiaUniverseModelGetID](#gaiauniversemodelgetid)
+* [GaiaReadBinaryFile](#gaiareadbinaryfile)
+* [GaiaReadWeb](#gaiareadweb)
+
+
+# Types and structures
 
 
 ## gaia_real
