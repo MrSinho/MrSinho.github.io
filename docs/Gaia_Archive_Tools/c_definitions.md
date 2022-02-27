@@ -161,7 +161,7 @@ void gaiaReadBinaryFile(const char* src_path, const GaiaCelestialBodyFlags flags
 
 ### ***Parameters***
  * **`src_path`**: absolute or relative path to the source file;
- * **`flags`**: used to sort the data to copy to the destination `*pp_dst`;
+ * [**`flags`**](#gaiacelestialbodyflags): used to sort the data to copy to the destination `*pp_dst`;
  * **`offset`**: offset of the source file;
  * **`size`**: number of bytes to read (entire file if set to `0`);
  * **`p_dst_size`**: pointer to the size of `*pp_dst`;
@@ -189,7 +189,7 @@ void gaiaReadWeb(const char* src_id, const GaiaCelestialBodyFlags flags, const u
 
 ### ***Parameters***
  * **`src_id`**: string equal to a Gaia Universe Model id;
- * **`flags`**: used to sort the data to copy to the destination `*pp_dst`;
+ * [**`flags`**](#gaiacelestialbodyflags): used to sort the data to copy to the destination `*pp_dst`;
  * **`offset`**: offset of the source file;
  * **`size`**: number of bytes to read (entire file if set to `0`);
  * **`p_dst_size`**: pointer to the size of `*pp_dst`;
