@@ -24,7 +24,7 @@ Functions:
 #endif//GAIA_DOUBLE_PRECISION
 ```
 ### ***Description***
-> By default a type definition of float, unless GAIA_DOUBLE_PRECISION is defined.
+By default a type definition of float, unless GAIA_DOUBLE_PRECISION is defined.
 ---
 
 
@@ -76,7 +76,7 @@ typedef enum GaiaCelestialBodyFlags {
 }GaiaCelestialBodyFlags;
 ```
 ### ***Description***
-> Enum useful when managing the source files.
+Enum useful when managing the source files.
 ---
 
 ## gaiaCelestialBody
@@ -125,7 +125,7 @@ typedef struct GaiaCelestialBody {
 } GaiaCelestialBody;
 ```
 ### ***Description***
-> A reference structure that used in practice.
+A reference structure that used in practice.
 ---
 
 
@@ -137,7 +137,7 @@ typedef struct GaiaCelestialBody {
 void gaiaUniverseModelGetId(const uint32_t id, char* s_dst);
 ```
 ### ***Description***
-> Converts an integer to the string version of the GEDR3 Universe Model file id.
+Converts an integer to the string version of the GEDR3 Universe Model file id.
 
 ### ***Parameters***
  * **`id`**: integer referred the GEDR3 Universe Model file at [`Index of Gaia`](http://cdn.gea.esac.esa.int/Gaia/gedr3/simulation/gaia_universe_model/);
@@ -157,7 +157,7 @@ gaiaUniverseModelGetId(25, src_id); //src_id is equal to "0025"
 void gaiaReadBinaryFile(const char* src_path, const GaiaCelestialBodyFlags flags, const uint32_t offset, const uint32_t size, uint32_t* p_dst_size, void** pp_dst);
 ```
 ### ***Description***
-> Reads and extracts the queried values from a source file.
+Reads and extracts the queried values from a source file.
 
 ### ***Parameters***
  * **`src_path`**: absolute or relative path to the source file;
@@ -185,7 +185,7 @@ gaiaFree(values);
 void gaiaReadWeb(const char* src_id, const GaiaCelestialBodyFlags flags, const uint32_t offset, const uint32_t size, uint32_t* p_dst_size, void** pp_dst);
 ```
 ### ***Description***
-> Downloads using a `system` command, reads and extracts the queried values from a source file.
+Downloads using a `system` command, reads and extracts the queried values from a source file.
 
 ### ***Parameters***
  * **`src_id`**: string equal to a Gaia Universe Model id;
