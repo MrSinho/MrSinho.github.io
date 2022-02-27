@@ -24,7 +24,6 @@ Functions:
 #endif//GAIA_DOUBLE_PRECISION
 ```
 ### ***Description***
-
 > By default a type definition of float, unless GAIA_DOUBLE_PRECISION is defined.
 ---
 
@@ -77,7 +76,6 @@ typedef enum GaiaCelestialBodyFlags {
 }GaiaCelestialBodyFlags;
 ```
 ### ***Description***
-
 > Enum useful when managing the source files.
 ---
 
@@ -126,8 +124,7 @@ typedef struct GaiaCelestialBody {
     float       variability_phase;
 } GaiaCelestialBody;
 ```
-***Description***
-
+### ***Description***
 > A reference structure that used in practice.
 ---
 
@@ -160,7 +157,6 @@ gaiaUniverseModelGetId(25, src_id); //src_id is equal to "0025"
 void gaiaReadBinaryFile(const char* src_path, const GaiaCelestialBodyFlags flags, const uint32_t offset, const uint32_t size, uint32_t* p_dst_size, void** pp_dst);
 ```
 ### ***Description***
-
 > Reads and extracts the queried values from a source file.
 
 ### ***Parameters***
@@ -189,7 +185,6 @@ gaiaFree(values);
 void gaiaReadWeb(const char* src_id, const GaiaCelestialBodyFlags flags, const uint32_t offset, const uint32_t size, uint32_t* p_dst_size, void** pp_dst);
 ```
 ### ***Description***
-
 > Downloads using a `system` command, reads and extracts the queried values from a source file.
 
 ### ***Parameters***
