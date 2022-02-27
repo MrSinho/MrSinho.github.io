@@ -204,5 +204,7 @@ gaiaUniverseModelGetId(25, src_id); //"0025"
 
 float* values;
 gaiaReadWeb(src_id, GAIA_RA | GAIA_DEC, 0, 16, &read_data, &values); //if size is set to 0, the entire file will be read. 
+
+gaiaFree(values);
 ```
 ---
