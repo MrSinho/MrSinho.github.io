@@ -1,4 +1,4 @@
-# MrSinho Sofworks
+# Sinho Sofworks
 
 # Index:
 
