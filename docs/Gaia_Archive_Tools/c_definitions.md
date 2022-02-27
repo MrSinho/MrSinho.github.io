@@ -25,6 +25,7 @@ Functions:
 ```
 ### ***Description***
 By default a type definition of float, unless GAIA_DOUBLE_PRECISION is defined.
+
 ---
 
 
@@ -77,6 +78,7 @@ typedef enum GaiaCelestialBodyFlags {
 ```
 ### ***Description***
 Enum useful when managing the source files.
+
 ---
 
 ## gaiaCelestialBody
