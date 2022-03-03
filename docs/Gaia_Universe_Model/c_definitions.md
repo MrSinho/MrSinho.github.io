@@ -1,7 +1,7 @@
 # Gaia Universe Model C Definitions
 
 [Types and structures](#types-and-structures):
-* [GaiaUniverseModelMemory](#GaiaUniverseModelMemory)
+* [GaiaUniverseModelMemory](#gaiauniversemodelmemory)
 
 [Functions](#functions):
 * [gaiaEngineSetup](#gaiaenginesetup)
