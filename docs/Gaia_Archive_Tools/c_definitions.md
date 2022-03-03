@@ -1,5 +1,7 @@
 # Gaia Archive Tools C Definitions
 
+<button>[index](./index.md)</button>
+
 [Types and structures](#types-and-structures):
 * [gaia_real](#gaia_real)
 * [GaiaCelestialBodyFlags](#gaiacelestialbodyflags)

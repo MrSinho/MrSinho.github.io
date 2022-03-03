@@ -1,5 +1,7 @@
 # Gaia Archive Tools Library Walkthrough
 
+<button>[index](./index.md)</button>
+
 Setup
 * [Clone and build](#clone-and-build)
 * [Download Universe Model Data](#download-universe-model-data)
@@ -40,10 +42,9 @@ Inside the cloned repository directory download the GEDR3 binaries by executing 
 
 ## Use CMake
 
-| CMake target                                           | type       |   |
-|--------------------------------------------------------|------------|---|
-| [gaia-archive-tools](../Gaia_Archive_Tools/index.md)   | library    |   |
-|                                                        |            |   |
+| CMake target                                           | type       |
+|--------------------------------------------------------|------------|
+| [gaia-archive-tools](../Gaia_Archive_Tools/index.md)   | library    |
 
 ## Example
 ```c
