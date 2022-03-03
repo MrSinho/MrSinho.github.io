@@ -1,4 +1,4 @@
-# Gaia Archive Tools C Definitions
+# Gaia Universe Model C Definitions
 
 [Types and structures](#types-and-structures):
 * [GaiaUniverseModelMemory](#GaiaUniverseModelMemory)
