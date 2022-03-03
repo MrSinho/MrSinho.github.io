@@ -135,7 +135,7 @@ Initializes the main scene. Required before rendering.
 ```c
 #include <gaia-universe-model/gaiaUniverseModel.h>
 //Setup engine first
-gaiaSceneSetup(&engine);
+void gaiaSceneSetup(ShEngine* p_engine);
 ```
 ---
 
