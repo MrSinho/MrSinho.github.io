@@ -10,11 +10,11 @@ A C library that simplifies the usage of the Vulkan API:
 
 ---
 
-## SH-Engine
+## ShEngine
 
 This is a cross-platform, Vulkan based graphics engine that is still in development:
 
-<button>[Download](https://github.com/MrSinho/SH-Engine)</button> <button>[Read docs](docs/SH-Engine/index.md)</button>
+<button>[Download](https://github.com/MrSinho/SH-Engine)</button> <button>[Read docs](docs/ShEngine/index.md)</button>
 
 ---
 

@@ -5,6 +5,7 @@ Setup
 * [Download Universe Model Data](#download-universe-model-data)
 
 Tutorial
+* [Use CMake](#use-cmake)
 * [Example](#example)
 * [Gaia Universe Model Repository as Reference](#gaia-universe-model-repository-as-reference)
 * [Useful Python Scripts](#useful-python-scripts)
@@ -37,8 +38,14 @@ Inside the cloned repository directory download the GEDR3 binaries by executing 
 
 # Tutorial
 
+## Use CMake
+
+| CMake target                                           | type       |   |
+|--------------------------------------------------------|------------|---|
+| [gaia-archive-tools](../Gaia_Archive_Tools/index.md)   | library    |   |
+|                                                        |            |   |
+
 ## Example
-The library is easy to understand and the following example should be clear enough:
 ```c
 //Located at "repo-dir/gaia_read_example/src/main.c"
 #include <gaia-archive-tools/gaiaArchiveTools.h>
@@ -91,19 +98,19 @@ Mode                 LastWriteTime         Length Name
 -a----        13/01/2022     17:37           1485 download_catalogues.py
 -a----        15/01/2022     22:49              8 requirements.txt
 ```
-To download the original `.csv` files directly from the Gaia Servers:
+To download the original CSV files directly from the Gaia Servers:
 ```bash 
 python download_catalogues.py 0 #Download only file 0
 python download_catalogues.py 0 4999 #Download all the files in the given range
 ```
 
-If you want to convert the `.csv` files in a binary format, do:
+If you want to convert the CSV files in a binary format, do:
 ```bash
 python convert_catalogues.py 0 #Convert only file 0 
 python convert_catalogues.py 0 4999 #Convert all the files in the given range 
 ```
 
-In case you need to compress the binaries in a `.rar` file:
+In case you need to compress the binaries in a RAR file:
 ```bash
 python compress_catalogues.py 0 #Compress only file 0 
 python compress_catalogues.py 0 4999 #Compress all the files in the given range 
