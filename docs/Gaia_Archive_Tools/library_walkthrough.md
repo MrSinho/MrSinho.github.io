@@ -41,7 +41,7 @@ Inside the cloned repository directory download the GEDR3 binaries by executing 
 The library is easy to understand and the following example should be clear enough:
 ```c
 //Located at "repo-dir/gaia_read_example/src/main.c"
-#include <gaia_archive_tools/gaiaArchiveTools.h>
+#include <gaia-archive-tools/gaiaArchiveTools.h>
 #include <stdio.h>
 #include <stdlib.h>
 

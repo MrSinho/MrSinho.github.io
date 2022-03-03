@@ -1,12 +1,11 @@
 # Gaia Archive Tools C Definitions
 
-Types and structures:
-* [Types and structures](#types-and-structures)
+[Types and structures](#types-and-structures):
 * [gaia_real](#gaia_real)
 * [GaiaCelestialBodyFlags](#gaiacelestialbodyflags)
 * [GaiaCelestialBody](#gaiacelestialbody)
 
-Functions:
+[Functions](#functions):
 * [GaiaUniverseModelGetID](#gaiauniversemodelgetid)
 * [GaiaReadBinaryFile](#gaiareadbinaryfile)
 * [GaiaReadBinaryFileFromID](#gaiareadbinaryfilefromid)
@@ -25,7 +24,7 @@ Functions:
     typedef double gaia_real;
 #endif//GAIA_DOUBLE_PRECISION
 ```
-### ***Description***
+### Description
 By default a type definition of float, unless GAIA_DOUBLE_PRECISION is defined.
 
 ---
@@ -78,7 +77,7 @@ typedef enum GaiaCelestialBodyFlags {
     GAIA_FULL_BODY = UINT64_MAX
 }GaiaCelestialBodyFlags;
 ```
-### ***Description***
+### Description
 Enum useful when managing the source files.
 
 ---
@@ -128,7 +127,7 @@ typedef struct GaiaCelestialBody {
     float       variability_phase;
 } GaiaCelestialBody;
 ```
-### ***Description***
+### Description
 A reference structure that has no practical purposes.
 
 ---
@@ -141,15 +140,17 @@ A reference structure that has no practical purposes.
 ```c
 void gaiaUniverseModelGetId(const uint32_t id, char* s_dst);
 ```
-### ***Description***
+### Description
 Converts an integer to the string version of the GEDR3 Universe Model file id.
 
-### ***Parameters***
+### Parameters
  * **`id`**: integer referred the GEDR3 Universe Model file at [`Index of Gaia`](http://cdn.gea.esac.esa.int/Gaia/gedr3/simulation/gaia_universe_model/);
  * **`s_dst`**: pointer to a valid array of 5 bytes;
 
-### ***Usage example***
+### Usage example
 ```c
+#include <gaia-archive-tools/gaiaArchiveTools.h>
+
 char src_id[5];
 gaiaUniverseModelGetId(25, src_id); //src_id is equal to "0025"
 // "0025" is the id of GaiaUniverseModel_0025.bin, that corresponds to http://cdn.gea.esac.esa.int/Gaia/gedr3/simulation/gaia_universe_model/GaiaUniverseModel_0025.csv.gz
@@ -161,10 +162,10 @@ gaiaUniverseModelGetId(25, src_id); //src_id is equal to "0025"
 ```c
 void gaiaReadBinaryFile(const char* src_path, const GaiaCelestialBodyFlags flags, const uint32_t offset, const uint32_t size, uint32_t* p_dst_size, void** pp_dst);
 ```
-### ***Description***
+### Description
 Reads and extracts the queried values from a file given the source path.
 
-### ***Parameters***
+### Parameters
  * **`src_path`**: absolute or relative path to the source file;
  * [**`flags`**](#gaiacelestialbodyflags): used to sort the data to copy to the destination `*pp_dst`;
  * **`offset`**: offset of the source file;
@@ -172,8 +173,10 @@ Reads and extracts the queried values from a file given the source path.
  * **`p_dst_size`**: pointer to the size of `*pp_dst` buffer;
  * **`pp_dst`**: pointer to a valid destination pointer (no memory allocation is required).
 
-### ***Usage example***
+### Usage example
 ```c
+#include <gaia-archive-tools/gaiaArchiveTools.h>
+
 const char* src_path = "../gaia_bin/GaiaUniverseModel_0000.bin"; 
 uint32_t bytes_read = 0;
 float* values;
@@ -188,10 +191,10 @@ gaiaFree(values);
 ```c
 void gaiaReadBinaryFileFromID(const char* src_dir, const uint32_t src_id, const GaiaCelestialBodyFlags flags, const uint32_t offset, const uint32_t size, uint32_t* p_dst_size, void** pp_dst);
 ```
-### ***Description***
+### Description
 Reads and extracts the queried values from a source file given the source directory and the source id.
 
-### ***Parameters***
+### Parameters
  * **`src_dir`**: absolute or relative path to the source files directory;
  * **`src_id`**: id of the source file;
  * [**`flags`**](#gaiacelestialbodyflags): used to sort the data to copy to the destination `*pp_dst`;
@@ -200,8 +203,10 @@ Reads and extracts the queried values from a source file given the source direct
  * **`p_dst_size`**: pointer to the size of `*pp_dst` buffer;
  * **`pp_dst`**: pointer to a valid destination pointer (no memory allocation is required).
 
-### ***Usage example***
+### Usage example
 ```c
+#include <gaia-archive-tools/gaiaArchiveTools.h>
+
 float* values;
 const char* src_dir = "../gaia_resources";
 uint32_t read_data = 0;
@@ -219,10 +224,10 @@ return 0;
 ```c
 void gaiaReadWeb(const char* src_id, const GaiaCelestialBodyFlags flags, const uint32_t offset, const uint32_t size, uint32_t* p_dst_size, void** pp_dst);
 ```
-### ***Description***
+### Description
 Downloads using a `system` command, reads and extracts the queried values from a source file.
 
-### ***Parameters***
+### Parameters
  * **`src_id`**: string equal to a Gaia Universe Model id;
  * [**`flags`**](#gaiacelestialbodyflags): used to sort the data to copy to the destination `*pp_dst`;
  * **`offset`**: offset of the source file;
@@ -230,8 +235,10 @@ Downloads using a `system` command, reads and extracts the queried values from a
  * **`p_dst_size`**: pointer to the size of `*pp_dst` buffer;
  * **`pp_dst`**: pointer to a valid destination pointer (no memory allocation is required).
 
-### ***Usage example***
+### Usage example
 ```c
+#include <gaia-archive-tools/gaiaArchiveTools.h>
+
 uint32_t read_data = 0;
 	
 char src_id[5];
