@@ -4,7 +4,7 @@
 <button>[C definitions](c_definitions.md)</button>
 <button>[Library Walkthrough](library_walkthrough)</button>
 
-A project packed with an executable and a library, used to render millions of stars using the Gaia Universe Model data by the [European Space Agency](https://gea.esac.esa.int/archive/), [Gaia Archive Tools](../Gaia_Archive_Tools/index.md) and [ShEngine](../SH-Engine/index.md).
+A project packed with an executable and a library, used to render millions of stars using the Gaia Universe Model data from the [European Space Agency](https://gea.esac.esa.int/archive/), [Gaia Archive Tools](../Gaia_Archive_Tools/index.md) and [ShEngine](../SH-Engine/index.md).
 
 ## [Gaia License](https://www.cosmos.esa.int/web/gaia-users/license)
 
