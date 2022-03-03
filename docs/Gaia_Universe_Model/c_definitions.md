@@ -4,10 +4,14 @@
 * [GaiaUniverseModelMemory](#GaiaUniverseModelMemory)
 
 [Functions](#functions):
-* [GaiaUniverseModelGetID](#gaiauniversemodelgetid)
-* [GaiaReadBinaryFile](#gaiareadbinaryfile)
-* [GaiaReadBinaryFileFromID](#gaiareadbinaryfilefromid)
-* [GaiaReadWeb](#gaiareadweb)
+* [gaiaEngineSetup](#gaiaenginesetup)
+* [gaiaSetupMaterial](#gaiasetupmaterial)
+* [gaiaReadSources](#gaiareadsources)
+* [gaiaWriteVertexBuffers](#gaiawritevertexbuffers)
+* [gaiaSceneSetup](#gaiascenesetup)
+* [gaiaSceneUpdate](#gaiasceneupdate)
+* [gaiaMemoryRelease](#gaiamemoryrelease)
+* [gaiaEngineShutdown](#gaiaengineshutdown)
 
 ---
 
