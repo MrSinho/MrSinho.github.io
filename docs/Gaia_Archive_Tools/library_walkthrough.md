@@ -44,7 +44,7 @@ Inside the cloned repository directory download the GEDR3 binaries by executing 
 
 | CMake target                                           | type       |
 |--------------------------------------------------------|------------|
-| [gaia-archive-tools](../Gaia_Archive_Tools/index.md)   | library    |
+| [gaia-archive-tools](../Gaia_Archive_Tools/index)   | library    |
 
 ## Example
 ```c
@@ -83,7 +83,7 @@ int main(void) {
 
 ## Gaia Universe Model repository as reference
 
-The [Gaia_Universe_Model](../Gaia_Universe_Model/index.md) repository uses this library and the [SH-Engine](../SH-Engine/index.md) to render in a 3d environment millions of celestial bodies in real time. The program uses all the functionalities of this library.
+The [Gaia_Universe_Model](../Gaia_Universe_Model/index) repository uses this library and the [SH-Engine](../SH-Engine/index) to render in a 3d environment millions of celestial bodies in real time. The program uses all the functionalities of this library.
 
 ## Useful Python Scripts
 

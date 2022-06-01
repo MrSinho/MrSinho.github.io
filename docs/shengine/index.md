@@ -1,3 +1,3 @@
 # Documentation not available yet :(
 
-<button>[back to home](../../README.md)</button>
+<button>[back to home](../../README)</button>

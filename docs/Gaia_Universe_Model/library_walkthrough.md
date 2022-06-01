@@ -42,10 +42,10 @@ Inside the cloned repository directory download the GEDR3 binaries by executing 
 
 | CMake target                                           | type       |
 |--------------------------------------------------------|------------|
-| [shvulkan](../ShVulkan/index.md)                       | library    |
-| [shengine](../ShEngine/index.md)                       | library    |
-| [gaia-archive-tools](../Gaia_Archive_Tools/index.md)   | library    |
-| [gaia-universe-model](../Gaia_Universe_Model/index.md) | library    |
+| [shvulkan](../ShVulkan/index)                       | library    |
+| [shengine](../ShEngine/index)                       | library    |
+| [gaia-archive-tools](../Gaia_Archive_Tools/index)   | library    |
+| [gaia-universe-model](../Gaia_Universe_Model/index) | library    |
 | gaia-universe-model-simulation                         | executable |
 
 `gaia-universe-model-simulation` is a real time simulation, thus it needs all the libraries written on the table above.

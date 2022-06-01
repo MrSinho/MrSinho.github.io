@@ -1,10 +1,10 @@
 # Gaia Universe Model
 
 <button>[Download](https://github.com/MrSinho/Gaia_Universe_Model.git)</button>
-<button>[C definitions](c_definitions.md)</button>
+<button>[C definitions](c_definitions)</button>
 <button>[Library Walkthrough](library_walkthrough)</button>
 
-A project packed with an executable and a library, used to render millions of stars using the Gaia Universe Model data from the [European Space Agency](https://gea.esac.esa.int/archive/), [Gaia Archive Tools](../Gaia_Archive_Tools/index.md) and [ShEngine](../SH-Engine/index.md).
+A project packed with an executable and a library, used to render millions of stars using the Gaia Universe Model data from the [European Space Agency](https://gea.esac.esa.int/archive/), [Gaia Archive Tools](../Gaia_Archive_Tools/index) and [ShEngine](../SH-Engine/index).
 
 ## [Gaia License](https://www.cosmos.esa.int/web/gaia-users/license)
 
