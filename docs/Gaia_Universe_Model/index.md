@@ -13,6 +13,6 @@ A project packed with an executable and a library, used to render millions of st
 
 ---
 
-<button>[back to home](../../README.md)</button>
+<button>[back to home](../../README)</button>
 
 ---

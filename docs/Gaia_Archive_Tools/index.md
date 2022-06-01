@@ -18,6 +18,6 @@ This unofficial repository collects the tools to efficiently download, convert a
 
 ---
 
-<button>[back to home](../../README.md)</button>
+<button>[back to home](../../README)</button>
 
 ---

@@ -1,6 +1,6 @@
 # Gaia Universe Model Library Walkthrough
 
-<button>[index](./index.md)</button>
+<button>[index](./index)</button>
 
 Setup
 * [Clone and build](#clone-and-build)
