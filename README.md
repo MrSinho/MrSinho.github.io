@@ -6,7 +6,7 @@
 
 A C library that simplifies the usage of the Vulkan API:
 
-<button>[Download](https://github.com/MrSinho/ShVulkan)</button> <button>[Read docs](docs/ShVulkan/index.md)</button>
+<button>[Download](https://github.com/MrSinho/ShVulkan)</button> <button>[Read docs](docs/shvulkan/index.md)</button>
 
 ---
 
@@ -14,7 +14,7 @@ A C library that simplifies the usage of the Vulkan API:
 
 This is a cross-platform, Vulkan based graphics engine that is still in development:
 
-<button>[Download](https://github.com/MrSinho/SH-Engine)</button> <button>[Read docs](docs/ShEngine/index.md)</button>
+<button>[Download](https://github.com/MrSinho/SH-Engine)</button> <button>[Read docs](docs/shengine/index.md)</button>
 
 ---
 
