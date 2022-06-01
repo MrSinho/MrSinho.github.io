@@ -1,6 +1,6 @@
 # Gaia Universe Model C Definitions
 
-<button>[back to index](./index.md)</button>
+<button>[back to index](./index)</button>
 
 [Types and structures](#types-and-structures):
 * [GaiaUniverseModelMemory](#gaiauniversemodelmemory)

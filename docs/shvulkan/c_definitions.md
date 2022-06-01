@@ -1,6 +1,6 @@
 # shvulkan C Definitions
 
-<button>[back to index](./index.md)</button>
+<button>[back to index](./index)</button>
 
 [Types and structures](#types-and-structures):
 * Defined at [`shVkCore.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkCore.h)
@@ -8,6 +8,7 @@
     * [ShVkSurface](#shvksurface)
     * [ShVkQueue](#shvkqueue)
     * [ShVkCommand](#shvkcommand)
+    * [ShVkImageType](#shvkimagetype)
 * Defined at [`shVkPipelineData.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkPipelineData.h)
     * [ShVkPipeline](#shvkpipeline)
     * [ShFixedStatesFlags](#shvkfixedstatesflags)
@@ -27,11 +28,7 @@
     * [shSetLogicalDevice](#shsetlogicaldevice)
     * [shCreateSwapchain](#shcreateswapchain)
     * [shGetSwapchainImages](#shgetswapchainimages)
-    * [shCreateImageView](#shcreateimageview)
     * [shCreateSwapchainImageViews](#shcreateswapchainimageviews)
-    * [shCreateCmdPool](#shcreatecmdpool)
-    * [shCreateCmdBuffer](#shcreatecmdbuffer)
-    * [shCreateCommandData](#shcreatecommanddata)
     * [shCreateRenderPass](#shcreaterenderpass)
     * [shSetFramebuffers](#shsetframebuffers)
     * [shSetSyncObjects](#shsetsyncobjects)
@@ -230,6 +227,22 @@ A thread unit: stores a [`VkCommandBuffer`](https://www.khronos.org/registry/vul
 
 
 
+## ShVkImageType
+```c
+typedef enum ShVkImageType {
+	SH_SWAPCHAIN_IMAGE = 0b001,
+	SH_DEPTH_IMAGE = 0b010
+} ShVkImageType;
+```
+### Description
+Enum type required to define the usage of a specific [`VkImage`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImage.html).
+
+
+
+---
+
+
+
 ## ShVkPipeline
 ```c
 typedef struct ShVkPipeline {
@@ -329,6 +342,7 @@ int main(void) {
     if (shCheckValidationLayers("VK_LAYER_KHRONOS_validation")) {
         puts("validation layer found!\n");
     }
+    // [...]
     return 0;
 }
 ```
@@ -347,7 +361,7 @@ extern const char* shTranslateVkResult(const VkResult vk_result);
 Translates a `VkResult` returned by calling a Vulkan API function. Returns the literal translation of [`vk_result`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html).
 
 ### Parameters
- * [**`vk_result`**](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html).
+ * [**`vk_result`**](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html): the condition.
 
 ### Usage example
 ```c
@@ -360,6 +374,7 @@ int main(void) {
     VkResult result = vkCreateInstance(&instance_create_info, NULL, &instance);
     //the operation will fail and return an error
     printf("vkCreateInstante result: %s\n", shTranslateVkResult(result));
+    // [...]
     return 0;
 }
 ```
@@ -397,6 +412,7 @@ int main(void) {
         vkCreateInstance(&instance_create_info, NULL, &instance),
         "invalid instance create info structure"
     );
+    // [...]
     return 0;
 }
 ```
@@ -418,7 +434,7 @@ int main(void) {
 Asserts a `condition` value, automatically casted to a signed integer.
 
 ### Parameters
- * **`condition`**;
+ * **`condition`**: the input value that ignites assertion;
  * [**`error_msg`**](#gaiauniversemodelmemory): the message (encoded in a `const char*`) to display on the console when the `condition` is lower or equal to zero. 
 
 ### Usage example
@@ -427,6 +443,7 @@ Asserts a `condition` value, automatically casted to a signed integer.
 
 int main(void) {
     shVkAssert(0, "failure");
+    // [...]
     return 0;
 }
 ```
@@ -476,7 +493,8 @@ int main(void) {
         "error creating vulkan instance"
     );
 
-	return 0;
+	// [...]
+    return 0;
 }
 ```
 
@@ -505,6 +523,7 @@ int main(void) {
     ShVkCore core = { 0 };
     //setup instance
 	shSelectPhysicalDevice(&core, SH_VK_CORE_GRAPHICS | SH_VK_CORE_COMPUTE);
+    // [...]
     return 0;
 }
 ```
@@ -551,6 +570,1110 @@ int main(void) {
     //setup instance
 	//setup physical device
     shSetLogicalDevice(&core, SH_VK_CORE_GRAPHICS | SH_VK_CORE_COMPUTE);
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateSwapchain
+```c
+extern void shCreateSwapchain(ShVkCore* p_core);
+```
+### Description
+Sets up the handle responsible for coordinating the images generated after a rendering operation. Requires a valid [`VkSurfaceKHR`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceKHR.html) inside the [`ShVkCore`](#shvkcore) structure.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //create surface --> platform dependent
+	//setup physical device
+    //setup logical device
+    shCreateSwapchain(&core);
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shGetSwapchainImages
+```c
+extern void shGetSwapchainImages(ShVkCore* p_core);
+```
+### Description
+Writes the swapchain images given a valid swapchain, stored at p_core.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //create surface --> platform dependent
+	//setup physical device
+    //setup logical device
+    //create surface --> platform dependent
+    //setup swapchain
+    shGetSwapchainImages(&core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateSwapchainImageViews
+```c
+extern void shCreateSwapchainImageViews(ShVkCore* p_core);
+```
+### Description
+Sets up a swapchain [`VkImageView`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageView.html) handle. Before calling this function you must have initialized the swapchain images ([shGetSwapchainImages](#shgetswapchainimages)).
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //create surface --> platform dependent
+    //setup swapchain
+    //get swapchain images
+    shCreateSwapchainImageViews(&core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateRenderPass
+```c
+extern void shCreateRenderPass(ShVkCore* p_core);
+```
+### Description
+Creates a [`VkRenderPass`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPass.html).
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //create surface --> platform dependent
+	//setup physical device
+    //setup logical device
+    //setup swapchain
+    //get swapchain images
+    //get swapchain image views
+    shCreateRenderPass(ShVkCore* p_core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSetFramebuffers
+```c
+extern void shSetFramebuffers(ShVkCore* p_core);
+```
+### Description
+Sets up a [`VkFramebuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFramebuffer.html) for each swapchain image.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //create surface --> platform dependent
+	//setup physical device
+    //setup logical device
+    //create surface --> platform dependent
+    //setup swapchain
+    //get swapchain images
+    //get swapchain image views
+    //setup render pass
+    shSetFramebuffers(&core);
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSetSyncObjects
+```c
+extern void shSetSyncObjects(ShVkCore* p_core);
+```
+### Description
+Sets up a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html) command buffer and an additional [`VkSemaphore`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphore.html) for each graphics command buffer.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //create command buffers
+    shSetSyncObject(&core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSwapchainRelease
+```c
+extern void shSwapchainRelease(ShVkCore* p_core);
+```
+### Description
+Frees memory from the swapchain with the relative image views and framebuffers. 
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //create surface --> platform dependent
+	//setup physical device
+    //setup logical device
+    //setup swapchain
+    //get swapchain images
+    //get swapchain image views
+    shSwapchainRelease(&core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shDepthBufferRelease
+```c
+extern void shDepthBufferRelease(ShVkCore* p_core);
+```
+### Description
+Destroys a depth image view, a depth image and frees the depth image memory.
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //create surface --> platform dependent
+	//setup physical device
+    //setup logical device
+    //create depth image
+    //create depth image view
+    shDepthBufferRelease(&core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSurfaceRelease
+```c
+extern void shSurfaceRelease(ShVkCore* p_core);
+```
+### Description
+Destroys the `VkSurfaceKHR`. 
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //create surface --> platform dependent
+    shSurfaceRelease(&core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCmdRelease
+```c
+extern void shCmdRelease(ShVkCore* p_core);
+```
+### Description
+Destroys the [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s, [`VkCommandPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPool.html)s and [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html)s. Releases a [`VkSemaphore`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphore.html) for each graphics command buffer.
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    //create command buffers
+    //create sync objects
+
+    shCmdRelease(&core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shRenderPassRelease
+```c
+extern void shRenderPassRelease(ShVkCore* p_core);
+```
+### Description
+Destroys the [VkRenderPass](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPass.html) stored at `p_core`.
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //create surface --> platform dependent
+	//setup physical device
+    //setup logical device
+    //create surface --> platform dependent
+    //setup swapchain
+    //get swapchain images
+    //get swapchain image views
+    //setup render pass
+    
+    //destroy swapchain data
+    //destroy surface
+    shRenderPassRelease(&core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shInstanceRelease
+```c
+extern void shInstanceRelease(ShVkCore* p_core);
+```
+### Description
+Destroys the [VkInstance](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstance.html) stored at `p_core`.
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    shDestroyInstance(&core);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shVulkanRelease
+```c
+extern void shVulkanRelease(ShVkCore* p_core);
+```
+### Description
+Automatically destroys every active Vulkan object stored at `p_core`.
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup
+    
+    shVulkanRelease(&core);
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shGetGraphicsQueue
+```c
+extern void shGetGraphicsQueue(ShVkCore* p_core);
+```
+### Description
+Gets graphics [`VkQueue`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueue.html) handle for submitting rendering data to the GPU.
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    shGetGraphicsQueue(&core);
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shGetComputeQueue
+```c
+extern void shGetComputeQueue(ShVkCore* p_core);
+```
+### Description
+Gets compute [`VkQueue`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueue.html) handle for submitting rendering data to the GPU.
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    shGetComputeQueue(&core);
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shInitSwapchainData
+```c
+#define shInitSwapchainData(p_core) shCreateSwapchain(p_core); shGetSwapchainImages(p_core); shCreateSwapchainImageViews(p_core)
+```
+### Description
+Macro definition used to call [`shCreateSwapchain`](#shcreateswapchain), [`shGetSwapchainImages`](#shgetswapchainimages) and [`shCreateSwapchainImageViews`](#shcreateswapchainimageviews).
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    //create surface --> platform dependent
+    shInitSwapchainData(&core);
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateDepthImageView
+```c
+#define shCreateDepthImageView(p_core) shCreateImageView(p_core, (p_core)->depth_image, SH_DEPTH_IMAGE, &(p_core)->depth_image_view)
+```
+### Description
+Macro definition for creating a depth [`VkImageView`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageView.html).
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    //create surface --> platform dependent
+    //create depth image
+    shCreateDepthImageView(&core);
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateGraphicsCommandBuffers
+
+```c
+#define shCreateGraphicsCommandBuffers(p_core, thread_count)\
+	shCreateCommandData(p_core, VK_QUEUE_GRAPHICS_BIT, thread_count, &(p_core)->p_graphics_commands)\
+```
+### Description
+Builds a `thread_count` number of graphics [`VkCommandPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPool.html)-s and [VkCommandBuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html)-s.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`thread_count`**: number of threads.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    shCreateGraphicsCommandBuffers(&core, 1);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateComputeCommandBuffers
+
+```c
+#define shCreateComputeCommandBuffers(p_core, thread_count)\
+	shCreateCommandData(p_core, VK_QUEUE_COMPUTE_BIT, thread_count, &(p_core)->p_compute_commands)\
+```
+### Description
+Builds a `thread_count` number of compute [`VkCommandPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPool.html)s and [VkCommandBuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html)s.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`thread_count`**: number of threads.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    shCreateComputeCommandBuffers(&core, 1);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shResetCommandBuffer
+```c
+#define shResetCommandBuffer(cmd_buffer) vkResetCommandBuffer(cmd_buffer, 0)
+```
+### Description
+Resets a command buffer to its initial state, calls [`vkResetCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkResetCommandBuffer.html).
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //setup command buffers
+
+    uint32_t thread = 0;//same process valid with compute command buffers
+    shResetCommandBuffer(core.p_compute_commands[thread].cmd_buffer);//compute
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shResetFences
+```c
+#define shResetFences(device, fence_count, p_fences) vkResetFences(device, fence_count, p_fences);
+```
+### Description
+Resets a `fence_count` number of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s to their initial state, calls [`vkResetCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkResetCommandBuffer.html).
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`fence_count`**: number of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s to reset;
+ * **`p_fences`**: valid array of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s with length equal to `fence_count`.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    uint32_t thread_count = 3;
+    //setup command buffers
+    //create sync objects
+
+    //reset command buffers
+
+    VkFence fences[3] = {//same process valid with graphics fences
+        core.p_compute_commands[0].fence, 
+        core.p_compute_commands[1].fence,
+        core.p_compute_commands[2].fence
+    };
+    shResetFences(core.device, thread_count, fences);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shResetFence
+```c
+#define shResetFence(device, p_fence) vkResetFences(device, 1, p_fence);
+```
+### Description
+Resets a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html) to its initial state, calls [`vkResetCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkResetCommandBuffer.html).
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`p_fence`**: valid pointer to a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    uint32_t thread_count = 1;
+    //setup command buffers
+    //create sync objects
+
+    //reset command buffer
+
+    //same process valid with graphics fences
+    shResetFence(core.device, &core.p_compute_commands[0].fence);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shBeginCommandBuffer
+```c
+extern void shBeginCommandBuffer(const VkCommandBuffer cmd_buffer);
+```
+### Description
+Starts recording a [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html).
+
+### Parameters
+ * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [shCreateGraphicsCommandBuffers](#shcreategraphicscommandbuffers) and [shCreateComputeCommandBuffers](#shcreatecomputecommandbuffers).
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    uint32_t thread_count = 1;
+    //setup command buffers
+    //create sync objects
+
+    //reset command buffer
+    //reset fence
+
+    //same process valid with graphics command buffers
+	shBeginCommandBuffer(core.p_compute_commands[0].cmd_buffer);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shQueueSubmit
+```c
+extern void shQueueSubmit(VkCommandBuffer* cmd_buffer, const VkQueue queue, VkFence fence);
+```
+### Description
+Submits rendering data to the GPU. 
+
+### Parameters
+ * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [shCreateGraphicsCommandBuffers](#shcreategraphicscommandbuffers) and [shCreateComputeCommandBuffers](#shcreatecomputecommandbuffers).
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    uint32_t thread_count = 1;
+    //setup command buffers
+    //create sync objects
+
+    //same process valid with graphics command buffers and queues
+    
+    //reset command buffer
+    //reset fence
+    //begin command buffer
+
+    //[...]
+
+    //end command buffer
+    shQueueSubmit(&core.p_compute_commands[0].cmd_buffer, core.compute_queue.queue, core.p_compute_commands[0].fence);
+
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCmdDispatch
+```c
+#define shCmdDispatch(cmd_buffer, group_count_x, group_count_y, group_count_z) vkCmdDispatch(cmd_buffer, group_count_x, group_count_y, group_count_z)
+```
+### Description
+Dispatches compute work groups along x, y, and z dimensions. 
+
+### Parameters
+ * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [shCreateComputeCommandBuffers](#shcreatecomputecommandbuffers);
+ * **`group_count_x`**: number of work groups at dimension x;
+ * **`group_count_y`**: number of work groups at dimension y;
+ * **`group_count_z`**: number of work groups at dimension z;
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    uint32_t thread_count = 1;
+    //setup command buffers
+    //create sync objects
+
+    //reset command buffer
+    //reset fence
+    //begin command buffer
+
+    //[...]
+
+    shCmdDispatch(core.p_compute_commands[0].cmd_buffer, 8, 8, 1);
+
+    //end command buffer
+    //submit queue
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shWaitForFences
+```c
+#define shWaitForFences(device, fence_count, p_fences) vkWaitForFences(device, fence_count, p_fences, VK_TRUE, 100000000000)
+```
+### Description
+Waits for a `fence_count` number of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s to unlock.
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [shSetLogicalDevice](#shsetlogicaldevice);
+ * **`fence_count`**: number of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s to wait for;
+ * **`p_fences`**: pointer to an array of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s with length equal to `fence_count`, see [`shSetSyncObjects`](#shsetsyncobjects);
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    uint32_t thread_count = 3;
+    //setup command buffers
+    //create sync objects
+
+    //reset command buffers
+    //reset fences
+    //begin command buffers
+
+    //[...]
+
+    //end command buffers
+    //submit queue
+
+    //same process valid with graphics command buffers and fences
+
+    VkFence fences[3] = {
+        core.p_compute_commands[0].fence,
+        core.p_compute_commands[1].fence,
+        core.p_compute_commands[2].fence
+    };
+    shWaitForFences(core.device, thread_count, fences);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shWaitForFence
+```c
+#define shWaitForFence(device, p_fence) vkWaitForFences(device, 1, p_fence, VK_TRUE, 100000000000)
+```
+### Description
+Waits for a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html) to unlock.
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [shSetLogicalDevice](#shsetlogicaldevice);
+ * **`p_fences`**: pointer to a valid [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html), see [`shSetSyncObjects`](#shsetsyncobjects);
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    uint32_t thread_count = 1;
+    //setup command buffers
+    //create sync objects
+
+    //reset command buffers
+    //reset fences
+    //begin command buffers
+
+    //[...]
+
+    //end command buffers
+    //submit queue
+
+    //same process valid with graphics command buffers and fences
+
+    shWaitForFence(core.device, &core.compute_commands[0].fence);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shEndCommandBuffer
+```c
+#define shEndCommandBuffer(cmd_buffer) vkEndCommandBuffer(cmd_buffer)
+```
+### Description
+Ends a [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), stops the command buffer recording state.
+
+### Parameters
+ * **`cmd_buffer`**: recording [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers), [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers) and [shBeginCommandBuffer](#shbegincommandbuffer).
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    uint32_t thread_count = 1;
+    //setup command buffers
+    //create sync objects
+
+    //same process valid with graphics command buffers
+
+    //reset command buffers
+    //reset fences
+    //begin command buffers
+
+    //[...]
+
+    shEndCommandBuffer(core.p_compute_commands[0].cmd_buffer);
+    //submit queue
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateDepthImage
+```c
+#define shCreateDepthImage(p_core)\
+	shCreateImage((p_core)->device, (p_core)->physical_device, (p_core)->surface.width, (p_core)->surface.height, SH_DEPTH_IMAGE_FORMAT, VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, &(p_core)->depth_image, &(p_core)->depth_image_memory)
+```
+### Description
+Creates a depth image. Requires a valid [`VkSurfaceKHR`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceKHR.html) inside the [`ShVkCore`](#shvkcore) structure.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    shCreateDepthImage(&core);
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateDepthImageView
+```c
+#define shCreateDepthImageView(p_core) shCreateImageView(p_core, (p_core)->depth_image, SH_DEPTH_IMAGE, &(p_core)->depth_image_view)
+```
+### Description
+Sets up a depth image view handle.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //create surface --> platform dependent
+    shCreateDepthImage(&core);
+    // [...]
     return 0;
 }
 ```

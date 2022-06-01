@@ -1,7 +1,7 @@
 # Gaia Archive Tools Documentation
 
 <button>[Download](https://github.com/MrSinho/Gaia_Archive_Tools.git)</button>
-<button>[C definitions](c_definitions.md)</button>
+<button>[C definitions](c_definitions)</button>
 <button>[Library Walkthrough](library_walkthrough)</button>
 
 
