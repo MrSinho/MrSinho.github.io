@@ -13,12 +13,12 @@
     * [ShFixedStatesFlags](#shvkfixedstatesflags)
     * [ShVkFixedStates](#shvkfixedstates)
 
-[Functions and macros](#functions):
+[Functions and macros](#functions-and-macros):
 * Defined at [`shVkCheck.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkCheck.h):
     * [shCheckValidationLayers](#shcheckvalidationlayers)
     * [shTranslateVkResult](#shtranslatevkresult)
     * [shVkAssertResult](#shvkassertresult)
-    * [shVkCheckResult](#shvkcheckresult)
+    * [shVkAssert](#shvkassert)
 * Defined at [`shVkCore.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkCore.h)
     * [shCreateInstance](#shcreateinstance)
     * [shGetSurfaceCapabilities](#shgetsurfacecapabilities)
@@ -173,7 +173,11 @@ typedef struct ShVkCore {
 ### Description
 Primary handle for the Vulkan API context and devices. Stores unique buffers (framebuffers, depth buffer), graphics and compute command buffers, and thread synchronization structures.
 
+
+
 ---
+
+
 
 ## ShVkSurface
 ```c
@@ -187,7 +191,11 @@ typedef struct ShVkSurface {
 ### Description
 Collection of [`VkSuraceKHR`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceKHR.html), surface width, height and other specific properties.
 
+
+
 ---
+
+
 
 ## ShVkQueue
 ```c
@@ -199,7 +207,11 @@ typedef struct ShVkQueue {
 ### Description
 Stores the queue family index of a specific [`VkQueue`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueue.html).
 
+
+
 ---
+
+
 
 ## ShVkCommand
 ```c
@@ -212,7 +224,11 @@ typedef struct ShVkCommand {
 ### Description
 A thread unit: stores a [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), the relative [`VkCommandPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPool.html) and [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html) for thread synchronization.
 
+
+
 ---
+
+
 
 ## ShVkPipeline
 ```c
@@ -238,7 +254,10 @@ typedef struct ShVkPipeline {
 ### Description
 The pipeline handle. It holds the shader modules along with shader input-output parameters. To setup a graphics pipeline, use [shVkSetupGraphicsPipeline](#shvksetupgraphicspipeline), while [shVkSetupComputePipeline](#shvksetupcomputepipeline) for compute purposes.
 
+
+
 ---
+
 
 ## ShVkFixedStatesFlags
 ```c
@@ -254,7 +273,11 @@ typedef enum ShVkFixedStateFlags  {
 ### Description
 Some setup flags required when creating a graphics pipeline (see [shVkSetupGraphicsPipeline](#shvksetupgraphicspipeline)).
 
+
+
 ---
+
+
 
 ## ShVkFixedStates
 ```c
@@ -277,192 +300,263 @@ typedef struct ShVkFixedStates {
 ### Description
 Defines some fixed pre-rendering steps and image processing operations when dealing with graphics pipelines.
 
----
-
-# Functions
 
 
-## gaiaEngineSetup
-```c
-void gaiaEngineSetup(ShEngine* p_engine);
-```
-### Description
-Initializes the Vulkan engine and creates a glfw window.
-
-### Parameters
- * **`p_engine`**: valid pointer to an `ShEngine` structure. 
-
-### Usage example
-```c
-#include <gaia-universe-model/gaiaUniverseModel.h>
-
-ShEngine engine = { 0 };
-gaiaEngineSetup(&engine);
-```
 ---
 
 
-## gaiaSetupMaterial
+
+# Functions and macros
+
+
+
+## shCheckValidationLayers
 ```c
-void gaiaSetupMaterial(ShEngine* p_engine, GaiaUniverseModelMemory* p_universe_model);
+extern uint8_t shCheckValidationLayers(const char* validation_layer);
 ```
 ### Description
-Creates a graphics pipeline for rendering the celestial bodies.
+Loops through the installed validation layers: returns `1` if the given validation layer was found.
 
 ### Parameters
- * **`p_engine`**: valid pointer to an `ShEngine` structure;
- * [**`GaiaUniverseModelMemory`**](#gaiauniversemodelmemory): valid pointer to a `GaiaUniverseModelMemory` structure.
+ * **`validation_layer`**: valid string naming the required validation layer. 
 
 ### Usage example
 ```c
-#include <gaia-universe-model/gaiaUniverseModel.h>
-//Setup engine first...
-GaiaUniverseModelMemory universe_model = { 0 };
-gaiaSetupMaterial(&engine, &universe_model);
-```
----
+#include <shvulkan/shVkCheck.h>
+#include <stdio.h>
 
-## gaiaReadSources
-```c
-void gaiaReadSources(ShEngine* p_engine, const GaiaCelestialBodyFlags celestial_body_flags, GaiaUniverseModelMemory* p_universe_model);
+int main(void) {
+    if (shCheckValidationLayers("VK_LAYER_KHRONOS_validation")) {
+        puts("validation layer found!\n");
+    }
+    return 0;
+}
 ```
-### Description
-Reads the Universe Model source files. The number of bytes read depends on how much VRAM is ready to be used.
 
-### Parameters
- * **`p_engine`**: valid pointer to an `ShEngine` structure;
- * [**`celestial_body_flags`**](https://mrsinho.github.io/docs/Gaia_Archive_Tools/c_definitions.html#gaiacelestialbodyflags): used to choose what data to read;
- * [**`p_universe_model`**](#gaiauniversemodelmemory): valid pointer to a `GaiaUniverseModelMemory` structure.
 
-### Usage example
-```c
-#include <gaia-universe-model/gaiaUniverseModel.h>
-//Setup engine and material first
-uint64_t celestial_body_flags = GAIA_RA | GAIA_DEC | GAIA_BARYCENTRIC_DISTANCE | GAIA_TEFF;
-gaiaReadSources(&engine, celestial_body_flags, &universe_model);
-```
+
 ---
 
 
-## gaiaWriteVertexBuffers
+
+## shTranslateVkResult
 ```c
-void gaiaWriteVertexBuffers(ShEngine* p_engine, GaiaUniverseModelMemory* p_universe_model);
+extern const char* shTranslateVkResult(const VkResult vk_result);
 ```
 ### Description
-Writes vertex buffer data on the GPU.
+Translates a `VkResult` returned by calling a Vulkan API function. Returns the literal translation of [`vk_result`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html).
 
 ### Parameters
- * **`p_engine`**: valid pointer to an `ShEngine` structure;
- * [**`p_universe_model`**](#gaiauniversemodelmemory): valid pointer to a `GaiaUniverseModelMemory` structure.
+ * [**`vk_result`**](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html).
 
 ### Usage example
 ```c
-#include <gaia-universe-model/gaiaUniverseModel.h>
-//Setup engine and material first, be sure to have read the source files
-gaiaWriteVertexBuffers(&engine, &universe_model);
-```
----
+#include <shvulkan/shVkCheck.h>ì
+#include <stdio.h>
 
-## gaiaSceneSetup
-```c
-gaiaSceneSetup(&engine);
+int main(void) {
+    VkInstance instance = NULL;
+    VkInstanceCreateInfo instance_create_info = { 0 };
+    VkResult result = vkCreateInstance(&instance_create_info, NULL, &instance);
+    //the operation will fail and return an error
+    printf("vkCreateInstante result: %s\n", shTranslateVkResult(result));
+    return 0;
+}
 ```
-### Description
-Initializes the main scene. Required before rendering.
 
-### Parameters
- * **`p_engine`**: valid pointer to an `ShEngine` structure;
 
-### Usage example
-```c
-#include <gaia-universe-model/gaiaUniverseModel.h>
-//Setup engine first
-void gaiaSceneSetup(ShEngine* p_engine);
-```
+
 ---
 
 
-## gaiaSceneUpdate
+
+## shVkAssertResult
 ```c
-void gaiaSceneUpdate(ShEngine* p_engine, GaiaUniverseModelMemory* p_universe_model);
+#define shVkAssertResult(result, error_msg)\
+    if ((VkResult)(result) != VK_SUCCESS) {\
+    		printf("shvulkan error: %s, %s\n", error_msg, shTranslateVkResult((VkResult)(result)));\
+    		assert((VkResult)(result) == VK_SUCCESS);\
+    	}\
 ```
 ### Description
+Asserts a [`VkResult`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html)
 
 ### Parameters
- * **`p_engine`**: valid pointer to an `ShEngine` structure;
- * [**`p_universe_model`**](#gaiauniversemodelmemory): valid pointer to a `GaiaUniverseModelMemory` structure.
+ * **`result`**: an input `VkResult`;
+ * **`error_msg`**: the message (encoded in a `const char*`) to display on the console when the `result` is not equal to `VK_SUCCESS`.  
 
 ### Usage example
 ```c
-#include <gaia-universe-model/gaiaUniverseModel.h>
-//Setup engine and material first
-//Read source files and write vertex buffer memory
-//Initialize scene
+#include <shvulkan/shVkCheck.h>ì
+#include <stdio.h>
 
-//Get size of a celestial body
-uint64_t celestial_body_flags = GAIA_RA | GAIA_DEC | GAIA_BARYCENTRIC_DISTANCE | GAIA_TEFF;
-const uint32_t CELESTIAL_BODY_SIZE = gaiaGetBodySize(celestial_body_flags);
+int main(void) {
+    VkInstance instance = NULL;
+    VkInstanceCreateInfo instance_create_info = { 0 };
+    shVkAssertResult(
+        vkCreateInstance(&instance_create_info, NULL, &instance),
+        "invalid instance create info structure"
+    );
+    return 0;
+}
+```
 
-while (shIsWindowActive(engine.window.window)) {
-		//UPDATE WINDOW
-		shUpdateWindow(&engine);
 
-		//BEGIN FRAME
-		shFrameReset(&engine.core);
-		uint32_t frame_index = 0;
-		shFrameBegin(&engine.core, &frame_index);
 
-		//UPDATE SCENE AND START DRAWING
-		gaiaSceneUpdate(&engine, &universe_model);
-		shDraw(&engine.core, universe_model.used_vram / CELESTIAL_BODY_SIZE);
+---
 
-		//END FRAME
-		shEndPipeline(&engine.p_materials[0].pipeline);
-		shFrameEnd(&engine.core, frame_index);
+
+
+## shVkAssert
+```c
+#define shVkAssert(condition, error_msg)\
+	assert((int)(condition) &&\
+	"shvulkan error: " &&\
+	(const char*)(error_msg))
+```
+### Description
+Asserts a `condition` value, automatically casted to a signed integer.
+
+### Parameters
+ * **`condition`**;
+ * [**`error_msg`**](#gaiauniversemodelmemory): the message (encoded in a `const char*`) to display on the console when the `condition` is lower or equal to zero. 
+
+### Usage example
+```c
+#include <shvulkan/shVkCheck.h>ì
+
+int main(void) {
+    shVkAssert(0, "failure");
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateInstance
+```c
+extern void shCreateInstance(ShVkCore* p_core, const char* application_name, const char* engine_name, const uint8_t enable_validation_layers, const uint32_t extension_count, const char** extension_names);
+```
+### Description
+Initializes a [`VkInstance`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstance.html) stored in a [`ShVkCore`](#shvkcore) structure.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`application_name`**: valid application name string;
+ * **`engine_name`**: valid engine name string;
+ * **`enable_validation_layers`**: if bigger or equal to `1`, enables the [`VK_LAYER_KHRONOS_validation`](https://vulkan.lunarg.com/doc/view/1.2.148.1/windows/khronos_validation_layer.html) layer, useful for debugging;
+ * **`extension_count`**: number of instance extensions;
+ * **`extension_names`**: array of strings with length equal to the `extension_count` parameter. You might need to enable `VK_KHR_surface` and other surface specific extensions when you want to display the framebuffers images on a window.
+
+### Usage example
+```c
+#include <shvulkan/shVkCheck.h>
+#include <shvulkan/shVkCore.h>ì
+
+int main(void) {
+
+    ShVkCore core = { 0 };
+
+	const char* extension_names[2] = {
+        "VK_KHR_surface", 
+        "VK_KHR_win32_surface" 
+    };//platform dependent: APIs such as glfw automatically detect the required instance extensions
+
+	printf("required instance extensions:\n");
+	for (uint32_t i = 0; i < extension_count; i++) {
+		printf("%s\n", extension_names[i]);
 	}
+
+    shVkAssertResult(
+    	shCreateInstance(&core, "my application", "shvulkan engine", 1, 2, extension_names),
+        "error creating vulkan instance"
+    );
+
+	return 0;
+}
 ```
+
+
+
 ---
 
 
-## gaiaMemoryRelease
+
+## shSelectPhysicalDevice
 ```c
-void gaiaMemoryRelease(ShEngine* p_engine, GaiaUniverseModelMemory* p_universe_model);
+extern void shSelectPhysicalDevice(ShVkCore* p_core, const VkQueueFlags requirements);
 ```
 ### Description
-Frees universe model memory and vertex buffer buffer memory.
+Picks a physical device given a valid [`ShVkCore`](#shvkcore) structure and some requirement flags.
 
 ### Parameters
- * **`p_engine`**: valid pointer to an `ShEngine` structure;
- * [**`p_universe_model`**](#gaiauniversemodelmemory): valid pointer to a `GaiaUniverseModelMemory` structure.
+ * **`p_core`**: the instance must have been successfully created with [`shCreateInstance`](#shcreateinstance);
+ * **`requirements`**: flags to filter the GPUs that support graphics `SH_VK_CORE_GRAPHICS` or compute operations `SH_VK_CORE_COMPUTE`;
 
 ### Usage example
 ```c
-#include <gaia-universe-model/gaiaUniverseModel.h>
-//Setup engine and material first
-//Read source files and write vertex buffer memory
-//End rendering
-gaiaMemoryRelease(&engine, &universe_model);
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	shSelectPhysicalDevice(&core, SH_VK_CORE_GRAPHICS | SH_VK_CORE_COMPUTE);
+    return 0;
+}
 ```
+
+
+
 ---
 
 
-## gaiaEngineShutdown
+
+## shSetQueueInfo
 ```c
-void gaiaEngineShutdown(ShEngine* p_engine);
+extern void shSetQueueInfo(const uint32_t queue_family_index, const float* priority, VkDeviceQueueCreateInfo* p_queue_info);
 ```
 ### Description
-Clears uniform buffers, ends the graphics pipeline and releases every Vulkan structure. 
+Initializes a [`VkDeviceQueueCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueCreateInfo.html) structure given the queue family index and a priority.
 
 ### Parameters
- * **`p_engine`**: valid pointer to an `ShEngine` structure;
+ * **`queue_family_index`**: a queue family index, already set up when selecting the physical device with [`shSelectPhysicalDevice`](#shselectphysicaldevice);
+ * **`priority`**: valid pointer to a priority floating point number, generally set to `1.0f`;
+ * **`p_queue_info`**: valid pointer to a [`VkDeviceQueueCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueCreateInfo.html) structure.
+
+
+---
+
+
+## shSetLogicalDevice
+```c
+extern void shSetLogicalDevice(ShVkCore* p_core, VkQueueFlags requirements);
+```
+### Description
+Creates a logical device ([`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html)). 
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`requirements`**: requirement flags for setting up graphics and compute[`VkDeviceQueueCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueCreateInfo.html).
 
 ### Usage example
 ```c
-#include <gaia-universe-model/gaiaUniverseModel.h>
-//Setup engine and material first
-//Read source files and write vertex buffer memory
-//End rendering
-//Clear vertex buffers
-gaiaEngineShutdown(&engine);
+#include <shvulkan/shVkCore.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    shSetLogicalDevice(&core, SH_VK_CORE_GRAPHICS | SH_VK_CORE_COMPUTE);
+    return 0;
+}
 ```
+
+
+
 ---
+
+
