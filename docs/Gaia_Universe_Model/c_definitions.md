@@ -225,4 +225,10 @@ Clears uniform buffers, ends the graphics pipeline and releases every Vulkan str
 //Clear vertex buffers
 gaiaEngineShutdown(&engine);
 ```
+
+
+
 ---
+
+
+<button>[back to index](./index)</button>

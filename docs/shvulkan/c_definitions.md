@@ -4,7 +4,7 @@
 
 [Types and structures](#types-and-structures):
 * Defined at [`shVkCore.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkCore.h)
-    * [ShVkCore](shvkcore)
+    * [ShVkCore](#shvkcore)
     * [ShVkSurface](#shvksurface)
     * [ShVkQueue](#shvkqueue)
     * [ShVkCommand](#shvkcommand)
@@ -22,7 +22,6 @@
     * [shVkAssert](#shvkassert)
 * Defined at [`shVkCore.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkCore.h)
     * [shCreateInstance](#shcreateinstance)
-    * [shGetSurfaceCapabilities](#shgetsurfacecapabilities)
     * [shSelectPhysicalDevice](#shselectphysicaldevice)
     * [shSetQueueInfo](#shsetqueueinfo)
     * [shSetLogicalDevice](#shsetlogicaldevice)
@@ -1683,3 +1682,5 @@ int main(void) {
 ---
 
 
+
+<button>[back to index](./index)</button>
