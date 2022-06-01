@@ -1,4 +1,4 @@
-# Gaia Archive Tools C Definitions
+# Gaia Archive Tools C definitions
 
 <button>[back to index](./index)</button>
 

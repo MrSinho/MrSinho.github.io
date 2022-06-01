@@ -1,4 +1,4 @@
-# Gaia Universe Model C Definitions
+# Gaia Universe Model C definitions
 
 <button>[back to index](./index)</button>
 
@@ -229,6 +229,7 @@ gaiaEngineShutdown(&engine);
 
 
 ---
+
 
 
 <button>[back to index](./index)</button>

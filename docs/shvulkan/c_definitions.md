@@ -1,4 +1,4 @@
-# shvulkan c definitions
+# shvulkan C definitions
 
 <button>[back to index](./index)</button>
 
