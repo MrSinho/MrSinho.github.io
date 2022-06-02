@@ -1115,39 +1115,6 @@ int main(void) {
 
 
 
-## shCreateDepthImageView
-```c
-#define shCreateDepthImageView(p_core) shCreateImageView(p_core, (p_core)->depth_image, SH_DEPTH_IMAGE, &(p_core)->depth_image_view)
-```
-### Description
-Macro definition for creating a depth [`VkImageView`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageView.html).
-### Parameters
- * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
-
-### Usage example
-```c
-#include <shvulkan/shVkCore.h>
-
-int main(void) {
-    ShVkCore core = { 0 };
-    //setup instance
-    //setup physical device
-    //setup logical device
-    //create surface --> platform dependent
-    //create depth image
-    shCreateDepthImageView(&core);
-    
-    // [...]
-    return 0;
-}
-```
-
-
-
----
-
-
-
 ## shCreateGraphicsCommandBuffers
 
 ```c
@@ -2578,8 +2545,7 @@ int main(void) {
 #define shCreateDepthImageView(p_core) shCreateImageView(p_core, (p_core)->depth_image, SH_DEPTH_IMAGE, &(p_core)->depth_image_view)
 ```
 ### Description
-Sets up a depth image view handle.
-
+Macro definition for creating a depth [`VkImageView`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageView.html).
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
 
@@ -2590,11 +2556,12 @@ Sets up a depth image view handle.
 int main(void) {
     ShVkCore core = { 0 };
     //setup instance
-	//setup physical device
+    //setup physical device
     //setup logical device
     //create surface --> platform dependent
-    shCreateDepthImage(&core);
-
+    //create depth image
+    shCreateDepthImageView(&core);
+    
     // [...]
     return 0;
 }
