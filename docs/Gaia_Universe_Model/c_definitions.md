@@ -1,6 +1,6 @@
 # Gaia Universe Model C definitions
 
-<button>[back to index](./index)</button>
+<button class="btn">[back to index](./index)</button>
 
 [Types and structures](#types-and-structures):
 * [GaiaUniverseModelMemory](#gaiauniversemodelmemory)
@@ -232,4 +232,4 @@ gaiaEngineShutdown(&engine);
 
 
 
-<button>[back to index](./index)</button>
+<button class="btn">[back to index](./index)</button>

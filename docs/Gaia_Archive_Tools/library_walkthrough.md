@@ -1,6 +1,6 @@
 # Gaia Archive Tools Library Walkthrough
 
-<button>[index](./index)</button>
+<button class="btn">[index](./index)</button>
 
 Setup
 * [Clone and build](#clone-and-build)

@@ -6,7 +6,7 @@
 
 A C library that simplifies the usage of the Vulkan API:
 
-<a href="https://github.com/MrSinho/shvulkan" class="btn">Download</a> <a href="docs/shvulkan/index" class="btn">Read docs</a>
+<button class="btn">[Download](https://github.com/MrSinho/ShVulkan)</button> <button class="btn">[Read docs](docs/ShVulkan/index.md)</button>
 
 ---
 
@@ -14,7 +14,7 @@ A C library that simplifies the usage of the Vulkan API:
 
 This is a cross-platform, Vulkan based graphics engine that is still in development:
 
-<a href="https://github.com/MrSinho/shengine" class="btn">Download</a> <a href="docs/shengine/index" class="btn">Read docs</a>
+<button class="btn">[Download](https://github.com/MrSinho/SH-Engine)</button> <button class="btn">[Read docs](docs/ShEngine/index.md)</button>
 
 ---
 
@@ -22,7 +22,7 @@ This is a cross-platform, Vulkan based graphics engine that is still in developm
 
 With this library you can read, convert and get your hands on the latest Gaia Universe Model from the European Space Agency: 
 
-<a href="https://github.com/MrSinho/Gaia_Archive_Tools" class="btn">Download</a> <a href="docs/Gaia_Archive_Tools/index" class="btn">Read docs</a>
+<button class="btn">[Download](https://github.com/MrSinho/Gaia_Archive_Tools)</button> <button class="btn">[Read docs](docs/Gaia_Archive_Tools/index.md)</button>
 
 ---
 
@@ -30,6 +30,6 @@ With this library you can read, convert and get your hands on the latest Gaia Un
 
 A 3d simulation of the Gaia Universe Model using Vulkan:
 
-<a href="https://github.com/MrSinho/Gaia_Universe_Model" class="btn">Download</a> <a href="docs/Gaia_Universe_Model/index" class="btn">Read docs</a>
+<button class="btn">[Download](https://github.com/MrSinho/Gaia_Universe_Model)</button> <button class="btn">[Read docs](docs/Gaia_Universe_Model/index.md)</button>
 
 ---

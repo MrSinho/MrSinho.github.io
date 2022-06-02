@@ -1,8 +1,8 @@
 # Gaia Archive Tools Documentation
 
-<button>[Download](https://github.com/MrSinho/Gaia_Archive_Tools.git)</button>
-<button>[C definitions](c_definitions)</button>
-<button>[Library Walkthrough](library_walkthrough)</button>
+<button class="btn">[Download](https://github.com/MrSinho/Gaia_Archive_Tools.git)</button>
+<button class="btn">[C definitions](c_definitions)</button>
+<button class="btn">[Library Walkthrough](library_walkthrough)</button>
 
 
 This unofficial repository collects the tools to efficiently download, convert and read the Gaia Universe Model Data.
@@ -18,6 +18,6 @@ This unofficial repository collects the tools to efficiently download, convert a
 
 ---
 
-<button>[back to home](../../README)</button>
+<button class="btn">[back to home](../../README)</button>
 
 ---
