@@ -8,6 +8,6 @@ A lightweight and flexible wrapper around the Vulkan API written completely in C
 
 ---
 
-<button>[back to home](../../README)</button>
+<button class="btn">[back to home](../../README)</button>
 
 ---
