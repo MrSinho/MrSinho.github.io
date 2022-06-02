@@ -1,6 +1,6 @@
 # shvulkan C definitions
 
-<button>[back to index](./index)</button>
+<button class="btn">[back to index](./index)</button>
 
 [Types and structures](#types-and-structures):
 * Defined at [`shVkCore.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkCore.h)
@@ -2704,4 +2704,4 @@ int main(void) {
 
 
 
-<button>[back to index](./index)</button>
+<button class="btn">[back to index](./index)</button>
