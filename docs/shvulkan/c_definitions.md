@@ -283,7 +283,7 @@ typedef enum ShVkFixedStateFlags  {
 } ShVkFixedStateFlags;
 ```
 ### Description
-Some setup flags required when creating a graphics pipeline (see [shVkSetupGraphicsPipeline](#shvksetupgraphicspipeline)).
+Some setup flags required when creating a graphics pipeline (see [`shVkSetupGraphicsPipeline`](#shvksetupgraphicspipeline)).
 
 
 
@@ -928,7 +928,7 @@ int main(void) {
 extern void shRenderPassRelease(ShVkCore* p_core);
 ```
 ### Description
-Destroys the [VkRenderPass](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPass.html) stored at `p_core`.
+Destroys the [`VkRenderPass`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPass.html) stored at `p_core`.
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
 
@@ -968,7 +968,7 @@ int main(void) {
 extern void shInstanceRelease(ShVkCore* p_core);
 ```
 ### Description
-Destroys the [VkInstance](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstance.html) stored at `p_core`.
+Destroys the [`VkInstance`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstance.html) stored at `p_core`.
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
 
@@ -1155,7 +1155,7 @@ int main(void) {
 	shCreateCommandData(p_core, VK_QUEUE_GRAPHICS_BIT, thread_count, &(p_core)->p_graphics_commands)\
 ```
 ### Description
-Builds a `thread_count` number of graphics [`VkCommandPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPool.html)s and [VkCommandBuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html)s.
+Builds a `thread_count` number of graphics [`VkCommandPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPool.html)s and [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html)s.
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
@@ -1190,7 +1190,7 @@ int main(void) {
 	shCreateCommandData(p_core, VK_QUEUE_COMPUTE_BIT, thread_count, &(p_core)->p_compute_commands)\
 ```
 ### Description
-Builds a `thread_count` number of compute [`VkCommandPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPool.html)s and [VkCommandBuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html)s.
+Builds a `thread_count` number of compute [`VkCommandPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPool.html)s and [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html)s.
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
@@ -1346,7 +1346,7 @@ extern void shBeginCommandBuffer(const VkCommandBuffer cmd_buffer);
 Starts recording a [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html).
 
 ### Parameters
- * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [shCreateGraphicsCommandBuffers](#shcreategraphicscommandbuffers) and [shCreateComputeCommandBuffers](#shcreatecomputecommandbuffers).
+ * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers) and [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers).
 
 ### Usage example
 ```c
@@ -1386,7 +1386,7 @@ extern void shQueueSubmit(VkCommandBuffer* cmd_buffer, const VkQueue queue, VkFe
 Submits rendering data to the GPU. 
 
 ### Parameters
- * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [shCreateGraphicsCommandBuffers](#shcreategraphicscommandbuffers) and [shCreateComputeCommandBuffers](#shcreatecomputecommandbuffers).
+ * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers) and [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers).
 
 ### Usage example
 ```c
@@ -1432,7 +1432,7 @@ int main(void) {
 Dispatches compute work groups along x, y, and z dimensions. 
 
 ### Parameters
- * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [shCreateComputeCommandBuffers](#shcreatecomputecommandbuffers);
+ * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers);
  * **`group_count_x`**: number of work groups at dimension x;
  * **`group_count_y`**: number of work groups at dimension y;
  * **`group_count_z`**: number of work groups at dimension z;
@@ -1480,7 +1480,7 @@ int main(void) {
 Waits for a `fence_count` number of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s to unlock.
 
 ### Parameters
- * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [shSetLogicalDevice](#shsetlogicaldevice);
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`fence_count`**: number of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s to wait for;
  * **`p_fences`**: pointer to an array of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s with length equal to `fence_count`, see [`shSetSyncObjects`](#shsetsyncobjects);
 
@@ -1534,7 +1534,7 @@ int main(void) {
 Waits for a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html) to unlock.
 
 ### Parameters
- * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [shSetLogicalDevice](#shsetlogicaldevice);
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`p_fences`**: pointer to a valid [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html), see [`shSetSyncObjects`](#shsetsyncobjects);
 
 ### Usage example
@@ -1619,6 +1619,926 @@ int main(void) {
 
 
 
+## shCreateBuffer
+```c
+extern void shCreateBuffer(const VkDevice device, const uint32_t size, VkBufferUsageFlags usage_flags, VkBuffer* p_buffer);
+```
+### Description
+Creates a Vulkan buffer object known as [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`size`**: size in bytes of the buffer; 
+ * **`usage_flags`**: [`VkBufferUsageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferUsageFlags.html) enum type representing what the Vulkan buffer is going to be used for, see [`VkBufferUsageFlagBits`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferUsageFlagBits.html); 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer buffer;
+    shCreateBuffer(core.device, 20, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, &buffer);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shGetMemoryType
+```c
+extern void shGetMemoryType(const VkDevice device, const VkPhysicalDevice physical_device, const VkMemoryPropertyFlags property_flags, uint32_t *p_memory_type_index);
+```
+### Description
+Gets the most suitable memory type index before allocating memory.
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`physical_device`**: physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice); 
+ * **`property_flags`**: [`VkMemoryPropertyFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryPropertyFlags.html) enum type representing specific properties of the buffer memory, see [`VkBufferUsageFlagBits`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryPropertyFlagBits.html);
+ * **`p_memory_type_index`**: valid pointer to an unsigned integer that is going to carry the memory type index. 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    uint32_t memory_type_index = 0;
+    VkMemoryPropertyFlags property_flags = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+	shGetMemoryType(core.device, core.physical_device, property_flags, &memory_type_index);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shAllocateMemory
+```c
+extern void shAllocateMemory(const VkDevice device, const VkPhysicalDevice physical_device, const VkBuffer buffer, const VkMemoryPropertyFlags property_flags, VkDeviceMemory* p_memory);
+```
+### Description
+Gets the most suitable memory type index and allocates memory on the GPU.
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`physical_device`**: physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice); 
+ * **`buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html), see [`shCreateBuffer`](#shcreatebuffer);
+ * **`property_flags`**: [`VkMemoryPropertyFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryPropertyFlags.html) enum type representing specific properties of the buffer memory, see [`VkBufferUsageFlagBits`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryPropertyFlagBits.html);
+ * **`p_memory`**: valid pointer to a [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle. 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer buffer;
+    //create buffer
+
+    VkDeviceMemory buffer_memory;
+    VkMemoryPropertyFlags property_flags = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+    shAllocateMemory(core.device, core.physical_device, buffer, property_flags, &buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shBindMemory
+```c
+#define shBindMemory(device, vk_buffer, memory)\
+	shVkAssertResult(\
+		vkBindBufferMemory(device, vk_buffer, memory, 0),\
+		"error binding buffer memory "\
+	)
+```
+### Description
+Binds a specific [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`physical_device`**: physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice); 
+ * **`vk_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html), see [`shCreateBuffer`](#shcreatebuffer);
+ * **`memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle, see [`shAllocateMemory`](#shallocatememory).
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer buffer;
+    //create buffer
+
+    VkDeviceMemory buffer_memory;
+    //allocate memory
+
+    // [...]
+
+    shBindMemory(core.device, buffer, buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shReadMemory
+```c
+extern void shReadMemory(const VkDevice device, const VkDeviceMemory memory, const uint32_t offset, const uint32_t data_size, void* p_data);
+```
+### Description
+Reads data from a [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle and writes it all at `p_data` block.
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle, see [`shAllocateMemory`](#shallocatememory);
+ * **`offset`**: the source device memory data offset in bytes;
+ * **`data_size`**: size in bytes of the data to read;
+ * **`p_data`**: pointer to the destination buffer with size at least equal to `data_size`;
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    //create buffer
+
+    VkDeviceMemory buffer_memory;
+    //allocate memory
+
+    // [...]
+
+    float output[16];
+    shReadMemory(core.device, buffer_memory, 0, sizeof(output), output);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shWriteMemory
+```c
+extern void shWriteMemory(const VkDevice device, const VkDeviceMemory memory, const uint32_t offset, const uint32_t data_size, const void* p_data);
+```
+### Description
+Writes data on the GPU, according to the specified [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle, see [`shAllocateMemory`](#shallocatememory);
+ * **`offset`**: the destination device memory data offset in bytes;
+ * **`data_size`**: size in bytes of the data to write;
+ * **`p_data`**: pointer to the source buffer with size at least equal to `data_size`;
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    //create buffer
+
+    VkDeviceMemory buffer_memory;
+    //allocate memory
+
+    // [...]
+
+    float src[16] = {
+        1.0f, 1.0f, 2.0f, 0.0f,
+        0.0f, 4.0f, 0.0f, 0.0f,
+        0.5f, 0.0f, 5.0f, 0.0f,
+        0.0f, 0.0f, 2.0f, 1.0f
+    };
+    shWriteMemory(core.device, buffer_memory, 0, sizeof(src), src);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shClearBufferMemory
+```c
+extern void shClearBufferMemory(const VkDevice device, const VkBuffer buffer, const VkDeviceMemory memory);
+```
+### Description
+Destroys a [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) and clears the relative device memory.
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) handle, see [`shCreateBuffer`](#shcreatebuffer);
+ * **`memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle, see [`shAllocateMemory`](#shallocatememory);
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer buffer;
+    //create buffer
+
+    VkDeviceMemory buffer_memory;
+    //allocate memory
+
+    // [...]
+
+    shClearBufferMemory(core.device, buffer, buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+
+## shCreateImage
+```c
+extern void shCreateImage(const VkDevice device, const VkPhysicalDevice physical_device, const uint32_t width, const uint32_t height, VkFormat format, VkImageUsageFlags usage, VkImage* p_image, VkDeviceMemory* p_image_memory);
+```
+### Description
+Creates a Vulkan image handle and allocates the required image memory.
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`physical_device`**: valid [`VkPhysicalDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html) handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice);
+ * **`width`**: width of the image in pixels;
+ * **`height`**: height of the image in pixels;
+ * **`format`**: [`VkFormat`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFormat.html) enum value, if you want to present the image remember to check the supported formats with [`vkGetPhysicalDeviceSurfaceFormatsKHR`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html), (`VK_KHR_surface` would be required);
+ * **`usage`**: [`VkImageUsageFlagBits`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageUsageFlagBits.html) enum value;
+ * **`p_image`**: valid pointer to a [`VkImage`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImage.html) object;
+ * **`p_image_memory`**: valid pointer to a [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImage.html) handle;
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+
+    VkImage image;
+    VkImageMemory image_memory;
+
+    shCreateImage(core.device, core.physical_device, 720, 480, VK_FORMAT_R8G8B8A8_UNORM, VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT, &image, &image_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shGetMemoryBudgetProperties
+```c
+extern void shGetMemoryBudgetProperties(const VkPhysicalDevice physical_device, uint32_t* p_memory_budget, uint32_t* p_process_used_memory, VkPhysicalDeviceMemoryBudgetPropertiesEXT* p_memory_budget_properties);
+```
+### Description
+Gets the amount of VRAM ready for use and the memory used by other processes. To work it requires [`VkPhysicalDeviceMemoryBudgetPropertiesEXT`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryBudgetPropertiesEXT.html) (already activated when creating the logical device with [shSetLogicalDevice](#shsetlogicaldevice) if supported by the user machine).
+
+### Parameters
+ * **`physical_device`**: valid [`VkPhysicalDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html) handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice);
+ * **`p_memory_budget`**: optional pointer to an unsigned integer, displays in bytes the unused VRAM;
+ * **`p_process_used_memory`**: optional pointer to an unsigned integer, displays in bytes the used VRAM by the current process;
+ * **p_memory_budget_properties**: optional pointer to a [`VkPhysicalDeviceMemoryBudgetPropertiesEXT`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryBudgetPropertiesEXT.html) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+
+    uint32_t availble_vram = 0;
+    uint32_t used_vram = 0;
+    shGetMemoryBudgetProperties(core.physical_device, &available_vram, &used_vram, NULL);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateVertexBuffer
+```c
+#define shCreateVertexBuffer(device, size, p_vertex_buffer)\
+	shCreateBuffer(device, size, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, p_vertex_buffer)
+```
+### Description
+Creates a vertex buffer. Calls [`shCreateBuffer`](#shcreatebuffer).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`size`**: size in bytes of the buffer;
+ * **`p_vertex_buffer`**: valid pointer to a [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    float vertices[9] = {
+		-1.0f, 1.0f, 0.0f,
+		 0.0f, 0.0f, 0.0f,
+		 1.0f, 1.0f, 0.0f
+    };
+
+    VkBuffer vertex_buffer;
+    shCreateVertexBuffer(core.device, sizeof(vertices), &vertex_buffer);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shAllocateVertexBufferMemory
+```c
+#define shAllocateVertexBufferMemory(device, physical_device, vertex_buffer, p_vertex_buffer_memory)\
+	shAllocateMemory(device, physical_device, vertex_buffer, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT | VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, p_vertex_buffer_memory)
+```
+### Description
+Allocates the vertex buffer memory. Calls [`shAllocateMemory`](#shallocatememory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`physical_device`**: valid [`VkPhysicalDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html) physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice);
+ * **`vertex_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
+ * **`p_vertex_buffer_memory`**: valid pointer to a [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer vertex_buffer;
+    //create vertex buffer
+
+    VkDeviceMemory vertex_buffer_memory;
+    shAllocateVertexBufferMemory(core.device, core.physical_device, vertex_buffer, &vertex_buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shBindVertexBufferMemory
+```c
+#define shBindVertexBufferMemory(device, vertex_buffer, vertex_buffer_memory)\
+	shBindMemory(device, vertex_buffer, vertex_buffer_memory)
+```
+### Description
+Binds a specific vertex [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle. Calls [`shBindMemory`](#shbindmemory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`vertex_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
+ * **`vertex_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer vertex_buffer;
+    //create vertex buffer
+
+    VkDeviceMemory vertex_buffer_memory;
+    //allocate vertex buffer memory
+
+    shBindVertexBufferMemory(core.device, vertex_buffer, vertex_buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shWriteVertexBufferMemory
+```c
+#define shWriteVertexBufferMemory(device, vertex_buffer_memory, size, p_vertices)\
+	shWriteMemory(device, vertex_buffer_memory, 0, size, (void*)p_vertices)
+```
+### Description
+Writes vertex buffer data. Calls [`shWriteMemory`](#shwritememory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`vertex_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle;
+ * **`size`**: size in bytes of the data to write;
+ * **`p_vertices`**: pointer to the source buffer with size at least equal to `size`;
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    //create vertex buffer
+
+    VkDeviceMemory vertex_buffer_memory;
+    //allocate vertex buffer memory
+
+    float vertices[9] = {
+		-1.0f, 1.0f, 0.0f,
+		 0.0f, 0.0f, 0.0f,
+		 1.0f, 1.0f, 0.0f
+    };
+
+    shWriteVertexBufferMemory(core.device, vertex_buffer_memory, sizeof(vertices), vertices);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shBindVertexBuffer
+```c
+static void shBindVertexBuffer(VkCommandBuffer graphics_cmd_buffer, VkBuffer* p_vertex_buffer) {
+	const VkDeviceSize offset = 0;
+	vkCmdBindVertexBuffers(graphics_cmd_buffer, 0, 1, p_vertex_buffer, &offset);
+}
+```
+### Description
+Binds the index buffer with a command buffer. The command buffer must be recording, see [`shBeginCommandBuffer`](#shbegincommandbuffer).
+
+### Parameters
+ * **`graphics_cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers);
+ * **`p_vertex_buffer`**: valid pointer to a vertex [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    //create vertex buffer
+
+    VkDeviceMemory vertex_buffer_memory;
+    //allocate vertex buffer memory
+
+    //begin command buffer
+    
+    uint32_t thread = 0;
+    shBindVertexBuffer(core.p_graphics_commands[thread].cmd_buffer, &vertex_buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateIndexBuffer
+```c
+#define shCreateIndexBuffer(device, size, p_index_buffer)\
+	shCreateBuffer(device, size, VK_BUFFER_USAGE_INDEX_BUFFER_BIT, p_index_buffer)
+```
+### Description
+Creates an index buffer. Calls [`shCreateBuffer`](#shcreatebuffer).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`size`**: size in bytes of the buffer;
+ * **`p_index_buffer`**: valid pointer to a [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    uint32_t indices[3] = {
+		0, 1, 2
+    };
+
+    VkBuffer index_buffer;
+    shCreateIndexBuffer(core.device, sizeof(indices), &index_buffer);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shAllocateIndexBufferMemory
+```c
+#define shAllocateIndexBufferMemory(device, physical_device, index_buffer, p_index_buffer_memory)\
+	shAllocateMemory(device, physical_device, index_buffer, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT | VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, p_index_buffer_memory)
+```
+### Description
+Allocates index buffer memory. Calls [`shAllocateMemory`](#shallocatememory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`physical_device`**: valid [`VkPhysicalDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html) physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice);
+ * **`index_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
+ * **`p_index_buffer_memory`**: valid pointer to a [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer index_buffer;
+    //create index buffer
+
+    VkDeviceMemory index_buffer_memory;
+    shAllocateIndexBufferMemory(core.device, core.physical_device, index_buffer, &index_buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shBindIndexBufferMemory
+```c
+#define shBindIndexBufferMemory(device, index_buffer, index_buffer_memory)\
+	shBindMemory(device, index_buffer, index_buffer_memory)
+```
+### Description
+Binds a specific index [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle. Calls [`shBindMemory`](#shbindmemory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`vertex_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
+ * **`vertex_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer index_buffer;
+    //create index buffer
+
+    VkDeviceMemory index_buffer;
+    //allocate index buffer memory
+
+    shBindIndexBufferMemory(core.device, index_buffer, index_buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shWriteIndexBufferMemory
+```c
+#define shWriteIndexBufferMemory(device, index_buffer_memory, size, p_indices)\
+	shWriteMemory(device, index_buffer_memory, 0, size, (void*)p_indices)
+```
+### Description
+Writes index buffer data. Calls [`shWriteMemory`](#shwritememory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`index_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle;
+ * **`size`**: size in bytes of the data to write;
+ * **`p_indices`**: pointer to the source buffer with size at least equal to `size`;
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    //create index buffer
+
+    VkDeviceMemory index_buffer_memory;
+    //allocate index buffer memory
+
+    uint32_t indices[3] = {
+		0, 1, 2
+    };
+
+    shWriteIndexBufferMemory(core.device, index_buffer_memory, sizeof(indices), indices);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shBindIndexBuffer
+```c
+#define shBindIndexBuffer(graphics_cmd_buffer, p_index_buffer)\
+	vkCmdBindIndexBuffer(graphics_cmd_buffer, *p_index_buffer, 0, VK_INDEX_TYPE_UINT32)
+```
+### Description
+Binds the index buffer with a command buffer. The command buffer must be recording, see [`shBeginCommandBuffer`](#shbegincommandbuffer).
+
+### Parameters
+ * **`graphics_cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers);
+ * **`p_index_buffer`**: valid pointer to an index [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    //create index buffer
+
+    VkDeviceMemory index_buffer_memory;
+    //allocate index buffer memory
+
+    //begin command buffer
+    
+    uint32_t thread = 0;
+    shBindIndexBuffer(core.p_graphics_commands[thread].cmd_buffer, &index_buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shClearVertexBufferMemory
+```c
+#define shClearVertexBufferMemory(device, vertex_buffer, vertex_buffer_memory)\
+	shClearBufferMemory(device, vertex_buffer, vertex_buffer_memory)
+```
+### Description
+Destroys a vertex [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) and clears the relative device memory. Call [`shClearBufferMemory`](#shclearbuffermemory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`vertex_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) handle, see [`shCreateBuffer`](#shcreatebuffer);
+ * **`vertex_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle, see [`shAllocateMemory`](#shallocatememory);
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer vertex_buffer;
+    //create vertex buffer
+
+    VkDeviceMemory vertex_buffer_memory;
+    //allocate vertex buffer memory
+
+    shClearVertexBufferMemory(core.device, vertex_buffer, vertex_buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shClearIndexBufferMemory
+```c
+#define shClearIndexBufferMemory(device, index_buffer, index_buffer_memory)\
+	shClearBufferMemory(device, index_buffer, index_buffer_memory)
+```
+### Description
+Destroys an index [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) and clears the relative device memory. Call [`shClearBufferMemory`](#shclearbuffermemory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`index_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) handle, see [`shCreateBuffer`](#shcreatebuffer);
+ * **`index_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle, see [`shAllocateMemory`](#shallocatememory);
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    VkBuffer index_buffer;
+    //create index buffer
+
+    VkDeviceMemory index_buffer_memory;
+    //allocate index buffer memory
+
+    shClearIndexBufferMemory(core.device, index_buffer, index_buffer_memory);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
 ## shCreateDepthImage
 ```c
 #define shCreateDepthImage(p_core)\
@@ -1633,6 +2553,7 @@ Creates a depth image. Requires a valid [`VkSurfaceKHR`](https://www.khronos.org
 ### Usage example
 ```c
 #include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
 
 int main(void) {
     ShVkCore core = { 0 };
@@ -1640,6 +2561,7 @@ int main(void) {
 	//setup physical device
     //setup logical device
     shCreateDepthImage(&core);
+
     // [...]
     return 0;
 }
@@ -1672,6 +2594,7 @@ int main(void) {
     //setup logical device
     //create surface --> platform dependent
     shCreateDepthImage(&core);
+
     // [...]
     return 0;
 }
