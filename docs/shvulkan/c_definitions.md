@@ -11,7 +11,7 @@
     * [ShVkImageType](#shvkimagetype)
 * Defined at [`shVkPipelineData.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkPipelineData.h)
     * [ShVkPipeline](#shvkpipeline)
-    * [ShFixedStatesFlags](#shvkfixedstatesflags)
+    * [ShFixedStatesFlags](#shvkfixedstateflags)
     * [ShVkFixedStates](#shvkfixedstates)
 
 [Functions and macros](#functions-and-macros):
@@ -271,7 +271,7 @@ The pipeline handle. It holds the shader modules along with shader input-output 
 ---
 
 
-## ShVkFixedStatesFlags
+## ShVkFixedStateFlags
 ```c
 typedef enum ShVkFixedStateFlags  {
 	SH_FIXED_STATES_POLYGON_MODE_WIREFRAME				= 0b000000001,
@@ -2683,6 +2683,7 @@ Macro definition for creating a depth [`VkImageView`](https://www.khronos.org/re
 ### Usage example
 ```c
 #include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
 
 int main(void) {
     ShVkCore core = { 0 };
@@ -2693,6 +2694,530 @@ int main(void) {
     //create depth image
     shCreateDepthImageView(&core);
     
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shInitDepthData
+```c
+#define shInitDepthData(p_core)\
+	shCreateDepthImage(p_core); shCreateDepthImageView(p_core)
+```
+### Description
+Creates a depth image and a depth image view object. Calls [`shCreateDepthImage`](#shcreatedepthimage) and [`shCreateDepthImageView`](#shcreatedepthimageview)
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    //create surface --> platform dependent
+    
+    shInitDepthData(&core);
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateRasterizer
+```c
+extern void shCreateRasterizer(VkPipelineRasterizationStateCreateInfo* p_rasterizer);
+```
+### Description
+Creates a rasterizer handle to draw pixel on the framebuffer.
+
+### Parameters
+ * **`p_rasterize`**: valid pointer to a [`VkPipelineRasterizationStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationStateCreateInfo.html) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    
+    ShVkPipeline graphics_pipeline = { 0 };
+    shCreateRasterizer(&graphics_pipeline.rasterizer);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSetMultisampleState
+```c
+extern void shSetMultisampleState(VkPipelineMultisampleStateCreateInfo* p_multisample_state);
+```
+### Description
+Sets multisample infos.
+
+### Parameters
+ * **`p_multisample_state`**: valid pointer to a [`VkPipelineMultisampleStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    
+    ShVkPipeline graphics_pipeline = { 0 };
+    shSetMultisampleState(&graphics_pipeline.multisample_state_info);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shColorBlendSettings
+```c
+extern void shColorBlendSettings(VkPipelineColorBlendAttachmentState* p_color_blend_attachment, VkPipelineColorBlendStateCreateInfo* p_color_blend_state);
+```
+### Description
+Sets up some color blending properties.
+
+### Parameters
+ * **`p_color_blend_attachment`**: valid pointer to a [`VkPipelineColorBlendAttachmentState`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineColorBlendAttachmentState.html) structure;
+ * **`p_color_blend_state`**: valid pointer to a [`VkPipelineColorBlendStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineColorBlendStateCreateInfo.html) structure.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    
+    ShVkFixedStates fixed_states = { 0 };
+   	shColorBlendSettings(&fixed_states.color_blend_attachment, &p_fixed_states.color_blend_state);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSetViewport
+```c
+extern void shSetViewport(const uint32_t width, const uint32_t height, VkViewport *p_viewport, VkRect2D* p_scissors, VkPipelineViewportStateCreateInfo* p_viewport_state);
+```
+### Description
+Fills some viewport related structures.
+
+### Parameters
+ * **`width`**: width in pixels of the viewport;
+ * **`height`**: height in pixels of the viewport;
+ * **`p_viewport`**: valid pointer to a [`VkViewport`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkViewport.html) structure;
+ * **`p_scissors`**: valid pointer to a [`VkRect2D`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRect2D.html) structure;
+ * **`p_viewport_state`**: valid pointer to a [`VkPipelineColorBlendStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportStateCreateInfo.html) structure.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    
+    uint32_t surface_width  = 720;
+    uint32_t surface_height = 480;
+
+    ShVkFixedStates fixed_states = { 0 };
+   	shSetViewport(surface_width, surface_height, &fixed_states.viewport, &fixed_states.scissor, &fixed_states.viewport_state);
+
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSetFixedStates
+```c
+extern void shSetFixedStates(VkDevice device, const uint32_t surface_width, const uint32_t surface_height, ShVkFixedStateFlags  flags, ShVkFixedStates* p_fixed_states);
+```
+### Description
+Sets up the [`ShVkFixedStates`](#shvkfixedstates) structure.
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`surface_width`**: width in pixels of the viewport;
+ * **`surface_height`**: height in pixels of the viewport;
+ * **`flags`**: [`ShVkFixedStateFlags`](#shvkfixedstateflags) enum value, specifies the polygon mode and the primitive topology, and it visually affects the result of a draw call;
+ * **`p_fixed_states`**: valid pointer to a [`ShVkFixedStates`](#shvkfixedstates) structure.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    
+    //you may want to setup a surface and make the viewport dimensions coherent with the window size
+    uint32_t surface_width  = 720;
+    uint32_t surface_height = 480;
+
+    ShVkFixedStates fixed_states = { 0 };
+
+    // [...]
+
+   	shSetFixedStates(core.device, surface_width, surface_height, SH_FIXED_STATES_POLYGON_MODE_FACE | SH_FIXED_STATES_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, &fixed_states);
+
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSetVertexInputAttribute
+```c
+extern void shSetVertexInputAttribute(const uint32_t location, VkFormat format, const uint32_t offset, const uint32_t size, ShVkFixedStates* p_fixed_states);
+```
+### Description
+Creates a shader vertex buffer input attributes.
+
+### Parameters
+ * **`location`**: vertex input shader location;
+ * **`format`**: depends on the size and on the input type;
+ * **`offset`**: vertex input stride in bytes;
+ * **`size`**: size in bytes of the vertex input buffer;
+ * **`p_fixed_states`**: valid pointer to a [`ShVkFixedStates`](#shvkfixedstates) structure.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    
+    ShVkFixedStates fixed_states = { 0 };
+    
+    shSetVertexInputAttribute(0, SH_VEC3_SIGNED_FLOAT, 0, 12 &fixed_states);
+	shSetVertexInputAttribute(1, SH_VEC3_SIGNED_FLOAT, 12, 12, &fixed_states);
+	shSetVertexInputAttribute(2, SH_VEC2_SIGNED_FLOAT, 24, 8, &fixed_states);
+
+    
+    // [...]
+    return 0;
+}
+```
+`GLSL` shader code:
+```glsl
+#version 460
+layout (location = 0) in vec3 position;
+layout (location = 1) in vec3 normal;
+layout (location = 2) in vec2 uv;
+
+//shader.vert
+// [...]
+```
+
+
+---
+
+
+
+## shSetVertexInputState
+```c
+extern void shSetVertexInputState(VkVertexInputBindingDescription* p_vertex_binding, uint32_t vertex_input_attribute_count, VkVertexInputAttributeDescription* p_vertex_input_attributes, VkPipelineVertexInputStateCreateInfo* p_vertex_input_state);
+```
+### Description
+Builds a [`VkPipelineVertexInputStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineVertexInputStateCreateInfo.html) structure after defining all the vertex input attributes.
+
+### Parameters
+ * **`p_vertex_binding`**: valid pointer to a [`VkVertexInputBindingDescription`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputBindingDescription.html) structure;
+ * **`vertex_input_attribute_count`**: number of vertex input attributes;
+ * **`p_vertex_input_attributes`**: pointer to a buffer of [`VkVertexInputAttributeDescription`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription.html) with length at least equal to `vertex_input_attribute_count`;
+ * **`p_vertex_input_state`**: valid pointer to a [`VkPipelineVertexInputStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineVertexInputStateCreateInfo.html) structure.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    
+    ShVkFixedStates fixed_states = { 0 };
+    
+    //set vertex input attributes
+    
+    shSetVertexInputState(&fixed_states.vertex_binding_description, fixed_states.vertex_input_attribute_description_count, fixed_states.vertex_input_attributes, fixed_states.vertex_input_state_info);
+
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateInputAssembly
+```c
+extern void shCreateInputAssembly(const VkPrimitiveTopology primitive_topology, const VkBool32 primitive_restart_enable, VkPipelineInputAssemblyStateCreateInfo* p_input_assembly);
+```
+### Description
+Creates a [`VkPipelineInputAssemblyStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html) structure given the necessary parameters.
+
+### Parameters
+ * **`primitive_topology`**: [`VkPrimitiveTopology`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPrimitiveTopology.html) enum value that specifies the primitive topology;
+ * **`primitive_restart_enable`**: ;
+ * **`p_vertex_input_attributes`**: pointer to a buffer of [`VkVertexInputAttributeDescription`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription.html) with length at least equal to `vertex_input_attribute_count`;
+ * **`p_input_assembly`**: valid pointer to a [`VkPipelineInputAssemblyStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html) structure.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    
+    ShVkFixedStates fixed_states = { 0 };
+    
+    //setup vertex input attributes
+    //setup vertex input state
+
+   	shCreateInputAssembly(VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, VK_FALSE, &fixed_states.input_assembly);
+
+    
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSetPushConstants
+```c
+extern void shSetPushConstants(const VkShaderStageFlags shader_stage_flags, const uint32_t offset, const uint32_t size, ShVkPipeline* p_pipeline);
+```
+### Description
+Sets up a [`VkPushConstantRange`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPushConstantRange.html) structure, which represents a Vulkan specific type of shader inputs. 
+
+### Parameters
+ * **`shader_stage_flags`**: the shader stage where the push costant is going to be specified;
+ * **`offset`**: offset in bytes for future bindings;
+ * **`size`**: size in bytes of the push constant data;
+ * **`p_pipeline`**: valid pointer to an [`ShVkPipeline`](#shvkpipeline) structure.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    ShVkPipeline pipeline = { 0 };
+
+    shSetPushConstants(VK_SHADER_STAGE_VERTEX_BIT, 0, 128, &pipeline);
+    
+    // [...]
+    return 0;
+}
+```
+`GLSL` shader code:
+```glsl
+#version 460
+
+//max size: 128 bytes
+layout (push_constant) uniform pushConstant {
+    mat4 projection;
+    mat4 view;
+} pconst;
+
+//shader.vert
+// [...]
+```
+
+---
+
+
+
+## shCreateDescriptorBuffer
+```c
+extern void shCreateDescriptorBuffer(const VkDevice device, const VkBufferUsageFlagBits usage, const uint32_t descriptor_idx, const uint32_t size, const uint32_t max_size, VkDescriptorBufferInfo* p_buffer_info, VkBuffer* p_buffer);
+```
+### Description
+Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html). 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`usage`**: some common [`VkBufferUsageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferUsageFlags.html) values used to create descriptor buffer are `VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT` and `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT`;
+ * **`descriptor_idx`**: descriptor set index;
+ * **`size`**: size in bytes of the buffer;
+ * **`max_size`**: must be equal or a multiple of `size` (generally `max_size` is higher than size when you have to work with dynamic descriptors);
+ * **`p_buffer_info`**: valid pointer to a [VkDescriptorBufferInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html) structure, which summarizes the information specified after calling this function.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    ShVkPipeline pipeline = { 0 };
+
+    uint32_t descriptor_set_idx = 0;
+
+    shCreateDescriptorBuffer(core.device, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, descriptor_idx, 64, 64, &pipeline.descriptor_buffer_infos[descriptor_set_idx], &pipeline.descriptor_buffers[descriptor_set_idx]);
+
+
+    // [...]
+    return 0;
+}
+```
+`GLSL` shader code:
+```glsl
+#version 460
+
+layout (set = 0; binding = 0) uniform uniformBuffer {
+    mat4 model;
+} ubo;
+
+// [...]
+```
+
+---
+
+
+
+## shCreateDescriptorPool
+```c
+extern void shCreateDescriptorPool(VkDevice device, const uint32_t descriptor_idx, const uint32_t binding, const VkDescriptorType descriptor_type, VkDescriptorPool* p_descriptor_pool);
+```
+### Description
+Creates a [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPool.html) handle. 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`descriptor_idx`**: descriptor set index;
+ * **`binding`**: could be interpreted as a binding index or a binding id, see [`shPipelineBindDescriptorBufferMemory`](#shpipelinebinddescriptorbuffermemory);
+ * **`descriptor_type`**: [`VkDescriptorType`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorType.html) enum value;
+ * **`p_descriptor_pool`**: valid pointer to a [VkDescriptorPool](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPool.html) handle, which unlocks the possibility to allocate memory, see [`shPipelineAllocateDescriptorBufferMemory`](#shpipelineallocatedescriptorbuffermemory).
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    ShVkPipeline pipeline = { 0 };
+
+    uint32_t descriptor_set_idx = 0;
+
+    //create descriptor buffer
+
+    shCreateDescriptorPool(core.device, descriptor_idx, pipeline.descriptor_set_layout_bindings[descriptor_set_idx].binding, pipeline.descriptor_set_layout_bindings[descriptor_set_idx].descriptorType, &pipeline.descriptor_pools[descriptor_set_idx]);
+
+
     // [...]
     return 0;
 }
