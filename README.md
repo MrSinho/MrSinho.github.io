@@ -6,7 +6,7 @@
 
 A C library that simplifies the usage of the Vulkan API:
 
-<button>[Download](https://github.com/MrSinho/ShVulkan)</button> <button>[Read docs](docs/shvulkan/index)</button>
+<a href="https://github.com/MrSinho/ShVulkan" class="btn">Download</a> <button>[Read docs](docs/shvulkan/index)</button>
 
 ---
 
