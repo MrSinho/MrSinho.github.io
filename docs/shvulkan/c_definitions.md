@@ -2506,6 +2506,137 @@ int main(void) {
 
 
 
+## shPipelineAllocateDescriptorBufferMemory
+```c
+#define shPipelineAllocateDescriptorBufferMemory(device, physical_device, descriptor_idx, p_pipeline)\
+	shAllocateMemory(device, physical_device, (p_pipeline)->descriptor_buffers[descriptor_idx], VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT | VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, &(p_pipeline)->descriptor_buffers_memory[descriptor_idx])
+```
+### Description
+Allocates descriptor buffer memory. Calls [`shAllocateMemory`](#shallocatememory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`physical_device`**: valid [`VkPhysicalDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html) physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice);
+ * **`descriptor_idx`**: descriptor set index;
+ * **`p_pipeline`**: valid pointer to an [`ShVkPipeline`](#shvkpipeline) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    ShVkPipeline pipeline = { 0 };
+
+    //create descriptor buffer
+
+    uint32_t descriptor_idx = 0;
+    shPipelineAllocateDescriptorBufferMemory(core.device, core.physical_device, descriptor_idx, &pipeline);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shPipelineBindDescriptorBufferMemory
+```c
+#define shPipelineBindDescriptorBufferMemory(device, descriptor_idx, p_pipeline)\
+	shBindMemory(device, (p_pipeline)->descriptor_buffers[descriptor_idx], (p_pipeline)->descriptor_buffers_memory[descriptor_idx])
+```
+### Description
+Binds a specific descriptor [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle. Calls [`shBindMemory`](#shbindmemory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`descriptor_idx`**: descriptor set index;
+ * **`p_pipeline`**: valid pointer to an [`ShVkPipeline`](#shvkpipeline) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    ShVkPipeline pipeline = { 0 };
+
+    //create descriptor buffer
+    //allocate descriptor buffer memory
+
+    // [...]
+
+    uint32_t descriptor_idx = 0;
+    shPipelineBindDescriptorBufferMemory(core.device, descriptor_idx, &pipeline);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shPipelineClearDescriptorBufferMemory
+```c
+#define shPipelineClearDescriptorBufferMemory(device, descriptor_idx, p_pipeline)\
+	shClearBufferMemory(device, (p_pipeline)->descriptor_buffers[descriptor_idx], (p_pipeline)->descriptor_buffers_memory[descriptor_idx])
+```
+### Description
+Destroys a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) and clears the relative device memory. Call [`shClearBufferMemory`](#shclearbuffermemory).
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`descriptor_idx`**: descriptor set index;
+ * **`p_pipeline`**: valid pointer to an [`ShVkPipeline`](#shvkpipeline) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    
+    ShVkPipeline pipeline = { 0 };
+
+    //create descriptor buffer
+    //allocate descriptor buffer memory
+
+    uint32_t descriptor_idx = 0;
+    shPipelineClearDescriptorBufferMemory(core.device, descriptor_idx, &pipeline);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
 ## shCreateDepthImage
 ```c
 #define shCreateDepthImage(p_core)\
