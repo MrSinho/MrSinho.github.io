@@ -18,6 +18,6 @@ This unofficial repository collects the tools to efficiently download, convert a
 
 ---
 
-<button class="btn">[back to home](../../README)</button>
+<button class="btn">[back to home](../../index)</button>
 
 ---
