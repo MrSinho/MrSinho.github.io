@@ -6,7 +6,7 @@ Setup
 * [Clone and build](#clone-and-build)
 
 Tutorial
-* [CMake targets](#cmake-targes)
+* [CMake targets](#cmake-targets)
 * [Graphics example](#graphics-example)
 * [Compute example](#compute-example)
 
