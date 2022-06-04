@@ -3155,7 +3155,6 @@ int main(void) {
     return 0;
 }
 ```
-```
 `GLSL` shader code:
 ```glsl
 #version 460
@@ -3753,7 +3752,6 @@ int main(void) {
     // [...]
     return 0;
 }
-```
 ```
 `GLSL` shader code:
 ```glsl
