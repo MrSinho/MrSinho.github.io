@@ -5196,5 +5196,4 @@ int main(void) {
 
 
 
-<button class="btn">[top](#shvulkan-c-definitions)</button>
 <button class="btn">[back to docs](./index)</button>
