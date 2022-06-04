@@ -325,7 +325,6 @@ Loops through the installed validation layers: returns `1` if the given validati
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCheck.h>
 #include <stdio.h>
 
@@ -355,7 +354,6 @@ Translates a `VkResult` returned by calling a Vulkan API function. Returns the l
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCheck.h>ì
 #include <stdio.h>
 
@@ -392,7 +390,6 @@ Asserts a [`VkResult`](https://www.khronos.org/registry/vulkan/specs/1.3-extensi
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCheck.h>ì
 #include <stdio.h>
 
@@ -429,7 +426,6 @@ Asserts a `condition` value, automatically casted to a signed integer.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCheck.h>ì
 
 int main(void) {
@@ -461,7 +457,6 @@ Initializes a [`VkInstance`](https://www.khronos.org/registry/vulkan/specs/1.3-e
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCheck.h>
 #include <shvulkan/shVkCore.h>ì
 
@@ -507,7 +502,6 @@ Picks a physical device given a valid [`ShVkCore`](#shvkcore) structure and some
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -552,7 +546,6 @@ Creates a logical device ([`VkDevice`](https://www.khronos.org/registry/vulkan/s
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -582,7 +575,6 @@ Sets up the handle responsible for coordinating the images generated after a ren
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -614,7 +606,6 @@ Writes the swapchain images given a valid swapchain, stored at p_core.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -649,7 +640,6 @@ Sets up a swapchain [`VkImageView`](https://www.khronos.org/registry/vulkan/spec
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -684,7 +674,6 @@ Creates a [`VkRenderPass`](https://www.khronos.org/registry/vulkan/specs/1.3-ext
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -720,7 +709,6 @@ Sets up a [`VkFramebuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-ex
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -758,7 +746,6 @@ Sets up a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensio
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -791,7 +778,6 @@ Frees memory from the swapchain with the relative image views and framebuffers.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -827,7 +813,6 @@ Destroys a depth image view, a depth image and frees the depth image memory.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -862,7 +847,6 @@ Destroys the `VkSurfaceKHR`.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -893,7 +877,6 @@ Destroys the [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-exten
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -928,7 +911,6 @@ Destroys the [`VkRenderPass`](https://www.khronos.org/registry/vulkan/specs/1.3-
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -969,7 +951,6 @@ Destroys the [`VkInstance`](https://www.khronos.org/registry/vulkan/specs/1.3-ex
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -999,7 +980,6 @@ Automatically destroys every active Vulkan object stored at `p_core`.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1029,7 +1009,6 @@ Gets graphics [`VkQueue`](https://www.khronos.org/registry/vulkan/specs/1.3-exte
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1061,7 +1040,6 @@ Gets compute [`VkQueue`](https://www.khronos.org/registry/vulkan/specs/1.3-exten
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1093,7 +1071,6 @@ Macro definition used to call [`shCreateSwapchain`](#shcreateswapchain), [`shGet
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1129,7 +1106,6 @@ Builds a `thread_count` number of graphics [`VkCommandPool`](https://www.khronos
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1164,7 +1140,6 @@ Builds a `thread_count` number of compute [`VkCommandPool`](https://www.khronos.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1196,7 +1171,6 @@ Resets a command buffer to its initial state, calls [`vkResetCommandBuffer`](htt
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1233,7 +1207,6 @@ Resets a `fence_count` number of [`VkFence`](https://www.khronos.org/registry/vu
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1277,7 +1250,6 @@ Resets a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extension
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1316,7 +1288,6 @@ Starts recording a [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/s
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1356,7 +1327,6 @@ Submits rendering data to the GPU.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1405,7 +1375,6 @@ Dispatches compute work groups along x, y, and z dimensions.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1452,7 +1421,6 @@ Waits for a `fence_count` number of [`VkFence`](https://www.khronos.org/registry
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1505,7 +1473,6 @@ Waits for a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extens
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1552,7 +1519,6 @@ Ends a [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-ext
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 
 int main(void) {
@@ -1599,7 +1565,6 @@ Creates a Vulkan buffer object known as [`VkBuffer`](https://www.khronos.org/reg
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -1637,7 +1602,6 @@ Gets the most suitable memory type index before allocating memory.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -1677,7 +1641,6 @@ Gets the most suitable memory type index and allocates memory on the GPU.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -1723,7 +1686,6 @@ Binds a specific [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/spec
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -1769,7 +1731,6 @@ Reads data from a [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/spe
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -1815,7 +1776,6 @@ Writes data on the GPU, according to the specified [`VkDeviceMemory`](https://ww
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -1864,7 +1824,6 @@ Destroys a [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extens
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -1914,7 +1873,6 @@ Creates a Vulkan image handle and allocates the required image memory.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -1954,7 +1912,6 @@ Gets the amount of VRAM ready for use and the memory used by other processes. To
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -1992,7 +1949,6 @@ Creates a vertex buffer. Calls [`shCreateBuffer`](#shcreatebuffer).
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2037,7 +1993,6 @@ Allocates the vertex buffer memory. Calls [`shAllocateMemory`](#shallocatememory
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2078,7 +2033,6 @@ Binds a specific vertex [`VkDeviceMemory`](https://www.khronos.org/registry/vulk
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2122,7 +2076,6 @@ Writes vertex buffer data. Calls [`shWriteMemory`](#shwritememory).
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2171,7 +2124,6 @@ Binds the index buffer with a command buffer. The command buffer must be recordi
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2216,7 +2168,6 @@ Creates an index buffer. Calls [`shCreateBuffer`](#shcreatebuffer).
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2259,7 +2210,6 @@ Allocates index buffer memory. Calls [`shAllocateMemory`](#shallocatememory).
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2300,7 +2250,6 @@ Binds a specific index [`VkDeviceMemory`](https://www.khronos.org/registry/vulka
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2344,7 +2293,6 @@ Writes index buffer data. Calls [`shWriteMemory`](#shwritememory).
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2389,7 +2337,6 @@ Binds the index buffer with a command buffer. The command buffer must be recordi
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2434,7 +2381,6 @@ Destroys a vertex [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2477,7 +2423,6 @@ Destroys an index [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2521,7 +2466,6 @@ Allocates descriptor buffer memory. Calls [`shAllocateMemory`](#shallocatememory
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2563,7 +2507,6 @@ Binds a specific descriptor [`VkDeviceMemory`](https://www.khronos.org/registry/
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2608,7 +2551,6 @@ Destroys a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2649,7 +2591,6 @@ Creates a depth image. Requires a valid [`VkSurfaceKHR`](https://www.khronos.org
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2682,7 +2623,6 @@ Macro definition for creating a depth [`VkImageView`](https://www.khronos.org/re
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2718,7 +2658,6 @@ Creates a depth image and a depth image view object. Calls [`shCreateDepthImage`
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -2753,7 +2692,6 @@ Creates a rasterizer handle to draw pixel on the framebuffer.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -2788,7 +2726,6 @@ Sets multisample infos.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -2824,7 +2761,6 @@ Sets up some color blending properties.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -2863,7 +2799,6 @@ Fills some viewport related structures.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -2906,7 +2841,6 @@ Sets up the [`ShVkFixedStates`](#shvkfixedstates) structure.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -2953,7 +2887,6 @@ Creates a shader vertex buffer input attributes.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3003,7 +2936,6 @@ Builds a [`VkPipelineVertexInputStateCreateInfo`](https://www.khronos.org/regist
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3045,7 +2977,6 @@ Creates a [`VkPipelineInputAssemblyStateCreateInfo`](https://www.khronos.org/reg
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3089,7 +3020,6 @@ Sets up a [`VkPushConstantRange`](https://www.khronos.org/registry/vulkan/specs/
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3140,7 +3070,6 @@ Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3198,7 +3127,6 @@ Fills a [`VkDescriptorSetLayoutBinding`](https://www.khronos.org/registry/vulkan
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3257,7 +3185,6 @@ Creates a [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3311,7 +3238,6 @@ Allocates a [`VkDescriptorSet`](https://www.khronos.org/registry/vulkan/specs/1.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3371,7 +3297,6 @@ Creates a shader module.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3440,7 +3365,6 @@ Creates a shader stage.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3487,7 +3411,6 @@ Creates a graphics pipeline.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3533,7 +3456,6 @@ Creates a compute pipeline.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3571,7 +3493,6 @@ Resets some pipeline states (dynamic descriptor offsets).
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3609,7 +3530,6 @@ Automatically destroys every active Vulkan object stored at `p_pipeline`.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3651,7 +3571,6 @@ Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3706,7 +3625,6 @@ Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3761,7 +3679,6 @@ Allocates memory for all the descriptors created inside a [`shVkPipeline`](#shvk
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3811,7 +3728,6 @@ Fills a [`VkDescriptorSetLayoutBinding`](https://www.khronos.org/registry/vulkan
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3871,7 +3787,6 @@ Creates a [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3922,7 +3837,6 @@ Allocates a [`VkDescriptorSet`](https://www.khronos.org/registry/vulkan/specs/1.
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -3964,7 +3878,6 @@ Creates a shader module stored at `p_pipeline`. Calls [`shCreateShaderModule`](#
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -4038,7 +3951,6 @@ Creates a shader stage stored at `p_pipeline`. Calls [`shCreateShaderStage`](#sh
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkPipelineData.h>
 
@@ -4089,7 +4001,6 @@ Writes descriptor data on the GPU. Calls [shWriteMemory](#shwritememory).
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -4150,7 +4061,6 @@ Automatically writes dynamic descriptor data on the GPU at the right offset. Cal
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -4210,7 +4120,6 @@ Writes push constant data on the GPU. Calls [vkCmdPushConstants](https://www.khr
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -4282,7 +4191,6 @@ Binds a pipeline. Calls [`vkCmdBindPipeline`](https://www.khronos.org/registry/v
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -4335,7 +4243,6 @@ Updates all active descriptor sets stored at `p_pipeline`. Calls [`vkUpdateDescr
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -4386,7 +4293,6 @@ Updates a descriptor set stored at `p_pipeline`. Calls [`vkUpdateDescriptorSets`
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -4441,7 +4347,6 @@ Binds a descriptor set stored at `p_pipeline`. Calls [`vkCmdBindDescriptorSets`]
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -4504,7 +4409,6 @@ Binds all the descriptor sets stored at `p_pipeline` specified with the range `f
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -4557,7 +4461,6 @@ Binds a dynamic descriptor set stored at `p_pipeline`. Calls [`vkCmdBindDescript
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
@@ -4610,7 +4513,6 @@ Binds all the dynamic descriptor sets stored at `p_pipeline` specified with the 
 ### Usage example
 
 ```c
-
 #include <shvulkan/shVkCore.h>
 #include <shvulkan/shVkMemoryInfo.h>
 
