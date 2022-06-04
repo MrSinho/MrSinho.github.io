@@ -4906,6 +4906,23 @@ int main(void) {
         &pipeline
     );
 
+    shPipelineAllocateDescriptorBufferMemory(
+        core.device, 
+        core.physical_device, 
+        0, 
+        &pipeline
+    );
+
+    shPipelineBindDescriptorBufferMemory(core.device, 0, &pipeline);
+
+    shPipelineDescriptorSetLayout(
+        core.device, 
+        0, 
+        0, 
+        VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, 
+        VK_SHADER_STAGE_VERTEX_BIT, 
+        &pipeline
+    );
 
     // [...]
     return 0;
