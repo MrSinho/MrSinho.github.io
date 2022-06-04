@@ -438,7 +438,7 @@ int main(void) {
 Asserts a `condition` value, automatically casted to a signed integer.
 
 ### Parameters
- * **`condition`**: the input value that ignites assertion;
+ * **`condition`**: the input value which ignites the assertion;
  * [**`error_msg`**](#gaiauniversemodelmemory): the message (encoded in a `const char*`) to display on the console when the `condition` is lower or equal to zero. 
 ### Usage example
 
@@ -520,7 +520,7 @@ Picks a physical device given a valid [`ShVkCore`](#shvkcore) structure and some
 
 ### Parameters
  * **`p_core`**: the instance must have been successfully created with [`shCreateInstance`](#shcreateinstance);
- * **`requirements`**: flags to filter the GPUs that support graphics `SH_VK_CORE_GRAPHICS` or compute operations `SH_VK_CORE_COMPUTE`;
+ * **`requirements`**: flags to filter the GPUs which support graphics `SH_VK_CORE_GRAPHICS` or compute operations `SH_VK_CORE_COMPUTE`;
 ### Usage example
 
 ```c
@@ -1707,7 +1707,7 @@ Gets the most suitable memory type index before allocating memory.
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`physical_device`**: valid physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice); 
  * **`property_flags`**: [`VkMemoryPropertyFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryPropertyFlags.html) enum type representing specific properties of the buffer memory, see [`VkBufferUsageFlagBits`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryPropertyFlagBits.html);
- * **`p_memory_type_index`**: valid pointer to an unsigned integer that is going to carry the memory type index. 
+ * **`p_memory_type_index`**: valid pointer to an unsigned integer which is going to carry the memory type index. 
 ### Usage example
 
 ```c
@@ -3167,7 +3167,7 @@ extern void shCreateInputAssembly(const VkPrimitiveTopology primitive_topology, 
 Creates a [`VkPipelineInputAssemblyStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html) structure given the necessary parameters.
 
 ### Parameters
- * **`primitive_topology`**: [`VkPrimitiveTopology`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPrimitiveTopology.html) enum value that specifies the primitive topology;
+ * **`primitive_topology`**: [`VkPrimitiveTopology`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPrimitiveTopology.html) enum value which specifies the primitive topology;
  * **`primitive_restart_enable`**: ;
  * **`p_vertex_input_attributes`**: pointer to a buffer of [`VkVertexInputAttributeDescription`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription.html) with length at least equal to `vertex_input_attribute_count`;
  * **`p_input_assembly`**: valid pointer to a [`VkPipelineInputAssemblyStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html) structure.
@@ -3328,7 +3328,7 @@ Fills a [`VkDescriptorSetLayoutBinding`](https://www.khronos.org/registry/vulkan
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`binding`**:  binding number of the entry and corresponds to a resource of the same binding number in the shader stages, see [`shPipelineBindDescriptorBufferMemory`](#shpipelinebinddescriptorbuffermemory);
  * **`descriptor_type`**: [`VkDescriptorType`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorType.html) enum value;
- * **`shader_stage_flags`**: [`VkShaderStageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStageFlags.html) enum value that defines the shader stage where the descriptor set has to be bound;
+ * **`shader_stage_flags`**: [`VkShaderStageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStageFlags.html) enum value which defines the shader stage where the descriptor set has to be bound;
  * **`p_descriptor_set_layout_binding`**: valid pointer to a [`VkDescriptorSetLayoutBinding`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayoutBinding.html) structure;
   **``p_descriptor_set_layout``**: valid pointer to a [`VkDescriptorSetLayout`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayout.html) handle.
 
@@ -3965,7 +3965,7 @@ Fills a [`VkDescriptorSetLayoutBinding`](https://www.khronos.org/registry/vulkan
  * **`descriptor_idx`**: descriptor set index;
  * **`binding`**:  binding number of the entry and corresponds to a resource of the same binding number in the shader stages, see [`shPipelineBindDescriptorBufferMemory`](#shpipelinebinddescriptorbuffermemory);
  * **`descriptor_type`**: [`VkDescriptorType`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorType.html) enum value;
- * **`shader_stage_flags`**: [`VkShaderStageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStageFlags.html) enum value that defines the shader stage where the descriptor set has to be bound;
+ * **`shader_stage_flags`**: [`VkShaderStageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStageFlags.html) enum value which defines the shader stage where the descriptor set has to be bound;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
 
 ### Usage example
@@ -4843,7 +4843,7 @@ int main(void) {
 ```
 
 ### Description
-Macro definition that generates some utility functions that map a specific structure array according to the GPU minumum uniform buffer offset alignment.
+Macro definition which generates some utility functions that map a specific structure array according to the GPU minumum uniform buffer offset alignment.
 
 ### Parameters
  * **`STRUCT`**: structure typename.
