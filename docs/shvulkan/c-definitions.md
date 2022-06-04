@@ -560,7 +560,7 @@ Initializes a [`VkDeviceQueueCreateInfo`](https://www.khronos.org/registry/vulka
 
 ## shSetLogicalDevice
 ```c
-extern void shSetLogicalDevice(ShVkCore* p_core, VkQueueFlags requirements);
+extern void shSetLogicalDevice(ShVkCore* p_core);
 ```
 
 ### Description
@@ -568,7 +568,6 @@ Creates a logical device ([`VkDevice`](https://www.khronos.org/registry/vulkan/s
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
- * **`requirements`**: requirement flags for setting up graphics and compute[`VkDeviceQueueCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueCreateInfo.html).
 
 ### Usage example
 
@@ -579,7 +578,7 @@ int main(void) {
     ShVkCore core = { 0 };
     //setup instance
 	//setup physical device
-    shSetLogicalDevice(&core, SH_VK_CORE_GRAPHICS | SH_VK_CORE_COMPUTE);
+    shSetLogicalDevice(&core);
     // [...]
     return 0;
 }
