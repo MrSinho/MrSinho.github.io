@@ -1,6 +1,6 @@
 # Gaia Archive Tools Library Walkthrough
 
-<button class="btn">[index](./index)</button>
+<button class="btn">[back to docs](./index)</button>
 
 Setup
 * [Clone and build](#clone-and-build)
@@ -117,4 +117,5 @@ python compress_catalogues.py 0 #Compress only file 0
 python compress_catalogues.py 0 4999 #Compress all the files in the given range 
 ```
 
+<button class="btn">[top](#gaia-archive-tools-library-walkthrough)</button>
 <button class="btn">[back to docs](./index)</button>
