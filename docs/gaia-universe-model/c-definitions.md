@@ -91,7 +91,7 @@ Reads the Universe Model source files. The number of bytes read depends on how m
 
 ### Parameters
  * **`p_engine`**: valid pointer to an `ShEngine` structure;
- * [**`celestial_body_flags`**](https://mrsinho.github.io/docs/Gaia_Archive_Tools/c_definitions.html#gaiacelestialbodyflags): used to choose what data to read;
+ * [**`celestial_body_flags`**](https://mrsinho.github.io/docs/Gaia_Archive_Tools/c-definitions.html#gaiacelestialbodyflags): used to choose what data to read;
  * [**`p_universe_model`**](#gaiauniversemodelmemory): valid pointer to a `GaiaUniverseModelMemory` structure.
 
 ### Usage example
