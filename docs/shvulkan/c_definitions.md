@@ -363,6 +363,7 @@ Translates a `VkResult` returned by calling a Vulkan API function. Returns the l
 
 ### Parameters
  * [**`vk_result`**](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html): the condition.
+
 ### Usage example
 
 ```c
@@ -472,6 +473,7 @@ Initializes a [`VkInstance`](https://www.khronos.org/registry/vulkan/specs/1.3-e
  * **`enable_validation_layers`**: if bigger or equal to `1`, enables the [`VK_LAYER_KHRONOS_validation`](https://vulkan.lunarg.com/doc/view/1.2.148.1/windows/khronos_validation_layer.html) layer, useful for debugging;
  * **`extension_count`**: number of instance extensions;
  * **`extension_names`**: array of strings with length equal to the `extension_count` parameter. You might need to enable `VK_KHR_surface` and other surface specific extensions when you want to display the framebuffers images on a window.
+
 ### Usage example
 
 ```c
@@ -567,6 +569,7 @@ Creates a logical device ([`VkDevice`](https://www.khronos.org/registry/vulkan/s
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
  * **`requirements`**: requirement flags for setting up graphics and compute[`VkDeviceQueueCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueCreateInfo.html).
+
 ### Usage example
 
 ```c
@@ -598,6 +601,7 @@ Sets up the handle responsible for coordinating the images generated after a ren
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -631,6 +635,7 @@ Writes the swapchain images given a valid swapchain, stored at p_core.
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -667,6 +672,7 @@ Sets up a swapchain [`VkImageView`](https://www.khronos.org/registry/vulkan/spec
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -703,6 +709,7 @@ Creates a [`VkRenderPass`](https://www.khronos.org/registry/vulkan/specs/1.3-ext
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -740,6 +747,7 @@ Sets up a [`VkFramebuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-ex
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -779,6 +787,7 @@ Sets up a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensio
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -813,6 +822,7 @@ Frees memory from the swapchain with the relative image views and framebuffers.
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -850,6 +860,7 @@ Destroys a depth image view, a depth image and frees the depth image memory.
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -886,6 +897,7 @@ Destroys the `VkSurfaceKHR`.
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -918,6 +930,7 @@ Destroys the [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-exten
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -954,6 +967,7 @@ Destroys the [`VkRenderPass`](https://www.khronos.org/registry/vulkan/specs/1.3-
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -996,6 +1010,7 @@ Destroys the [`VkInstance`](https://www.khronos.org/registry/vulkan/specs/1.3-ex
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -1027,6 +1042,7 @@ Automatically destroys every active Vulkan object stored at `p_core`.
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -1058,6 +1074,7 @@ Gets graphics [`VkQueue`](https://www.khronos.org/registry/vulkan/specs/1.3-exte
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -1091,6 +1108,7 @@ Gets compute [`VkQueue`](https://www.khronos.org/registry/vulkan/specs/1.3-exten
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -1124,6 +1142,7 @@ Macro definition used to call [`shCreateSwapchain`](#shcreateswapchain), [`shGet
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -1161,6 +1180,7 @@ Builds a `thread_count` number of graphics [`VkCommandPool`](https://www.khronos
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
  * **`thread_count`**: number of threads.
+
 ### Usage example
 
 ```c
@@ -1197,6 +1217,7 @@ Builds a `thread_count` number of compute [`VkCommandPool`](https://www.khronos.
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
  * **`thread_count`**: number of threads.
+
 ### Usage example
 
 ```c
@@ -1230,6 +1251,7 @@ Resets a command buffer to its initial state, calls [`vkResetCommandBuffer`](htt
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -1268,6 +1290,7 @@ Resets a `fence_count` number of [`VkFence`](https://www.khronos.org/registry/vu
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
  * **`fence_count`**: number of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s to reset;
  * **`p_fences`**: valid array of [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html)s with length equal to `fence_count`.
+
 ### Usage example
 
 ```c
@@ -1313,6 +1336,7 @@ Resets a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extension
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
  * **`p_fence`**: valid pointer to a [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html) structure.
+
 ### Usage example
 
 ```c
@@ -1353,6 +1377,7 @@ Starts recording a [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/s
 
 ### Parameters
  * **`cmd_buffer`**: valid [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers) and [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers).
+
 ### Usage example
 
 ```c
@@ -1394,6 +1419,7 @@ Submits rendering data to the GPU.
 
 ### Parameters
  * **`cmd_buffer`**: recording [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers) and [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers).
+
 ### Usage example
 
 ```c
@@ -1594,6 +1620,7 @@ Ends a [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-ext
 
 ### Parameters
  * **`cmd_buffer`**: recording [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers), [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers) and [shBeginCommandBuffer](#shbegincommandbuffer).
+
 ### Usage example
 
 ```c
@@ -1769,6 +1796,7 @@ Binds a specific [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/spec
  * **`physical_device`**: valid physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice); 
  * **`vk_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html), see [`shCreateBuffer`](#shcreatebuffer);
  * **`memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle, see [`shAllocateMemory`](#shallocatememory).
+
 ### Usage example
 
 ```c
@@ -2005,6 +2033,7 @@ Gets the amount of VRAM ready for use and the memory used by other processes. To
  * **`p_memory_budget`**: optional pointer to an unsigned integer, displays in bytes the unused VRAM;
  * **`p_process_used_memory`**: optional pointer to an unsigned integer, displays in bytes the used VRAM by the current process;
  * **p_memory_budget_properties**: optional pointer to a [`VkPhysicalDeviceMemoryBudgetPropertiesEXT`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryBudgetPropertiesEXT.html) structure.
+
 ### Usage example
 
 ```c
@@ -2044,6 +2073,7 @@ Creates a vertex buffer. Calls [`shCreateBuffer`](#shcreatebuffer).
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`size`**: size in bytes of the buffer;
  * **`p_vertex_buffer`**: valid pointer to a [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object.
+
 ### Usage example
 
 ```c
@@ -2090,6 +2120,7 @@ Allocates the vertex buffer memory. Calls [`shAllocateMemory`](#shallocatememory
  * **`physical_device`**: valid [`VkPhysicalDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html) physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice);
  * **`vertex_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
  * **`p_vertex_buffer_memory`**: valid pointer to a [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
+
 ### Usage example
 
 ```c
@@ -2132,6 +2163,7 @@ Binds a specific vertex [`VkDeviceMemory`](https://www.khronos.org/registry/vulk
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`vertex_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
  * **`vertex_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
+
 ### Usage example
 
 ```c
@@ -2273,6 +2305,7 @@ Creates an index buffer. Calls [`shCreateBuffer`](#shcreatebuffer).
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`size`**: size in bytes of the buffer;
  * **`p_index_buffer`**: valid pointer to a [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object.
+
 ### Usage example
 
 ```c
@@ -2317,6 +2350,7 @@ Allocates index buffer memory. Calls [`shAllocateMemory`](#shallocatememory).
  * **`physical_device`**: valid [`VkPhysicalDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html) physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice);
  * **`index_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
  * **`p_index_buffer_memory`**: valid pointer to a [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
+
 ### Usage example
 
 ```c
@@ -2359,6 +2393,7 @@ Binds a specific index [`VkDeviceMemory`](https://www.khronos.org/registry/vulka
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`vertex_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
  * **`vertex_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
+
 ### Usage example
 
 ```c
@@ -2585,6 +2620,7 @@ Allocates descriptor buffer memory. Calls [`shAllocateMemory`](#shallocatememory
  * **`physical_device`**: valid [`VkPhysicalDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice.html) physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice);
  * **`descriptor_idx`**: descriptor set index;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -2628,6 +2664,7 @@ Binds a specific descriptor [`VkDeviceMemory`](https://www.khronos.org/registry/
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`descriptor_idx`**: descriptor set index;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -2674,6 +2711,7 @@ Destroys a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`descriptor_idx`**: descriptor set index;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -2716,6 +2754,7 @@ Creates a depth image. Requires a valid [`VkSurfaceKHR`](https://www.khronos.org
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -2750,6 +2789,7 @@ Macro definition for creating a depth [`VkImageView`](https://www.khronos.org/re
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -2787,6 +2827,7 @@ Creates a depth image and a depth image view object. Calls [`shCreateDepthImage`
 
 ### Parameters
  * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure.
+
 ### Usage example
 
 ```c
@@ -2823,6 +2864,7 @@ Creates a rasterizer handle to draw pixel on the framebuffer.
 
 ### Parameters
  * **`p_rasterize`**: valid pointer to a [`VkPipelineRasterizationStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationStateCreateInfo.html) structure.
+
 ### Usage example
 
 ```c
@@ -2859,6 +2901,7 @@ Sets multisample infos.
 
 ### Parameters
  * **`p_multisample_state`**: valid pointer to a [`VkPipelineMultisampleStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineMultisampleStateCreateInfo.html) structure.
+
 ### Usage example
 
 ```c
@@ -2896,6 +2939,7 @@ Sets up some color blending properties.
 ### Parameters
  * **`p_color_blend_attachment`**: valid pointer to a [`VkPipelineColorBlendAttachmentState`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineColorBlendAttachmentState.html) structure;
  * **`p_color_blend_state`**: valid pointer to a [`VkPipelineColorBlendStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineColorBlendStateCreateInfo.html) structure.
+
 ### Usage example
 
 ```c
@@ -2936,6 +2980,7 @@ Fills some viewport related structures.
  * **`p_viewport`**: valid pointer to a [`VkViewport`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkViewport.html) structure;
  * **`p_scissors`**: valid pointer to a [`VkRect2D`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRect2D.html) structure;
  * **`p_viewport_state`**: valid pointer to a [`VkPipelineColorBlendStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportStateCreateInfo.html) structure.
+
 ### Usage example
 
 ```c
@@ -2980,6 +3025,7 @@ Sets up the [`ShVkFixedStates`](#shvkfixedstates) structure.
  * **`surface_height`**: height in pixels of the viewport;
  * **`flags`**: [`ShVkFixedStateFlags`](#shvkfixedstateflags) enum value, specifies the polygon mode and the primitive topology, and it visually affects the result of a draw call;
  * **`p_fixed_states`**: valid pointer to a [`ShVkFixedStates`](#shvkfixedstates) structure.
+
 ### Usage example
 
 ```c
@@ -3028,6 +3074,7 @@ Creates a shader vertex buffer input attributes.
  * **`offset`**: vertex input stride in bytes;
  * **`size`**: size in bytes of the vertex input buffer;
  * **`p_fixed_states`**: valid pointer to a [`ShVkFixedStates`](#shvkfixedstates) structure.
+
 ### Usage example
 
 ```c
@@ -3057,6 +3104,7 @@ int main(void) {
 layout (location = 0) in vec3 position;
 layout (location = 1) in vec3 normal;
 layout (location = 2) in vec2 uv;
+
 //shader.vert
 // [...]
 ```
@@ -3079,6 +3127,7 @@ Builds a [`VkPipelineVertexInputStateCreateInfo`](https://www.khronos.org/regist
  * **`vertex_input_attribute_count`**: number of vertex input attributes;
  * **`p_vertex_input_attributes`**: pointer to a buffer of [`VkVertexInputAttributeDescription`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription.html) with length at least equal to `vertex_input_attribute_count`;
  * **`p_vertex_input_state`**: valid pointer to a [`VkPipelineVertexInputStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineVertexInputStateCreateInfo.html) structure.
+
 ### Usage example
 
 ```c
@@ -3122,6 +3171,7 @@ Creates a [`VkPipelineInputAssemblyStateCreateInfo`](https://www.khronos.org/reg
  * **`primitive_restart_enable`**: ;
  * **`p_vertex_input_attributes`**: pointer to a buffer of [`VkVertexInputAttributeDescription`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription.html) with length at least equal to `vertex_input_attribute_count`;
  * **`p_input_assembly`**: valid pointer to a [`VkPipelineInputAssemblyStateCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineInputAssemblyStateCreateInfo.html) structure.
+
 ### Usage example
 
 ```c
@@ -3196,6 +3246,7 @@ layout (push_constant) uniform pushConstant {
     mat4 projection;
     mat4 view;
 } pconst;
+
 //shader.vert
 // [...]
 ```
@@ -3219,6 +3270,7 @@ Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/
  * **`size`**: size in bytes of the buffer;
  * **`max_size`**: must be equal or a multiple of `size` (generally `max_size` is higher than size when you have to work with dynamic descriptors);
  * **`p_buffer_info`**: valid pointer to a [`VkDescriptorBufferInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html) structure, which summarizes the information specified after calling this function.
+
 ### Usage example
 
 ```c
@@ -3253,9 +3305,10 @@ int main(void) {
 ```glsl
 #version 460
 
-layout (set = 0; binding = 0) uniform uniformBuffer {
+layout (set = 0, binding = 0) uniform uniformBuffer {
     mat4 model;
 } ubo;
+
 // [...]
 ```
 
@@ -3278,6 +3331,7 @@ Fills a [`VkDescriptorSetLayoutBinding`](https://www.khronos.org/registry/vulkan
  * **`shader_stage_flags`**: [`VkShaderStageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStageFlags.html) enum value that defines the shader stage where the descriptor set has to be bound;
  * **`p_descriptor_set_layout_binding`**: valid pointer to a [`VkDescriptorSetLayoutBinding`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayoutBinding.html) structure;
   **``p_descriptor_set_layout``**: valid pointer to a [`VkDescriptorSetLayout`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayout.html) handle.
+
 ### Usage example
 
 ```c
@@ -3313,9 +3367,10 @@ int main(void) {
 ```glsl
 #version 460
 
-layout (set = 0; binding = 0) uniform uniformBuffer {
+layout (set = 0, binding = 0) uniform uniformBuffer {
     // [...]
 } ubo;
+
 // [...]
 ```
 
@@ -3337,6 +3392,7 @@ Creates a [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`descriptor_type`**: [`VkDescriptorType`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorType.html) enum value;
  * **`p_descriptor_pool`**: valid pointer to a [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPool.html) handle.
+
 ### Usage example
 
 ```c
@@ -3392,6 +3448,7 @@ Allocates a [`VkDescriptorSet`](https://www.khronos.org/registry/vulkan/specs/1.
  * **`p_descriptor_set`**: valid pointer to a [`VkDescriptorSet`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSet.html) handle;
  * **`p_buffer_info`** valid pointer to a [`VkDescriptorBufferInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html) structure;
  * **`p_write_descriptor_set`** valid pointer to a [`VkWriteDescriptorSet`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSet.html) structure.
+
 ### Usage example
 
 ```c
@@ -3618,6 +3675,7 @@ Creates a compute pipeline.
  * **`render_pass`**: valid [`VkRenderPass`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPass.html) handle;
  * **`fixed_states`**: valid [`ShVkFixedStates`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/ShVkFixedStates.html) structure, see [`shSetFixedStates`](#shsetfixedstates);
  * **``p_pipeline``**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -3657,6 +3715,7 @@ Resets some pipeline states (dynamic descriptor offsets).
 
 ### Parameters
  * **``p_pipeline``**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -3696,6 +3755,7 @@ Automatically destroys every active Vulkan object stored at `p_pipeline`.
 
 ### Parameters
  * **``p_pipeline``**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -3739,6 +3799,7 @@ Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/
  * **`descriptor_idx`**: descriptor set index;
  * **`size`**: size in bytes of the buffer;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -3770,9 +3831,10 @@ int main(void) {
 ```glsl
 #version 460
 
-layout (set = 0; binding = 0) uniform uniformBuffer {
+layout (set = 0, binding = 0) uniform uniformBuffer {
     mat4 model;
 } ubo;
+
 // [...]
 ```
 
@@ -3795,6 +3857,7 @@ Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/
  * **`size`**: size in bytes of the buffer;
  * **`max_bindings`**: maximum number of bindings for each command buffer record;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -3829,9 +3892,10 @@ int main(void) {
 ```glsl
 #version 460
 
-layout (set = 0; binding = 0) uniform uniformBuffer { //applied for 3 objects
+layout (set = 0, binding = 0) uniform uniformBuffer { //applied for 3 objects
     mat4 model;
 } ubo;
+
 // [...]
 ```
 
@@ -3851,6 +3915,7 @@ Allocates memory for all the descriptors created inside a [`shVkPipeline`](#shvk
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`physical_device`**: valid physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice);
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -3902,6 +3967,7 @@ Fills a [`VkDescriptorSetLayoutBinding`](https://www.khronos.org/registry/vulkan
  * **`descriptor_type`**: [`VkDescriptorType`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorType.html) enum value;
  * **`shader_stage_flags`**: [`VkShaderStageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStageFlags.html) enum value that defines the shader stage where the descriptor set has to be bound;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -3935,9 +4001,10 @@ int main(void) {
 ```glsl
 #version 460
 
-layout (set = 0; binding = 0) uniform uniformBuffer {
+layout (set = 0, binding = 0) uniform uniformBuffer {
     // [...]
 } ubo;
+
 // [...]
 ```
 
@@ -3962,6 +4029,7 @@ Creates a [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`descriptor_idx`**: descriptor set index;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4014,6 +4082,7 @@ Allocates a [`VkDescriptorSet`](https://www.khronos.org/registry/vulkan/specs/1.
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`descriptor_idx`**: descriptor set index;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4057,6 +4126,7 @@ Creates a shader module stored at `p_pipeline`. Calls [`shCreateShaderModule`](#
  * **`size`**: size in bytes of the [`SPIR-V`](https://www.khronos.org/spir/) shader module;
  * **`code`**: shader module code;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4132,6 +4202,7 @@ Creates a shader stage stored at `p_pipeline`. Calls [`shCreateShaderStage`](#sh
  * **`shader_module`**: valid [`VkShaderModule`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderModule.html) handle, see [`shCreateShaderModule`](#shcreateshadermodule);
  * **`shader_stage_flag`**: [`VkShaderStageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStageFlags.html) enum value;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4184,6 +4255,7 @@ Writes descriptor data on the GPU. Calls [shWriteMemory](#shwritememory).
  * **`descriptor_idx`**: descriptor set index;
  * **`p_descriptor_buffer_data`**: pointer to the source buffer with size at least equal to `(p_pipeline)->descriptor_buffer_infos[descriptor_idx].range`;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4246,6 +4318,7 @@ Automatically writes dynamic descriptor data on the GPU at the right offset. Cal
  * **`descriptor_idx`**: descriptor set index;
  * **`p_descriptor_buffer_data`**: pointer to the source buffer with size at least equal to `(p_pipeline)->descriptor_buffer_infos[descriptor_idx].range`;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4307,6 +4380,7 @@ Writes push constant data on the GPU. Calls [vkCmdPushConstants](https://www.khr
  * **`cmd_buffer`**: recording [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers) and [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers) and [`shBeginCommandBuffer`](#shbegincommandbuffer);
  * **`p_push_constant_data`**: pointer to the source buffer with size at least equal to `(p_pipeline)->push_constant_range.size`;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4380,6 +4454,7 @@ Binds a pipeline. Calls [`vkCmdBindPipeline`](https://www.khronos.org/registry/v
  * **`cmd_buffer`**: recording [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers) and [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers) and [`shBeginCommandBuffer`](#shbegincommandbuffer);
  * **`bind_point`**: pipeline binding point, see [`VkPipelineBindPoint`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineBindPoint.html);
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4434,6 +4509,7 @@ Updates all active descriptor sets stored at `p_pipeline`. Calls [`vkUpdateDescr
 ### Parameters
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4486,6 +4562,7 @@ Updates a descriptor set stored at `p_pipeline`. Calls [`vkUpdateDescriptorSets`
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`descriptor_idx`**: descriptor set index;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4542,6 +4619,7 @@ Binds a descriptor set stored at `p_pipeline`. Calls [`vkCmdBindDescriptorSets`]
  * **`cmd_buffer`**: recording [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers) and [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers) and [`shBeginCommandBuffer`](#shbegincommandbuffer);
  * **`descriptor_idx`**: descriptor set index;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4606,6 +4684,7 @@ Binds all the descriptor sets stored at `p_pipeline` specified with the range `f
  * **`descriptor_count`**: total number of descriptors to bind;
  * **`bind_point`**: pipeline binding point, see [`VkPipelineBindPoint`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineBindPoint.html);
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4660,6 +4739,7 @@ Binds a dynamic descriptor set stored at `p_pipeline`. Calls [`vkCmdBindDescript
  * **`descriptor_idx`**: descriptor set index;
  * **`bind_point`**: pipeline binding point, see [`VkPipelineBindPoint`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineBindPoint.html);
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4714,6 +4794,7 @@ Binds all the dynamic descriptor sets stored at `p_pipeline` specified with the 
  * **`descriptor_count`**: total number of descriptors to bind;
  * **`bind_point`**: pipeline binding point, see [`VkPipelineBindPoint`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineBindPoint.html);
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
 ### Usage example
 
 ```c
@@ -4747,6 +4828,98 @@ int main(void) {
     // [...]
     return 0;
 }
+```
+
+
+
+---
+
+
+
+## SH_VULKAN_GENERATE_DESCRIPTOR_STRUCTURE_MAP
+```c
+#define SH_VULKAN_GENERATE_DESCRIPTOR_STRUCTURE_MAP(STRUCT)\
+    // [...]
+```
+
+### Description
+Macro definition that generates some utility functions that map a specific structure array according to the GPU minumum uniform buffer offset alignment.
+
+### Parameters
+ * **`STRUCT`**: structure typename.
+
+### Usage example
+
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+#include <shvulkan/shVkDescriptorStructureMap.h>
+
+#ifndef alignas
+#include "../../external/stdalign.in.h"
+#endif//alignas
+
+typedef struct Model {
+	alignas(16) float model[4][4];
+} Model;
+SH_VULKAN_GENERATE_DESCRIPTOR_STRUCTURE_MAP(Model) //required only for dynamic descriptors
+
+#include <stdlib.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //setup command buffers
+
+    ShVkPipeline pipeline = { 0 };
+
+    uint32_t model_count = 2;
+
+    float src[4][4] = {
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 2.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
+	};
+
+	ModelDescriptorStructureMap map = shVkCreateModelDescriptorStructures(
+        core.physical_device_properties, 
+        model_count
+    );
+
+	Model* p_model_0 = shVkGetModelDescriptorStructure(model_map, 0, 0);
+	Model* p_model_1 = shVkGetModelDescriptorStructure(model_map, 1, 0);
+
+	memcpy(p_model_0->model, src, 64);
+	memcpy(p_model_1->model, src, 64);
+
+	shVkMapModelDecriptorStructures(&map);
+
+	shPipelineCreateDynamicDescriptorBuffer(
+        core.device, 
+        VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, 
+        0, 
+        map.structure_size,
+        model_count,
+        &pipeline
+    );
+
+
+    // [...]
+    return 0;
+}
+```
+`GLSL` shader code:
+```
+#version 460
+
+layout (set = 0, binding = 0) uniform uniformBuffer {
+    mat4 model;
+} ubo;
+
+// [...]
 ```
 
 
