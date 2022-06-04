@@ -40,10 +40,17 @@ If the cmake option `SH_VULKAN_BUILD_EXAMPLE` is enabled, the additional [`glfw`
 
 ## Graphics example
 
+```c
+
+```
 
 ---
 
 ## Compute example
+
+```c
+
+```
 
 ---
 
