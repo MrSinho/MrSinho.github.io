@@ -4945,5 +4945,256 @@ layout (set = 0, binding = 0) uniform uniformBuffer {
 
 
 
+## shFrameReset
+```c
+extern void shFrameReset(ShVkCore* p_core, uint32_t thread_idx);
+```
+
+### Description
+Given a thread index, resets a command buffer and a fence.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`thread_idx`**: thread index.
+
+### Usage example
+
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+#include <shvulkan/shVkDescriptorStructureMap.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //setup command buffers
+    //create surface --> platform dependent
+    //setup swapchain
+    //get swapchain images
+    //get swapchain image views
+    //setup render pass
+
+    // [...]
+
+    uint32_t thread_idx = 0;
+
+    shFrameReset(&core, thread_idx);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shFrameBegin
+```c
+extern void shFrameBegin(ShVkCore* p_core, const uint32_t thread_idx, uint32_t* p_swapchain_image_idx);
+```
+
+### Description
+Acquires an image ready for presenting and records a command buffer.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`thread_idx`**: thread index;
+ * **`p_swapchain_image_idx`**: image index pointer.
+
+### Usage example
+
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+#include <shvulkan/shVkDescriptorStructureMap.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //setup command buffers
+    //create surface --> platform dependent
+    //setup swapchain
+    //get swapchain images
+    //get swapchain image views
+    //setup render pass
+
+    // [...]
+
+    uint32_t thread_idx = 0;
+    uint32_t image_idx = 0;
+
+    shFrameBegin(&core, thread_idx, &image_idx);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shDrawIndexed
+```c
+#define shDrawIndexed(graphics_cmd_buffer, index_count)\
+	vkCmdDrawIndexed(graphics_cmd_buffer, index_count, 1, 0, 0, 0)
+```
+
+### Description
+Records an indexed draw call.
+
+### Parameters
+ * **`graphics_cmd_buffer`**: recording [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers) and [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers);
+ * **`index_count`**: number of mesh indices.
+
+### Usage example
+
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+#include <shvulkan/shVkDescriptorStructureMap.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //setup command buffers
+
+    uint32_t quad_index_count = 6;
+
+    // [...]
+
+    uint32_t thread_idx = 0;
+    shDrawIndexed(&core.graphics_commads[thread_idx].cmd_buffer, quad_index_count);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shDraw
+```c
+#define shDraw(graphics_cmd_buffer, vertex_count_div_stride)\
+    vkCmdDraw(graphics_cmd_buffer, vertex_count_div_stride, 1, 0, 0)
+```
+
+### Description
+Records a draw call.
+
+### Parameters
+ * **`graphics_cmd_buffer`**: recording [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), see [`shCreateGraphicsCommandBuffers`](#shcreategraphicscommandbuffers) and [`shCreateComputeCommandBuffers`](#shcreatecomputecommandbuffers);
+ * **`vertex_count_div_stride`**: number of vertices divided by the vertex stride.
+
+### Usage example
+
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+#include <shvulkan/shVkDescriptorStructureMap.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //setup command buffers
+
+    uint32_t vertex_count = 24;
+    float vertices[24] = {
+			-1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+			 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+			 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f
+	};
+
+
+    ShVkFixedStates fixed_states = { 0 };
+
+    shSetVertexInputAttribute(0, SH_VEC3_SIGNED_FLOAT, 0, 12 &fixed_states);
+	shSetVertexInputAttribute(1, SH_VEC3_SIGNED_FLOAT, 12, 12, &fixed_states);
+	shSetVertexInputAttribute(2, SH_VEC2_SIGNED_FLOAT, 24, 8, &fixed_states);
+
+    // [...]
+
+
+    uint32_t thread_idx = 0;
+    shDraw(
+        &core.graphics_commads[thread_idx].cmd_buffer, 
+        vertex_count / (fixed_states.vertex_binding_description.stride / sizeof(uint32_t)),
+    );
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shFrameEnd
+```c
+extern void shFrameEnd(ShVkCore* p_core, const uint32_t thread_idx, const uint32_t swapchain_image_idx);
+```
+
+### Description
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`thread_idx`**: thread index;
+ * **`swapchain_image_idx`**: image index.
+
+### Usage example
+
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkMemoryInfo.h>
+#include <shvulkan/shVkDescriptorStructureMap.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+	//setup physical device
+    //setup logical device
+    //setup command buffers
+
+    // [...]
+
+    uint32_t thread_idx = 0;
+    uint32_t image_idx = 0;
+
+    //begin frame
+
+    shFrameEnd(core.graphics_commands[thread_idx].cmd_buffer, image_idx);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+
 <button class="btn">[top](#shvulkan-c-definitions)</button>
 <button class="btn">[back to docs](./index)</button>
