@@ -26,6 +26,15 @@ cmake --build .
 
 If you are having some trouble with building the targets and compiling the code, check the [Linux](https://github.com/MrSinho/shvulkan/blob/main/.shci/linux-log.md) and [Windows](https://github.com/MrSinho/shvulkan/blob/main/.shci/windows-log.md) build [logs](https://github.com/MrSinho/shvulkan/blob/main/.shci).
 
+### Vulkan version
+> Vulkan 1.3 updates are coming soon
+
+If you haven't install Vulkan 1.2 you can set the cmake options `SH_USE_VULKAN_1_0` or `SH_USE_VULKAN_1_1` as true:
+```bash
+cmake -DSH_USE_VULKAN_1_0=ON ..
+cmake -DSH_USE_VULKAN_1_1=ON ..
+```
+
 ---
 
 ## CMake targets
@@ -40,6 +49,7 @@ If the cmake option `SH_VULKAN_BUILD_EXAMPLES` is enabled, the additional [`glfw
 
 ## Graphics example
 
+the author is writing...
 ```c
 
 ```
@@ -48,6 +58,7 @@ If the cmake option `SH_VULKAN_BUILD_EXAMPLES` is enabled, the additional [`glfw
 
 ## Compute example
 
+the author is writing...
 ```c
 
 ```
