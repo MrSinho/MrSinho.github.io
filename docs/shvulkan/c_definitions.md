@@ -1,6 +1,6 @@
 # shvulkan C definitions
 
-<button class="btn">[back to index](./index)</button>
+<button class="btn">[back to docs](./index)</button>
 
 [Types and structures](#types-and-structures):
 * Defined at [`shVkCore.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkCore.h)
@@ -3749,4 +3749,5 @@ layout (set = 0; binding = 0) uniform uniformBuffer { //applied for 3 objects
 
 
 
-<button class="btn">[back to index](./index)</button>
+<button class="btn">[top](#shvulkan-c-definitions)</button>
+<button class="btn">[back to docs](./index)</button>

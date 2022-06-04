@@ -116,3 +116,5 @@ In case you need to compress the binaries in a RAR file:
 python compress_catalogues.py 0 #Compress only file 0 
 python compress_catalogues.py 0 4999 #Compress all the files in the given range 
 ```
+
+<button class="btn">[back to docs](./index)</button>

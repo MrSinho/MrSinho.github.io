@@ -1,6 +1,6 @@
 # Gaia Archive Tools C definitions
 
-<button class="btn">[back to index](./index)</button>
+<button class="btn">[back to docs](./index)</button>
 
 [Types and structures](#types-and-structures):
 * [gaia_real](#gaia_real)
@@ -258,4 +258,5 @@ gaiaFree(values);
 
 
 
-<button class="btn">[back to index](./index)</button>
+<button class="btn">[top](#gaia-archive-tools-c-definitions)</button>
+<button class="btn">[back to docs](./index)</button>
