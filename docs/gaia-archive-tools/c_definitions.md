@@ -1,4 +1,4 @@
-# Gaia Archive Tools C definitions
+# gaia-archive-tools C definitions
 
 <button class="btn">[back to docs](./index)</button>
 

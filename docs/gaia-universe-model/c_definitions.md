@@ -1,4 +1,4 @@
-# Gaia Universe Model C definitions
+# gaia-universe-model C definitions
 
 <button class="btn">[back to docs](./index)</button>
 

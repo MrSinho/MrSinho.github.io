@@ -1,4 +1,4 @@
-# Gaia Archive Tools Library Walkthrough
+# gaia-archive-tools library walkthrough
 
 <button class="btn">[back to docs](./index)</button>
 

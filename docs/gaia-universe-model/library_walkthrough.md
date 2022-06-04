@@ -1,4 +1,4 @@
-# Gaia Universe Model Library Walkthrough
+# gaia-universe-model walkthrough
 
 <button class="btn">[back to docs](./index)</button>
 

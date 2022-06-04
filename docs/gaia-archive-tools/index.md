@@ -1,10 +1,15 @@
-# Gaia Universe Model
+# gaia-archive-tools documentation
 
-<button class="btn">[Download](https://github.com/MrSinho/Gaia_Universe_Model.git)</button>
+<button class="btn">[Download](https://github.com/MrSinho/Gaia_Archive_Tools.git)</button>
 <button class="btn">[C definitions](c_definitions)</button>
 <button class="btn">[Library Walkthrough](library_walkthrough)</button>
 
-A project packed with an executable and a library, used to render millions of stars using the Gaia Universe Model data from the [European Space Agency](https://gea.esac.esa.int/archive/), [Gaia Archive Tools](../Gaia_Archive_Tools/index) and [ShEngine](../SH-Engine/index).
+
+This unofficial repository collects the tools to efficiently download, convert and read the Gaia Universe Model Data.
+
+> *Gaia will create an extraordinarily precise three-dimensional map of more than a thousand million stars throughout our Milky Way galaxy and beyond, mapping their motions, luminosity, temperature and composition. This huge stellar census will provide the data needed to tackle an enormous range of important questions related to the origin, structure and evolutionary history of our galaxy.* 
+
+---
 
 ## [Gaia License](https://www.cosmos.esa.int/web/gaia-users/license)
 

@@ -127,7 +127,7 @@
     * [shDraw](#shdraw)
     * [shFrameEnd](#shframeend)
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -169,7 +169,7 @@ typedef struct ShVkCore {
 ### Description
 Primary handle for the Vulkan API context and devices. Stores unique buffers (framebuffers, depth buffer), graphics and compute command buffers, and thread synchronization structures.
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -187,7 +187,7 @@ typedef struct ShVkSurface {
 ### Description
 Collection of [`VkSuraceKHR`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceKHR.html), surface width, height and other specific properties.
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -203,7 +203,7 @@ typedef struct ShVkQueue {
 ### Description
 Stores the queue family index of a specific [`VkQueue`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueue.html).
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -220,7 +220,7 @@ typedef struct ShVkCommand {
 ### Description
 A thread unit: stores a [`VkCommandBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBuffer.html), the relative [`VkCommandPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPool.html) and [`VkFence`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html) for thread synchronization.
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -236,7 +236,7 @@ typedef enum ShVkImageType {
 ### Description
 Enum type required to define the usage of a specific [`VkImage`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImage.html).
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -266,7 +266,7 @@ typedef struct ShVkPipeline {
 ### Description
 The pipeline handle. It holds the shader modules along with shader input-output parameters. To setup a graphics pipeline, use [shVkSetupGraphicsPipeline](#shvksetupgraphicspipeline), while [shVkSetupComputePipeline](#shvksetupcomputepipeline) for compute purposes.
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -285,7 +285,7 @@ typedef enum ShVkFixedStateFlags  {
 ### Description
 Some setup flags required when creating a graphics pipeline (see [`shVkSetupGraphicsPipeline`](#shvksetupgraphicspipeline)).
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -312,7 +312,7 @@ typedef struct ShVkFixedStates {
 ### Description
 Defines some fixed pre-rendering steps and image processing operations when dealing with graphics pipelines.
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -347,7 +347,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -381,7 +381,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -420,7 +420,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -452,7 +452,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -504,7 +504,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -535,7 +535,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -553,7 +553,7 @@ Initializes a [`VkDeviceQueueCreateInfo`](https://www.khronos.org/registry/vulka
  * **`queue_family_index`**: a queue family index, already set up when selecting the physical device with [`shSelectPhysicalDevice`](#shselectphysicaldevice);
  * **`priority`**: valid pointer to a priority floating point number, generally set to `1.0f`;
  * **`p_queue_info`**: valid pointer to a [`VkDeviceQueueCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueCreateInfo.html) structure.
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -585,7 +585,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -619,7 +619,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -656,7 +656,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -693,7 +693,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -731,7 +731,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -771,7 +771,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -806,7 +806,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -844,7 +844,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -881,7 +881,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -914,7 +914,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -951,7 +951,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -994,7 +994,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1026,7 +1026,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1058,7 +1058,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1092,7 +1092,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1126,7 +1126,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1161,7 +1161,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1198,7 +1198,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1235,7 +1235,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1272,7 +1272,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1319,7 +1319,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1361,7 +1361,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1403,7 +1403,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1451,7 +1451,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1500,7 +1500,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1555,7 +1555,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1604,7 +1604,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1651,7 +1651,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1689,7 +1689,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1729,7 +1729,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1773,7 +1773,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1824,7 +1824,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1871,7 +1871,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1923,7 +1923,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -1968,7 +1968,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2014,7 +2014,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2054,7 +2054,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2100,7 +2100,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2144,7 +2144,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2189,7 +2189,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2239,7 +2239,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2286,7 +2286,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2330,7 +2330,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2374,7 +2374,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2419,7 +2419,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2467,7 +2467,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2512,7 +2512,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2556,7 +2556,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2600,7 +2600,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2645,7 +2645,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2692,7 +2692,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2737,7 +2737,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2773,7 +2773,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2810,7 +2810,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2848,7 +2848,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2885,7 +2885,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2922,7 +2922,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -2960,7 +2960,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3005,7 +3005,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3054,7 +3054,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3108,7 +3108,7 @@ layout (location = 2) in vec2 uv;
 //shader.vert
 // [...]
 ```
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3152,7 +3152,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3197,7 +3197,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3249,7 +3249,7 @@ layout (push_constant) uniform pushConstant {
 
 //shader.vert
 // [...]
-```
+```<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3310,7 +3310,7 @@ layout (set = 0, binding = 0) uniform uniformBuffer {
 } ubo;
 
 // [...]
-```
+```<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3374,7 +3374,7 @@ layout (set = 0, binding = 0) uniform uniformBuffer {
 // [...]
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3425,7 +3425,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3491,7 +3491,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3561,7 +3561,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3609,7 +3609,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3656,7 +3656,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3699,7 +3699,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3739,7 +3739,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3779,7 +3779,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3836,7 +3836,7 @@ layout (set = 0, binding = 0) uniform uniformBuffer {
 } ubo;
 
 // [...]
-```
+```<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3897,7 +3897,7 @@ layout (set = 0, binding = 0) uniform uniformBuffer { //applied for 3 objects
 } ubo;
 
 // [...]
-```
+```<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -3939,7 +3939,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4007,7 +4007,7 @@ layout (set = 0, binding = 0) uniform uniformBuffer {
 
 // [...]
 ```
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4106,7 +4106,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4183,7 +4183,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4230,7 +4230,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4292,7 +4292,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4355,7 +4355,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4435,7 +4435,7 @@ layout (push_constant) uniform pushConstant {
 
 // [...]
 ```
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4486,7 +4486,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4537,7 +4537,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4591,7 +4591,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4654,7 +4654,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4720,7 +4720,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4774,7 +4774,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4830,7 +4830,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4939,7 +4939,7 @@ layout (set = 0, binding = 0) uniform uniformBuffer {
 // [...]
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -4987,7 +4987,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -5037,7 +5037,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -5082,7 +5082,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -5143,7 +5143,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
@@ -5189,7 +5189,7 @@ int main(void) {
 }
 ```
 
-
+<button class="btn">[top](#shvulkan-c-definitions)</button>
 
 ---
 
