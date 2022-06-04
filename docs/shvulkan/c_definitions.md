@@ -91,8 +91,8 @@
     * [shCreateInputAssembly](#shcreateinputassembly)
     * [shSetPushConstants](#shsetpushconstants)
     * [shCreateDescriptorBuffer](#shcreatedescriptorbuffer)
-    * [shCreateDescriptorPool](#shcreatedescriptorpool)
     * [shDescriptorSetLayout](#shdescriptorsetlayout)
+    * [shCreateDescriptorPool](#shcreatedescriptorpool)
     * [shAllocateDescriptorSet](#shallocatedescriptorset)
     * [shCreateShaderModule](#shcreateshadermodule)
     * [shCreateShaderStage](#shcreateshaderstage)
@@ -2982,7 +2982,6 @@ int main(void) {
 layout (location = 0) in vec3 position;
 layout (location = 1) in vec3 normal;
 layout (location = 2) in vec2 uv;
-
 //shader.vert
 // [...]
 ```
@@ -3104,9 +3103,9 @@ int main(void) {
     //setup physical device
     //setup logical device
 
-    ShVkPipeline pipeline = { 0 };
+    VkPushConstantRange push_constant_range = { 0 };
 
-    shSetPushConstants(VK_SHADER_STAGE_VERTEX_BIT, 0, 128, &pipeline);
+    shSetPushConstants(VK_SHADER_STAGE_VERTEX_BIT, 0, 128, &push_constant_range);
     
     // [...]
     return 0;
@@ -3121,7 +3120,6 @@ layout (push_constant) uniform pushConstant {
     mat4 projection;
     mat4 view;
 } pconst;
-
 //shader.vert
 // [...]
 ```
@@ -3143,7 +3141,7 @@ Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/
  * **`descriptor_idx`**: descriptor set index;
  * **`size`**: size in bytes of the buffer;
  * **`max_size`**: must be equal or a multiple of `size` (generally `max_size` is higher than size when you have to work with dynamic descriptors);
- * **`p_buffer_info`**: valid pointer to a [VkDescriptorBufferInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html) structure, which summarizes the information specified after calling this function.
+ * **`p_buffer_info`**: valid pointer to a [`VkDescriptorBufferInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html) structure, which summarizes the information specified after calling this function.
  
 
 ### Usage example
@@ -3157,11 +3155,18 @@ int main(void) {
     //setup physical device
     //setup logical device
 
-    ShVkPipeline pipeline = { 0 };
+    VkBuffer descriptor_buffer;
+    VkDescriptorBufferInfo descriptor_buffer_info;
 
-    uint32_t descriptor_set_idx = 0;
-
-    shCreateDescriptorBuffer(core.device, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, descriptor_idx, 64, 64, &pipeline.descriptor_buffer_infos[descriptor_set_idx], &pipeline.descriptor_buffers[descriptor_set_idx]);
+    shCreateDescriptorBuffer(
+        core.device, 
+        VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, 
+        0, 
+        64, 
+        64, 
+        &descriptor_buffer_info, 
+        &descriptor_buffer
+    );
 
 
     // [...]
@@ -3175,7 +3180,6 @@ int main(void) {
 layout (set = 0; binding = 0) uniform uniformBuffer {
     mat4 model;
 } ubo;
-
 // [...]
 ```
 
@@ -3183,19 +3187,467 @@ layout (set = 0; binding = 0) uniform uniformBuffer {
 
 
 
+## shDescriptorSetLayout
+```c
+extern void shDescriptorSetLayout(const VkDevice device, const uint32_t binding, const VkDescriptorType descriptor_type, const VkShaderStageFlags shaderStageFlags, VkDescriptorSetLayoutBinding* p_binding, VkDescriptorSetLayout* p_descriptor_set_layout);
+```
+### Description
+Fills a [`VkDescriptorSetLayout`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayout.html) structure. 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`binding`**: could be interpreted as a binding index or id, see [`shPipelineBindDescriptorBufferMemory`](#shpipelinebinddescriptorbuffermemory);
+ * **`descriptor_type`**: [`VkDescriptorType`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorType.html) enum value;
+ * **`shader_stage_flags`**: [`VkShaderStageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStageFlags.html) enum value that defines the shader stage where the descriptor set has to be bound;
+ * **`p_descriptor_set_layout_binding`**: valid pointer to a [`VkDescriptorSetLayoutBinding`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayoutBinding.html) structure;
+  **``p_descriptor_set_layout``**: valid pointer to a [`VkDescriptorSetLayout`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayout.html) handle.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    //create descriptor buffer
+
+    VkDescriptorSetLayoutBinding set_layout_binding;
+    VkDescriptorSetLayout set_layout;
+
+    shDescriptorSetLayout(
+        core.device, 
+        0,
+        VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
+        VK_SHADER_STAGE_VERTEX_BIT, 
+        &set_layout_binding, 
+        &set_layout
+    );
+
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
 ## shCreateDescriptorPool
 ```c
-extern void shCreateDescriptorPool(VkDevice device, const uint32_t descriptor_idx, const uint32_t binding, const VkDescriptorType descriptor_type, VkDescriptorPool* p_descriptor_pool);
+extern void shCreateDescriptorPool(VkDevice device, const VkDescriptorType descriptor_type, VkDescriptorPool* p_descriptor_pool);
 ```
 ### Description
 Creates a [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPool.html) handle. 
 
 ### Parameters
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
- * **`descriptor_idx`**: descriptor set index;
- * **`binding`**: could be interpreted as a binding index or a binding id, see [`shPipelineBindDescriptorBufferMemory`](#shpipelinebinddescriptorbuffermemory);
  * **`descriptor_type`**: [`VkDescriptorType`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorType.html) enum value;
- * **`p_descriptor_pool`**: valid pointer to a [VkDescriptorPool](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPool.html) handle, which unlocks the possibility to allocate memory, see [`shPipelineAllocateDescriptorBufferMemory`](#shpipelineallocatedescriptorbuffermemory).
+ * **`p_descriptor_pool`**: valid pointer to a [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPool.html) handle.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    //create descriptor buffer
+
+    VkDescriptorSetLayoutBinding set_layout_binding = { 0 };
+
+    //setup descriptor set layout
+
+    VkDescriptorPool descriptor_pool;
+
+    shCreateDescriptorPool(
+        core.device, 
+        set_layout_binding.descriptorType, 
+        &descriptor_pool
+    );
+
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shAllocateDescriptorSet
+```c
+extern void shAllocateDescriptorSet(VkDevice device, const uint32_t binding, VkDescriptorType descriptor_type, VkDescriptorSetLayout* p_descriptor_set_layout, VkDescriptorPool descriptor_pool, VkDescriptorSet* p_descriptor_set, VkDescriptorBufferInfo* p_buffer_info, VkWriteDescriptorSet* p_write_descriptor_set);
+```
+### Description
+Creates a [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPool.html) handle. 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`binding`**: could be interpreted as a binding index or id, see [`shPipelineBindDescriptorBufferMemory`](#shpipelinebinddescriptorbuffermemory);
+ * **`descriptor_type`**: [`VkDescriptorType`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorType.html) enum value;
+ * **``p_descriptor_set_layout``**: valid [`VkDescriptorSetLayout`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayout.html) pointer, see [`shDescriptorSetLayout`](#shdescriptorsetlayout);
+ * **`descriptor_pool`**: valid [`VkDescriptorPool`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorPool.html) handle, see [`shCreateDescriptorPool`](#shcreatedescriptorpool);
+ * **`p_descriptor_set`**: valid pointer to a [`VkDescriptorSet`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSet.html) handle;
+ * **`p_buffer_info`** valid pointer to a [`VkDescriptorBufferInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBufferInfo.html) structure;
+ * **`p_write_descriptor_set`** valid pointer to a [`VkWriteDescriptorSet`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSet.html) structure.
+
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    //create descriptor buffer
+
+    VkDescriptorSetLayoutBinding set_layout_binding = { 0 };
+    VkDescriptorSetLayout set_layout;
+    VkDescriptorPool descriptor_pool;
+
+    //setup descriptor set layout
+    //create descriptor pool
+
+    VkDescriptorSet descriptor_set;
+    VkDescriptorBufferInfo descriptor_buffer_info   = { 0 };
+    VkWriteDescriptorSet write_descriptor_set       = { 0 };
+    
+    shAllocateDescriptorSet(
+        core.device,
+        0,
+        set_layout_binding.descriptorType,
+        &set_layout,
+        descriptor_pool,
+        &descriptor_set,
+        &descriptor_buffer_info,
+        &write_descriptor_set
+    );
+
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateShaderModule
+```c
+extern void shCreateShaderModule(const VkDevice device, const uint32_t size, const char* code, VkShaderModule* p_shader_module);
+```
+### Description
+Creates a shader module. 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`size`**: size in bytes of the [`SPIR-V`](https://www.khronos.org/spir/) shader module;
+ * **`code`**: shader module code;
+ * **``p_shader_module``**: valid pointer to a [`VkShaderModule`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderModule.html) handle. 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+#ifdef _MSC_VER
+#pragma warning (disable: 4996)
+#endif//_MSC_VER
+#include <stdlib.h>
+const char* readBinary(const char* path, uint32_t* p_size) {
+	FILE* stream = fopen(path, "rb");
+	if (stream == NULL) {
+		return NULL;
+	}
+	fseek(stream, 0, SEEK_END);
+	uint32_t code_size = ftell(stream);
+	fseek(stream, 0, SEEK_SET);
+	char* code = (char*)calloc(1, code_size);
+	if (code == NULL) {
+		fclose(stream);
+		return NULL;
+	}
+	fread(code, code_size, 1, stream);
+	*p_size = code_size;
+	fclose(stream);
+	return code;
+}
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    uint32_t shader_size = 0;
+
+    const char* shader_code = readBinary(
+        "path/to/shader_module", 
+        &shader_size
+    );
+
+    VkShaderModule shader_module;
+
+    shCreateShaderModule(core.device, shader_size, shader_code, &shader_module);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shCreateShaderStage
+```c
+extern void shCreateShaderStage(const VkDevice device, const VkShaderModule shader_module, const VkShaderStageFlags shader_stage_flag, VkPipelineShaderStageCreateInfo* p_shader_stage);
+```
+### Description
+Creates a shader module. 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`shader_module`**: valid [`VkShaderModule`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderModule.html) handle, see [`shCreateShaderModule`](#shcreateshadermodule);
+ * **`shader_stage_flag`**: [`VkShaderStageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderStageFlags.html) enum value;
+ * **``p_shader_stage``**: valid pointer to a [`VkPipelineShaderStageCreateInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineShaderStageCreateInfo.html) structure. 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    VkShaderModule shader_module;
+    //create shader module
+
+    VkPipelineShaderStageCreateInfo shader_stage_create_info = { 0 };
+
+    shCreateShaderStage(
+        core.device, 
+        shader_module, 
+        VK_SHADER_STAGE_VERTEX_BIT, 
+        &shader_stage_create_info
+    );
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSetupGraphicsPipeline
+```c
+extern void shSetupGraphicsPipeline(VkDevice device, VkRenderPass render_pass, const ShVkFixedStates fixed_states, ShVkPipeline* p_pipeline);
+```
+### Description
+Creates a graphics pipeline. 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`render_pass`**: valid [`VkRenderPass`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPass.html) handle;
+ * **`fixed_states`**: valid [`ShVkFixedStates`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/ShVkFixedStates.html) structure, see [`shSetFixedStates`](#shsetfixedstates);
+ * **``p_pipeline``**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure. 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+    //setup swapchain data
+    //setup depth data
+    //setup render pass
+
+    ShVkPipeline pipeline = { 0 };
+
+    //setup fixed states
+
+    //[...]
+
+    shSetupGraphicsPipeline(core.device, core.render_pass, fixed_states, &pipeline);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shSetupComputePipeline
+```c
+extern void shSetupComputePipeline(VkDevice device, ShVkPipeline* p_pipeline);
+```
+### Description
+Creates a compute pipeline. 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`render_pass`**: valid [`VkRenderPass`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPass.html) handle;
+ * **`fixed_states`**: valid [`ShVkFixedStates`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/ShVkFixedStates.html) structure, see [`shSetFixedStates`](#shsetfixedstates);
+ * **``p_pipeline``**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    ShVkPipeline pipeline = { 0 };
+
+    //[...]
+
+    shSetupComputePipeline(core.device, &pipeline);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shEndPipeline
+```c
+extern void shEndPipeline(ShVkPipeline* p_pipeline);
+```
+### Description
+Resets some pipeline states (dynamic descriptor offsets). 
+
+### Parameters
+ * **``p_pipeline``**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    ShVkPipeline pipeline = { 0 };
+
+    //[...]
+
+    shEndPipeline(&pipeline);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shPipelineRelease
+```c
+extern void shPipelineRelease(VkDevice device, ShVkPipeline* p_pipeline);
+```
+### Description
+Automatically destroys every active Vulkan object stored at `p_pipeline`.
+
+### Parameters
+ * **``p_pipeline``**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    ShVkPipeline pipeline = { 0 };
+
+    //[...]
+
+    shPipelineRelease(&pipeline);
+
+    // [...]
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+## shPipelineCreateDescriptorBuffer
+```c
+extern void shPipelineCreateDescriptorBuffer(const VkDevice device, const VkBufferUsageFlagBits buffer_usage_flag, const uint32_t descriptor_idx, const uint32_t size, ShVkPipeline* p_pipeline);
+```
+### Description
+Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) stored at `p_pipeline`. 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`buffer_usage_flag`**: some common [`VkBufferUsageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferUsageFlags.html) values used to create descriptor buffer are `VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT` and `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT`;
+ * **`descriptor_idx`**: descriptor set index;
+ * **`size`**: size in bytes of the buffer;
+ * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
  
 
 ### Usage example
@@ -3211,19 +3663,87 @@ int main(void) {
 
     ShVkPipeline pipeline = { 0 };
 
-    uint32_t descriptor_set_idx = 0;
-
-    //create descriptor buffer
-
-    shCreateDescriptorPool(core.device, descriptor_idx, pipeline.descriptor_set_layout_bindings[descriptor_set_idx].binding, pipeline.descriptor_set_layout_bindings[descriptor_set_idx].descriptorType, &pipeline.descriptor_pools[descriptor_set_idx]);
+    shPipelineCreateDescriptorBuffer(
+        core.device, 
+        VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, 
+        0, 
+        64, 
+        &pipeline
+    );
 
 
     // [...]
     return 0;
 }
 ```
+`GLSL` shader code:
+```glsl
+#version 460
+
+layout (set = 0; binding = 0) uniform uniformBuffer {
+    mat4 model;
+} ubo;
+// [...]
+```
+
+---
 
 
+
+## shPipelineCreateDynamicDescriptorBuffer
+```c
+extern void shPipelineCreateDynamicDescriptorBuffer(const VkDevice device, const VkBufferUsageFlagBits buffer_usage_flag, const uint32_t descriptor_idx, const uint32_t size, const uint32_t max_bindings, ShVkPipeline* p_pipeline);
+```
+### Description
+Creates a descriptor [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) stored at `p_pipeline`. 
+
+### Parameters
+ * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
+ * **`buffer_usage_flag`**: some common [`VkBufferUsageFlags`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferUsageFlags.html) values used to create descriptor buffer are `VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT` and `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT`;
+ * **`descriptor_idx`**: descriptor set index;
+ * **`size`**: size in bytes of the buffer;
+ * **`max_bindings`**: maximum number of bindings for each command buffer record;
+ * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
+ 
+
+### Usage example
+```c
+#include <shvulkan/shVkCore.h>
+#include <shvulkan/shVkPipelineData.h>
+
+int main(void) {
+    ShVkCore core = { 0 };
+    //setup instance
+    //setup physical device
+    //setup logical device
+
+    ShVkPipeline pipeline = { 0 };
+
+    uint32_t max_bindings = 3;
+
+    shPipelineCreateDynamicDescriptorBuffer(
+        core.device, 
+        VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, 
+        0, 
+        64,
+        3, 
+        &pipeline
+    );
+
+
+    // [...]
+    return 0;
+}
+```
+`GLSL` shader code:
+```glsl
+#version 460
+
+layout (set = 0; binding = 0) uniform uniformBuffer { //applied for 3 objects
+    mat4 model;
+} ubo;
+// [...]
+```
 
 ---
 
