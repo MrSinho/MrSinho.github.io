@@ -11,7 +11,7 @@
     * [ShVkImageType](#shvkimagetype)
 * Defined at [`shVkPipelineData.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkPipelineData.h)
     * [ShVkPipeline](#shvkpipeline)
-    * [ShFixedStatesFlags](#shvkfixedstateflags)
+    * [ShVkFixedStatesFlags](#shvkfixedstateflags)
     * [ShVkFixedStates](#shvkfixedstates)
 
 [Functions and macros](#functions-and-macros):
