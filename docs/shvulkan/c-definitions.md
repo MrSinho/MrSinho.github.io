@@ -120,6 +120,7 @@
     * [shPipelineBindDynamicDescriptorSets](#shpipelinebinddynamicdescriptorsets)
 * Defined at [`shVkDescriptorStructureMap.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkDescriptorStructureMap.h)
     * [SH_VULKAN_GENERATE_DESCRIPTOR_STRUCTURE_MAP](#sh_vulkan_generate_descriptor_structure_map)
+    * [shGetDescriptorSize](#shgetdescriptorsize)
 * Defined at [`shVkDrawLoop.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkDrawLoop.h)
     * [shFrameReset](#shframereset)
     * [shFrameBegin](#shframebegin)
@@ -4936,6 +4937,51 @@ layout (set = 0, binding = 0) uniform uniformBuffer {
 } ubo;
 
 // [...]
+```
+
+<button class="btn">[top](#shvulkan-c-definitions)</button>
+
+---
+
+
+
+## shGetDescriptorSize
+```c
+static uint32_t shGetDescriptorSize(ShVkCore* p_core, uint32_t _size);
+```
+
+### Description
+Returns the size of a descriptor set according to the GPU minumum uniform buffer offset alignment.
+
+### Parameters
+ * **`p_core`**: valid pointer to a [`ShVkCore`](#shvkcore) structure;
+ * **`size`**: initial descriptor size.
+
+### Usage example
+
+```c
+#include <shvulkan/shVkDescriptorStructureMap.h>
+
+#ifndef alignas
+#include "../../external/stdalign.in.h"
+#endif//alignas
+
+typedef struct Model {
+	alignas(16) float model[4][4];
+} Model;
+
+#include <stdlib.h>
+
+int main(void) {
+    
+    ShVkCore* p_core;
+    //setup instance
+    //setup physical device
+
+    uint32_t descriptor_size = shGetDescriptorSize(p_core, sizeof(Model));
+
+    return 0;
+}
 ```
 
 <button class="btn">[top](#shvulkan-c-definitions)</button>
