@@ -18,8 +18,8 @@
 * Defined at [`shVkCheck.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkCheck.h):
     * [shCheckValidationLayers](#shcheckvalidationlayers)
     * [shTranslateVkResult](#shtranslatevkresult)
-    * [shVkAssertResult](#shvkassertresult)
-    * [shVkAssert](#shvkassert)
+    * [shVkError](#shvkerror)
+    * [shVkResultError](#shvkresulterror)
 * Defined at [`shVkCore.h`](https://github.com/MrSinho/shvulkan/blob/main/shvulkan/include/shvulkan/shVkCore.h)
     * [shCreateInstance](#shcreateinstance)
     * [shSelectPhysicalDevice](#shselectphysicaldevice)
@@ -388,21 +388,21 @@ int main(void) {
 
 
 
-## shVkAssertResult
+## shVkError
 ```c
-#define shVkAssertResult(result, error_msg)\
-    if ((VkResult)(result) != VK_SUCCESS) {\
-    		printf("shvulkan error: %s, %s\n", error_msg, shTranslateVkResult((VkResult)(result)));\
-    		assert((VkResult)(result) == VK_SUCCESS);\
-    	}\
+#define shVkError(condition, error_msg)\
+	if ((int)(condition)) {\
+		printf("shvulkan error: %s\n", (const char*)(error_msg));\
+		exit(-1);\
+	}
 ```
 
 ### Description
-Asserts a [`VkResult`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html)
+Prints an error message on the terminal and quits if the condition is not satisfied (smaller or equal to zero).
 
 ### Parameters
- * **`result`**: an input `VkResult`;
- * **`error_msg`**: the message (encoded in a `const char*`) to display on the console when the `result` is not equal to `VK_SUCCESS`.  
+ * **`condition`**: a condition input, automatically casted to a signed integer `int`;
+ * **`error_msg`**: the message (encoded as a `const char*`) to display on the console, when `condition` smaller or equal to zero.  
 ### Usage example
 
 ```c
@@ -410,12 +410,8 @@ Asserts a [`VkResult`](https://www.khronos.org/registry/vulkan/specs/1.3-extensi
 #include <stdio.h>
 
 int main(void) {
-    VkInstance instance = NULL;
-    VkInstanceCreateInfo instance_create_info = { 0 };
-    shVkAssertResult(
-        vkCreateInstance(&instance_create_info, NULL, &instance),
-        "invalid instance create info structure"
-    );
+    char* ptr = NULL;
+    shVkError(ptr != NULL, "invalid pointer");
     // [...]
     return 0;
 }
@@ -427,27 +423,33 @@ int main(void) {
 
 
 
-## shVkAssert
+## shVkResultError
 ```c
-#define shVkAssert(condition, error_msg)\
-	assert((int)(condition) &&\
-	"shvulkan error: " &&\
-	(const char*)(error_msg))
+#define shVkResultError(result, error_msg)\
+	if ((VkResult)(result) != VK_SUCCESS) {\
+		printf("shvulkan error: %s, %s\n", error_msg, shTranslateVkResult((VkResult)(result)));\
+		exit(-1);\
+	}
 ```
 
 ### Description
-Asserts a `condition` value, automatically casted to a signed integer.
+Asserts a [`VkResult`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html), prints an error message if `result` is not equal to `VK_SUCCESS` and quits.
 
 ### Parameters
- * **`condition`**: the input value which ignites the assertion;
- * [**`error_msg`**](#gaiauniversemodelmemory): the message (encoded in a `const char*`) to display on the console when the `condition` is lower or equal to zero. 
+ * **`result`**: [`VkResult`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html) value to check;
+ * [**`error_msg`**]: the message (encoded as a `const char*`) to display on the console when the `condition` is lower or equal to zero. 
 ### Usage example
 
 ```c
 #include <shvulkan/shVkCheck.h>ì
 
 int main(void) {
-    shVkAssert(0, "failure");
+    VkInstance instance = NULL;
+    VkInstanceCreateInfo instance_create_info = { 0 };
+    shVkResultError(
+        vkCreateInstance(&instance_create_info, NULL, &instance),
+        "invalid instance create info structure"
+    );
     // [...]
     return 0;
 }
