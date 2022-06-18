@@ -398,11 +398,11 @@ int main(void) {
 ```
 
 ### Description
-Prints an error message on the terminal and quits if the condition is not satisfied (smaller or equal to zero).
+Prints an error message on the terminal and quits if the condition is not satisfied (bigger or equal to 1).
 
 ### Parameters
  * **`condition`**: a condition input, automatically casted to a signed integer `int`;
- * **`error_msg`**: the message (encoded as a `const char*`) to display on the console, when `condition` smaller or equal to zero.  
+ * **`error_msg`**: the message (encoded as a `const char*`) to display on the console, when `condition` bigger or equal to 1.  
 ### Usage example
 
 ```c
@@ -411,7 +411,7 @@ Prints an error message on the terminal and quits if the condition is not satisf
 
 int main(void) {
     char* ptr = NULL;
-    shVkError(ptr != NULL, "invalid pointer");
+    shVkError(ptr == NULL, "invalid pointer");
     // [...]
     return 0;
 }
