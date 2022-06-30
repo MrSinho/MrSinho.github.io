@@ -27,6 +27,8 @@ cd external/shengine
 python export-simulation.py gaia-universe-model SHARED ../../gaia-universe-model
 ```
 
+if you get a python syntax error specify the python version (must be 3.0 or greater).
+
 ### Build
 
 ```bash
@@ -34,14 +36,13 @@ cd build
 cmake --build .
 ```
 
-if you get a python syntax error specify the python version (must be 3.0 or greater).
-
 ## Setup GEDR3 Universe Model data
 
 Before downloading the GEDR3 Universe Model data assume that you want to visualize up to 25 files out of 5000 (not all the files are available, check [gaia-resources](https://github.com/mrsinho/gaia-resources)):
 
 ```bash
-python external/gaia-archive-tools/scripts/download-resources.py 0 25
+cd scripts
+python ../external/gaia-archive-tools/scripts/download-resources.py 0 25
 ```
 
 Now navigate to [gaia-universe-model/gaia-universe-model/assets/descriptors/universe-model.json/assets/descriptors/universe-model.json](https://github.com/MrSinho/gaia-universe-model/blob/main/gaia-universe-model/gaia-universe-model/assets/descriptors/universe-model.json) and change the `source_range` array values:
