@@ -70,5 +70,9 @@ Now navigate to [gaia-universe-model/gaia-universe-model/assets/descriptors/univ
 Go to `external/shengine/bin` and run the executable named `sheditor`.
 To move use the `WASD` keys and set the camera speed with `012345`.
 
+---
+
 <button class="btn">[top](#gaia-universe-model-library-walkthrough)</button>
 <button class="btn">[back to docs](./index.md)</button>
+
+---
