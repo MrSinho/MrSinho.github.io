@@ -390,10 +390,10 @@ int main(void) {
 
 ## shVkError
 ```c
-#define shVkError(condition, error_msg)\
+#define shVkError(condition, error_msg, failure_expression)\
 	if ((int)(condition)) {\
 		printf("shvulkan error: %s\n", (const char*)(error_msg));\
-		exit(-1);\
+		failure_expression;\
 	}
 ```
 
@@ -403,6 +403,7 @@ Prints an error message on the terminal and quits if the condition is not satisf
 ### Parameters
  * **`condition`**: a condition input, automatically casted to a signed integer `int`;
  * **`error_msg`**: the message (encoded as a `const char*`) to display on the console, when `condition` bigger or equal to 1.  
+ * **`failure_expression`**: expression to run if the condition is true.  
 ### Usage example
 
 ```c
@@ -411,7 +412,7 @@ Prints an error message on the terminal and quits if the condition is not satisf
 
 int main(void) {
     char* ptr = NULL;
-    shVkError(ptr == NULL, "invalid pointer");
+    shVkError(ptr == NULL, "invalid pointer", return 1);
     // [...]
     return 0;
 }
@@ -1783,9 +1784,9 @@ int main(void) {
 
 ## shBindMemory
 ```c
-#define shBindMemory(device, vk_buffer, memory)\
+#define shBindMemory(device, vk_buffer, offset, memory)\
 	shVkAssertResult(\
-		vkBindBufferMemory(device, vk_buffer, memory, 0),\
+		vkBindBufferMemory(device, vk_buffer, memory, offset),\
 		"error binding buffer memory "\
 	)
 ```
@@ -1797,6 +1798,7 @@ Binds a specific [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/spec
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`physical_device`**: valid physical device handle, see [`shSelectPhysicalDevice`](#shselectphysicaldevice); 
  * **`vk_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html), see [`shCreateBuffer`](#shcreatebuffer);
+ * **`offset`**: the device memory data offset in bytes;
  * **`memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle, see [`shAllocateMemory`](#shallocatememory).
 
 ### Usage example
@@ -1819,7 +1821,7 @@ int main(void) {
 
     // [...]
 
-    shBindMemory(core.device, buffer, buffer_memory);
+    shBindMemory(core.device, buffer, 0, buffer_memory);
 
     // [...]
     return 0;
@@ -2154,8 +2156,8 @@ int main(void) {
 
 ## shBindVertexBufferMemory
 ```c
-#define shBindVertexBufferMemory(device, vertex_buffer, vertex_buffer_memory)\
-	shBindMemory(device, vertex_buffer, vertex_buffer_memory)
+#define shBindVertexBufferMemory(device, vertex_buffer, offset, vertex_buffer_memory)\
+	shBindMemory(device, vertex_buffer, 0, vertex_buffer_memory)
 ```
 
 ### Description
@@ -2164,6 +2166,7 @@ Binds a specific vertex [`VkDeviceMemory`](https://www.khronos.org/registry/vulk
 ### Parameters
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`vertex_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
+ * **`offset`**: the device memory data offset in bytes;
  * **`vertex_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
 
 ### Usage example
@@ -2184,7 +2187,12 @@ int main(void) {
     VkDeviceMemory vertex_buffer_memory;
     //allocate vertex buffer memory
 
-    shBindVertexBufferMemory(core.device, vertex_buffer, vertex_buffer_memory);
+    shBindVertexBufferMemory(
+        core.device, 
+        vertex_buffer, 
+        0, 
+        vertex_buffer_memory
+    );
 
     // [...]
     return 0;
@@ -2384,8 +2392,8 @@ int main(void) {
 
 ## shBindIndexBufferMemory
 ```c
-#define shBindIndexBufferMemory(device, index_buffer, index_buffer_memory)\
-	shBindMemory(device, index_buffer, index_buffer_memory)
+#define shBindIndexBufferMemory(device, index_buffer, offset, index_buffer_memory)\
+	shBindMemory(device, index_buffer, offset, index_buffer_memory)
 ```
 
 ### Description
@@ -2394,6 +2402,7 @@ Binds a specific index [`VkDeviceMemory`](https://www.khronos.org/registry/vulka
 ### Parameters
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`vertex_buffer`**: valid [`VkBuffer`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuffer.html) object;
+ * **`offset`**: the device memory data offset in bytes;
  * **`vertex_buffer_memory`**: valid [`VkDeviceMemory`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemory.html) handle.
 
 ### Usage example
@@ -2414,7 +2423,12 @@ int main(void) {
     VkDeviceMemory index_buffer;
     //allocate index buffer memory
 
-    shBindIndexBufferMemory(core.device, index_buffer, index_buffer_memory);
+    shBindIndexBufferMemory(
+        core.device, 
+        index_buffer, 
+        0, 
+        index_buffer_memory
+    );
 
     // [...]
     return 0;
@@ -2655,8 +2669,8 @@ int main(void) {
 
 ## shPipelineBindDescriptorBufferMemory
 ```c
-#define shPipelineBindDescriptorBufferMemory(device, descriptor_idx, p_pipeline)\
-	shBindMemory(device, (p_pipeline)->descriptor_buffers[descriptor_idx], (p_pipeline)->descriptor_buffers_memory[descriptor_idx])
+#define shPipelineBindDescriptorBufferMemory(device, descriptor_idx, offset, p_pipeline)\
+	shBindMemory(device, (p_pipeline)->descriptor_buffers[descriptor_idx], 0, (p_pipeline)->descriptor_buffers_memory[descriptor_idx])
 ```
 
 ### Description
@@ -2665,6 +2679,7 @@ Binds a specific descriptor [`VkDeviceMemory`](https://www.khronos.org/registry/
 ### Parameters
  * **`device`**: valid [`VkDevice`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDevice.html), see [`shSetLogicalDevice`](#shsetlogicaldevice);
  * **`descriptor_idx`**: descriptor set index;
+ * **`offset`**: the device memory data offset in bytes;
  * **`p_pipeline`**: valid pointer to a [`ShVkPipeline`](#shvkpipeline) structure.
 
 ### Usage example

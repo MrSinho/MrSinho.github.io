@@ -1,4 +1,4 @@
-# gaia-universe-model walkthrough
+# gaia-universe-model library walkthrough
 
 <button class="btn">[back to docs](./index)</button>
 
@@ -17,91 +17,44 @@ Tutorial
 ## Clone and Build
 
 Open the terminal and run the following commands:
+
+### Generate cmake targets
+
 ```bash
-git clone --recursive https://github.com/MrSinho/Gaia_Universe_Model.git
-cd Gaia_Universe_Model
-mkdir build
-cd build
-cmake ..
+git clone --recursive https://github.com/MrSinho/gaia-universe-model.git
+cd gaia-universe-model
+cd external/shengine
+python export-simulation.py gaia-universe-model SHARED ../../gaia-universe-model
+```
+
+### Build
+
+```bash
+cd build 
 cmake --build .
 ```
 
-## Download Universe Model Data
+if you get a python syntax error specify the python version (must be 3.0 or greater).
 
-Inside the cloned repository directory download the GEDR3 binaries by executing one of the scripts shown below: 
+## Setup GEDR3 Universe Model data
+
+Before downloading the GEDR3 Universe Model data assume that you want to visualize up to 25 files out of 5000 (not all the files are available, check [gaia-resources](https://github.com/mrsinho/gaia-resources)):
+
 ```bash
-#For Linux devices
-./download_resources.sh
-#For Windows devices
-./download_resources.bat
+python external/gaia-archive-tools/scripts/download-resources.py 0 25
 ```
 
-# Tutorial
+Now navigate to [gaia-universe-model/gaia-universe-model/assets/descriptors/universe-model.json/assets/descriptors/universe-model.json](https://github.com/MrSinho/gaia-universe-model/blob/main/gaia-universe-model/gaia-universe-model/assets/descriptors/universe-model.json) and change the `source_range` array values:
 
-## Use CMake
-
-| CMake target                                           | type       |
-|--------------------------------------------------------|------------|
-| [shvulkan](../ShVulkan/index)                       | library    |
-| [shengine](../ShEngine/index)                       | library    |
-| [gaia-archive-tools](../Gaia_Archive_Tools/index)   | library    |
-| [gaia-universe-model](../Gaia_Universe_Model/index) | library    |
-| gaia-universe-model-simulation                         | executable |
-
-`gaia-universe-model-simulation` is a real time simulation, thus it needs all the libraries written on the table above.
-
-## Example
-```c
-//Located at "repo-dir/GaiaUniverseModel/gaia-universe-model-simulation/src/main.c"
-#include <stdint.h>
-#include <gaia-universe-model/gaiaUniverseModel.h>
-
-int main(void) {
-	//ENGINE SETUP
-	ShEngine engine = { 0 };
-	gaiaEngineSetup(&engine);
-
-	//SETUP MAIN MATERIAL
-	GaiaUniverseModelMemory universe_model = { 0 };
-	gaiaSetupMaterial(&engine, &universe_model);
-	assert(engine.p_materials != NULL);
-
-	uint64_t celestial_body_flags = GAIA_RA | GAIA_DEC | GAIA_BARYCENTRIC_DISTANCE | GAIA_TEFF;
-	const uint32_t CELESTIAL_BODY_SIZE = gaiaGetBodySize(celestial_body_flags);
-
-	//GET AVAILABLE MEMORY
-	//READ SOURCE FILES
-	gaiaReadSources(&engine, celestial_body_flags, &universe_model);
-
-	//WRITE VERTEX BUFFER MEMORY
-	gaiaWriteVertexBuffers(&engine, &universe_model);
-
-	//CREATE SCENE
-	gaiaSceneSetup(&engine);
-
-	while (shIsWindowActive(engine.window.window)) {
-		//UPDATE WINDOW
-		shUpdateWindow(&engine);
-
-		//BEGIN FRAME
-		shFrameReset(&engine.core);
-		uint32_t frame_index = 0;
-		shFrameBegin(&engine.core, &frame_index);
-
-		//UPDATE SCENE AND START DRAWING
-		gaiaSceneUpdate(&engine, &universe_model);
-		shDraw(&engine.core, universe_model.used_vram / CELESTIAL_BODY_SIZE);
-
-		//END FRAME
-		shEndPipeline(&engine.p_materials[0].pipeline);
-		shFrameEnd(&engine.core, frame_index);
-	}
-
-	gaiaMemoryRelease(&engine, &universe_model);
-	gaiaEngineShutdown(&engine);
-	return 0;
+```json
+{
+    "source_range": [ 0, 25 ]
 }
 ```
+
+# Testing
+
+Go to `external/shengine/bin` and run the executable named `sheditor`.
 
 <button class="btn">[top](#gaia-universe-model-library-walkthrough)</button>
 <button class="btn">[back to docs](./index.md)</button>
